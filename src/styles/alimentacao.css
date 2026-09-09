@@ -1,0 +1,98 @@
+/* Estilos restritos ao módulo; preservam o restante do portal. */
+.alimentacao {
+  --cor-primaria: #037770;
+  --cor-primaria-escura: #025c56;
+  --cor-borda: #d9e4e0;
+  --cor-texto: #17332f;
+  --cor-texto-suave: #526b65;
+  --cor-fundo: #f5f9f7;
+  --cor-alerta: #d9822b;
+  --cor-erro: #b42318;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: "Poppins", Arial, sans-serif;
+  line-height: 1.5;
+  color-scheme: light;
+}
+.alimentacao *,
+.alimentacao *::before,
+.alimentacao *::after {
+  box-sizing: border-box;
+}
+.alimentacao input:not([type="checkbox"]),
+.alimentacao select,
+.alimentacao textarea {
+  background: #fff;
+  color: #17332f;
+  max-width: 100%;
+}
+.alimentacao select {
+  appearance: auto;
+}
+.alimentacao .campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.875rem;
+}
+.alimentacao .campo input,
+.alimentacao .campo select,
+.alimentacao .campo textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  font: inherit;
+}
+.alimentacao button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.alimentacao :focus-visible {
+  outline: 3px solid #f5b301;
+  outline-offset: 3px;
+}
+.alimentacao .botao {
+  border: 1px solid var(--cor-borda);
+  background: #fff;
+  color: #17332f;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.alimentacao .botao-primario {
+  background: #037770;
+  color: #fff;
+  border-color: #037770;
+}
+.alimentacao .acoes {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+.alimentacao .mensagem-erro {
+  color: #b42318;
+  background: #fff0ed;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 12px 0;
+}
+.alimentacao .mensagem-sucesso {
+  color: #05603a;
+  background: #eaf8ef;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 12px 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .alimentacao *,
+  .alimentacao *::before,
+  .alimentacao *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

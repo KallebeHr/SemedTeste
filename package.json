@@ -1,0 +1,60 @@
+{
+  "name": "seduc-pedro-ii",
+  "version": "2.1.1",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/build.cjs",
+    "preview": "vite preview",
+    "lint": "eslint src tests scripts server api public/libras --ext .js,.vue,.cjs,.mjs",
+    "test:admin": "firebase emulators:exec --only firestore --project demo-seduc \"node --test tests/seguranca/admin-servidor.test.cjs\"",
+    "test:integracao": "node --experimental-vm-modules --test tests/integracao.test.cjs",
+    "test:regras": "firebase emulators:exec --only firestore --project demo-seduc \"node --test tests/portal/regras.test.cjs\"",
+    "test:navegador": "firebase emulators:exec --only firestore,auth --project demo-seduc \"node tests/portal/navegador.cjs\"",
+    "publicar": "node scripts/publicar.cjs",
+    "recuperacao": "node scripts/recuperacao.cjs",
+    "backup:agendado": "node scripts/backup-agendado.cjs",
+    "test:seguranca": "firebase emulators:exec --only firestore --project demo-seduc \"node --test tests/seguranca/auditoria.test.cjs\"",
+    "test:recuperacao": "firebase emulators:exec --only firestore,auth --project demo-seduc \"node --test --test-concurrency=1 tests/seguranca/recuperacao.test.cjs tests/seguranca/migracao.test.cjs\"",
+    "test:clientes": "node --test tests/seguranca/clientes.test.cjs",
+    "migrar:notas": "node scripts/migrar-notas.cjs"
+  },
+  "dependencies": {
+    "@mdi/font": "7.0.96",
+    "@vueuse/core": "14.4.0",
+    "firebase": "^12.18.0",
+    "firebase-admin": "14.3.0",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
+    "vue": "^3.4.0",
+    "vue-router": "^4.6.4",
+    "vuetify": "^3.5.0",
+    "write-excel-file": "4.1.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@firebase/rules-unit-testing": "^5.0.2",
+    "@playwright/test": "^1.62.1",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.22.0",
+    "firebase-tools": "^15.29.0",
+    "pinia": "^2.1.7",
+    "prettier": "^3.9.6",
+    "sass": "^1.103.1",
+    "unplugin-vue-components": "^32.1.0",
+    "vite": "^8.2.2",
+    "vite-plugin-vuetify": "^2.1.3"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "overrides": {
+    "gaxios@6.7.1": {"uuid":"11.1.1"},
+    "teeny-request@9.0.0": {"uuid":"11.1.1"}
+  }
+}

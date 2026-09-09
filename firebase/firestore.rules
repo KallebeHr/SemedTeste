@@ -1,0 +1,512 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function logado() { return request.auth != null; }
+    function perfil() { return get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data; }
+    function sessaoEquipeValida() {
+      return request.auth.token.get('auth_time',0) * 1000 > request.time.toMillis() - 28800000 &&
+        request.auth.token.get('auth_time',0) >= perfil().get('sessaoRevogadaEm',0);
+    }
+    function funcionario() { return logado() && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid)) && perfil().get('ativo',true) == true && sessaoEquipeValida() && perfil().papel in ['master','admin','alimentador','nutricionista','gerente','diretor','professor']; }
+    function gestao() { return funcionario() && perfil().papel in ['master','admin','nutricionista','gerente']; }
+    function admin() { return funcionario() && perfil().papel in ['master','admin']; }
+    function editorial() { return funcionario() && perfil().papel in ['master','admin','alimentador']; }
+    function acesso(escolaId) { return funcionario() && (gestao() || editorial() || escolaId in perfil().escolasVinculadas); }
+    function alimentos(escolaId) { return funcionario() && (perfil().papel in ['master','admin','nutricionista','gerente'] || (perfil().papel == 'diretor' && escolaId in perfil().escolasVinculadas)); }
+    function vistoriador(escolaId) { return alimentos(escolaId); }
+
+    // Registros imutáveis com estados anterior/posterior verificados no servidor.
+    function escritaLiberada() {
+      return !exists(/databases/$(database)/documents/operacao/estado) ||
+        get(/databases/$(database)/documents/operacao/estado).data.get('bloqueado',false) == false;
+    }
+    function auditarEscrita() {
+      let d = request.resource.data;
+      let e = getAfter(/databases/$(database)/documents/auditoriaRegistros/$(d._auditoria)).data;
+      return logado() && d._auditoria is string && d._registradoEm == request.time &&
+        (request.method == 'create' || d._auditoria != resource.data.get('_auditoria','')) &&
+        e.alvo == request.path && e.usuarioId == request.auth.uid && e.timestamp == request.time &&
+        e.acao == (request.method == 'create' ? 'create' : 'update');
+    }
+    function chaveExclusao(caminho,d) {
+      return 'del-' + d.get('_auditoria',hashing.sha256(caminho).toHexString().lower());
+    }
+    function auditarExclusao(caminho) {
+      let id = chaveExclusao(caminho,resource.data);
+      let e = getAfter(/databases/$(database)/documents/auditoriaRegistros/$(id)).data;
+      return logado() && e.alvo == request.path && e.usuarioId == request.auth.uid &&
+        e.timestamp == request.time && e.acao == 'delete';
+    }
+    function estadosAuditados(id,d) {
+      let antes = exists(d.alvo) ? get(d.alvo).data : null;
+      let depois = existsAfter(d.alvo) ? getAfter(d.alvo).data : null;
+      return d.dadosAntes == antes && d.dadosDepois == depois &&
+        (d.acao == 'delete' ? (antes != null && depois == null && id == chaveExclusao(d.caminho,antes)) :
+         (depois != null && depois._auditoria == id && depois._registradoEm == request.time &&
+          (antes == null ? d.acao == 'create' : (d.acao == 'update' && antes.get('_auditoria','') != id))));
+    }
+    function eventoValido(id,d) {
+      let partes = d.caminho.split('/');
+      let alimento = d.caminho.matches('^escolas/[^/]+/(estoque|movimentacoes|vistorias|cardapios|fornecedores)/[^/]+$');
+      let equipe = funcionario();
+      return d.keys().hasOnly(['versaoEsquema','caminho','alvo','colecao','documentoId','escolaId','dominio','acao','usuarioId','usuarioNome','papelUsuario','dadosAntes','dadosDepois','timestamp']) &&
+        d.versaoEsquema == 1 && d.caminho is string && d.caminho.size()<=1000 && d.alvo is path &&
+        (partes.size() == 2 ? d.alvo == /databases/$(database)/documents/$(partes[0])/$(partes[1]) : (partes.size() == 4 && d.alvo == /databases/$(database)/documents/$(partes[0])/$(partes[1])/$(partes[2])/$(partes[3]))) &&
+        d.colecao == partes[partes.size()-2] && d.documentoId == partes[partes.size()-1] &&
+        d.escolaId == (partes[0] in ['escolas','escolasPublicas'] ? partes[1] : null) &&
+        d.dominio == (alimento ? 'alimentacao' : 'portal') && d.acao in ['create','update','delete'] &&
+        d.usuarioId == request.auth.uid && d.timestamp == request.time &&
+        d.usuarioNome == (equipe ? perfil().nome : request.auth.token.get('name',request.auth.token.get('email',''))) &&
+        d.papelUsuario == (equipe ? perfil().papel : 'cidadao') && estadosAuditados(id,d) &&
+        (!alimento || d.colecao != 'vistorias' || d.acao != 'create' || (vistoriaValida(d.dadosDepois) && ultimaParteChecklist(d.dadosDepois.checklist)));
+    }
+    match /auditoriaRegistros/{id} {
+      allow read: if admin() || (gestao() && resource.data.dominio == 'alimentacao');
+      allow create: if logado() && escritaLiberada() && eventoValido(id,request.resource.data);
+      allow update, delete: if false;
+    }
+    match /operacao/{id} {
+      allow read: if logado();
+      allow write: if false;
+    }
+    match /operacoesAdmin/{id} { allow read: if admin(); allow write: if false; }
+    match /limitesAdmin/{id} { allow read, write: if false; }
+
+    function perfilValido(d,uid) {
+      return d.keys().hasOnly(['nome','email','papel','ativo','escolasVinculadas','atualizadoEm','ultimoAcesso','criadoEm','sessaoRevogadaEm','_auditoria','_registradoEm']) &&
+        d.nome is string && d.nome.size()>0 && d.nome.size()<=160 && d.email is string && d.email.size()<=200 &&
+        d.get('sessaoRevogadaEm',0) is int && d.get('sessaoRevogadaEm',0)>=0 &&
+        d.papel in ['master','alimentador','nutricionista','diretor','professor'] && d.ativo is bool &&
+        d.escolasVinculadas is list && d.escolasVinculadas.size()<=20 &&
+        (!(d.papel in ['diretor','professor']) || d.escolasVinculadas.size()>0) &&
+        (uid != request.auth.uid || (d.papel == 'master' && d.ativo == true));
+    }
+
+
+    function itemEstoqueValido(d) {
+      return d.keys().hasOnly(['nome','ativo','categoria','unidade','quantidadeAtual','quantidadeMinima','precoUnitario','validade','localArmazenamento','atualizadoEm','atualizadoPor','ultimaMovimentacaoId','_auditoria','_registradoEm']) &&
+        textoValido(d.get('categoria',''),100) && d.get('unidade','kg') in ['kg','l','un','cx','pct'] &&
+        (d.get('validade',null) == null || d.validade is timestamp) && textoValido(d.get('localArmazenamento',''),300) &&
+        d.nome is string && d.nome.size()>0 && d.nome.size()<=160 && d.ativo is bool &&
+        d.quantidadeAtual is number && d.quantidadeAtual>=0 && d.quantidadeAtual<=1000000000 &&
+        d.quantidadeMinima is number && d.quantidadeMinima>=0 && d.quantidadeMinima<=1000000000 &&
+        d.precoUnitario is number && d.precoUnitario>=0 && d.precoUnitario<=1000000000;
+    }
+    function camposMovimento(d,escolaId) {
+      let i = identificacao(escolaId,d.assinaturaId);
+      return d.keys().hasOnly(['tipo','itemId','itemNome','quantidade','quantidadeAnterior','quantidadeResultante','motivo','notaFiscal','fornecedorId','responsavelId','responsavelNome','registradoPorNome','metodoConfirmacao','identificacaoResponsavel','assinaturaId','observacoes','data','_auditoria','_registradoEm']) &&
+        d.data is timestamp && textoValido(d.motivo,1000) && d.motivo.trim().size()>0 &&
+        textoValido(d.get('observacoes',''),3000) && textoValido(d.get('itemNome',''),160) &&
+        (d.get('notaFiscal',null) == null || textoValido(d.notaFiscal,200)) &&
+        (d.get('fornecedorId',null) == null || textoValido(d.fornecedorId,128)) &&
+        d.responsavelNome == i.nomeSignatario && d.registradoPorNome == perfil().nome &&
+        resumoIdentificacao(d.identificacaoResponsavel,i);
+    }
+    function saldoMovimentoValido(escolaId,movId,d) {
+      let antes = get(/databases/$(database)/documents/escolas/$(escolaId)/estoque/$(d.itemId)).data;
+      let depois = getAfter(/databases/$(database)/documents/escolas/$(escolaId)/estoque/$(d.itemId)).data;
+      let esperado = antes.quantidadeAtual + (d.tipo in ['entrada','estorno'] ? d.quantidade : -d.quantidade);
+      return antes.ativo == true && d.quantidade<=1000000000 && d.quantidadeAnterior == antes.quantidadeAtual &&
+        d.quantidadeResultante >= 0 && d.quantidadeResultante >= esperado - 0.000001 && d.quantidadeResultante <= esperado + 0.000001 &&
+        depois.quantidadeAtual == d.quantidadeResultante && depois.ultimaMovimentacaoId == movId;
+    }
+    function identificacao(escolaId, id) {
+      return getAfter(/databases/$(database)/documents/escolas/$(escolaId)/assinaturas/$(id)).data;
+    }
+    function vinculada(escolaId, id, documentoId, tipo) {
+      let d = identificacao(escolaId, id);
+      return d.metodo == 'identificacao_cpf' && d.documentoId == documentoId &&
+        d.documentoTipo == tipo && d.criadoPor == request.auth.uid;
+    }
+
+    function cpfDigito(s,n) { return int(s[n]); }
+    function cpfResto(n) { return n % 11 < 2 ? 0 : 11 - n % 11; }
+    function cpfValido(s) {
+      let a = cpfDigito(s,0)*10 + cpfDigito(s,1)*9 + cpfDigito(s,2)*8 + cpfDigito(s,3)*7 + cpfDigito(s,4)*6 + cpfDigito(s,5)*5 + cpfDigito(s,6)*4 + cpfDigito(s,7)*3 + cpfDigito(s,8)*2;
+      let b = cpfDigito(s,0)*11 + cpfDigito(s,1)*10 + cpfDigito(s,2)*9 + cpfDigito(s,3)*8 + cpfDigito(s,4)*7 + cpfDigito(s,5)*6 + cpfDigito(s,6)*5 + cpfDigito(s,7)*4 + cpfDigito(s,8)*3 + cpfDigito(s,9)*2;
+      return cpfDigito(s,9) == cpfResto(a) && cpfDigito(s,10) == cpfResto(b);
+    }
+    function resumoIdentificacao(d,i) {
+      return d.keys().hasOnly(['nome','cpfMascarado','funcao','metodo']) && d.nome == i.nomeSignatario &&
+        d.cpfMascarado == '***.' + i.cpf[3:6] + '.' + i.cpf[6:9] + '-**' && d.funcao == i.papelSignatario && d.metodo == 'identificacao_cpf';
+    }
+    function nomesVistoria(d,escolaId) {
+      let r = identificacao(escolaId,d.assinaturaResponsavelId);
+      let t = identificacao(escolaId,d.assinaturaTestemunhaId);
+      return d.responsavelNome == r.nomeSignatario && d.registradoPorNome == perfil().nome &&
+        r.cargoDocumento == 'responsavel' && t.cargoDocumento == 'testemunha' &&
+        resumoIdentificacao(d.identificacaoResponsavel,r) && resumoIdentificacao(d.identificacaoTestemunha,t);
+    }
+    function componenteCanonico(s) {
+      return s.trim().lower().replace('\\p{M}','').replace('[áàãâä]','a').replace('[éèêë]','e').replace('[íìîï]','i').replace('[óòõôö]','o').replace('[úùûü]','u').replace('ç','c').replace('ñ','n').replace('[^a-z0-9]+','-').replace('^-+|-+$','');
+    }
+    function chaveNota(d) {
+      return hashing.sha256(componenteCanonico(d.componente) + '|' + string(d.ano) + '|' + string(d.bimestre) + '|' + d.professorUid).toHexString().lower();
+    }
+
+    function estruturaIdentificacaoValida(d) {
+      return d.keys().hasOnly(['metodo','versao','nomeSignatario','cpf','papelSignatario','hashDocumento','dataHora','criadoPor','documentoId','documentoTipo','cargoDocumento']) && d.metodo == 'identificacao_cpf' && d.versao == 2 &&
+        d.nomeSignatario is string && d.nomeSignatario.size() >= 3 && d.nomeSignatario.size() <= 160 &&
+        d.nomeSignatario.matches("^[\\p{L}\\p{M}.’'-]*\\p{L}[\\p{L}\\p{M}.’'-]*( [\\p{L}\\p{M}.’'-]*\\p{L}[\\p{L}\\p{M}.’'-]*)+$") && d.cpf is string && d.cpf.matches('^[0-9]{11}$') &&
+        !(d.cpf in ['00000000000', '11111111111', '22222222222', '33333333333', '44444444444',
+          '55555555555', '66666666666', '77777777777', '88888888888', '99999999999']) && cpfValido(d.cpf) &&
+        d.papelSignatario in ['master', 'nutricionista', 'gerente', 'diretor', 'professor', 'admin', 'outro'] &&
+        d.hashDocumento is string && d.hashDocumento.matches('^[a-f0-9]{64}$') && d.dataHora is timestamp;
+    }
+    function identificacaoNoDocumento(escolaId, id, d) {
+      return (d.documentoTipo == 'vistoria' &&
+        (getAfter(/databases/$(database)/documents/escolas/$(escolaId)/vistorias/$(d.documentoId)).data.assinaturaResponsavelId == id ||
+         getAfter(/databases/$(database)/documents/escolas/$(escolaId)/vistorias/$(d.documentoId)).data.assinaturaTestemunhaId == id)) ||
+        (d.documentoTipo == 'movimentacao' && gestao() &&
+         getAfter(/databases/$(database)/documents/escolas/$(escolaId)/movimentacoes/$(d.documentoId)).data.assinaturaId == id);
+    }
+
+    // Limite explícito: as regras não permitem laços sobre listas arbitrárias.
+    function statusChecklist(c,i) {
+      let d = c.size()>i ? c[i] : {};
+      return c.size()<=i ? 'ausente' :
+        (d.keys().hasOnly(['item','status','observacao']) &&
+         d.item.matches('(?s)^.{1,300}$') && d.status in ['conforme','nao_conforme','nao_aplicavel'] &&
+         d.get('observacao','') is string && d.get('observacao','').size()<=3000 ? d.status : 'invalido');
+    }
+    function estadoChecklist(c,i) { return c.size()>i ? c[i].status : 'ausente'; }
+    // Distribuir as validações entre documento e evento mantém cada avaliação
+    // abaixo do limite de 1000 expressões. Ambos são obrigatórios na mesma gravação.
+    function primeiraParteChecklist(c) {
+      return !('invalido' in [statusChecklist(c,0),statusChecklist(c,1),statusChecklist(c,2),statusChecklist(c,3)]);
+    }
+    function ultimaParteChecklist(c) {
+      return !('invalido' in [statusChecklist(c,4),statusChecklist(c,5),statusChecklist(c,6),statusChecklist(c,7)]);
+    }
+    function resultadoVistoriaValido(d,c) {
+      let ok = c.removeAll(['nao_conforme','nao_aplicavel','ausente']).size();
+      let nc = c.removeAll(['conforme','nao_aplicavel','ausente']).size();
+      let aplicaveis = ok + nc;
+      let status = aplicaveis == 0 ? 'nao_aplicavel' : (nc == 0 ? 'conforme' : (nc <= 2 ? 'conforme_com_ressalvas' : 'nao_conforme'));
+      return !('invalido' in c) && c.removeAll(['ausente']).size() == d.checklist.size() && d.status == status &&
+        d.notaGeral == (aplicaveis == 0 ? null : math.round(ok * 100.0 / aplicaveis) / 10.0) &&
+        d.planoDeAcao is string && d.planoDeAcao.size()<=5000 && (nc == 0 || d.planoDeAcao.matches('(?s).*[^ \\t\\r\\n].*'));
+    }
+    function vistoriaValida(d) {
+      let c = d.checklist;
+      return d.keys().hasOnly(['tipo','checklist','fotos','planoDeAcao','status','notaGeral','assinaturaResponsavelId','assinaturaTestemunhaId','metodoConfirmacao','identificacaoResponsavel','identificacaoTestemunha','responsavelId','responsavelNome','registradoPorNome','data','criadoEm','_auditoria','_registradoEm']) &&
+        d.get('fotos',[]) is list && d.get('fotos',[]).size() == 0 && c is list && c.size()>0 && c.size()<=8 &&
+        d.tipo in ['recebimento','sanitaria','estrutural','rotina'] && d.data is timestamp &&
+        resultadoVistoriaValido(d,[estadoChecklist(c,0), estadoChecklist(c,1), estadoChecklist(c,2), estadoChecklist(c,3), estadoChecklist(c,4), estadoChecklist(c,5), estadoChecklist(c,6), estadoChecklist(c,7)]);
+    }
+
+    match /usuarios/{uid} {
+      match /leituras/{id} {
+        allow read: if funcionario() && request.auth.uid == uid;
+        allow create, update: if funcionario() && request.auth.uid == uid &&
+          request.resource.data.keys().hasOnly(['lidaEm','_auditoria','_registradoEm']) &&
+          request.resource.data.lidaEm == request.time && auditarEscrita();
+        allow delete: if false;
+      }
+      allow get: if logado() && (request.auth.uid == uid || admin());
+      allow list: if admin();
+      allow create: if (admin() && perfilValido(request.resource.data,uid) && !request.resource.data.keys().hasAny(['sessaoRevogadaEm'])) && auditarEscrita();
+      allow delete: if false;
+      // O próprio usuário não pode alterar seu papel ou vínculo com escolas.
+      allow update: if ((admin() && perfilValido(request.resource.data,uid) && request.resource.data.get('sessaoRevogadaEm',0) == resource.data.get('sessaoRevogadaEm',0)) || (logado() && request.auth.uid == uid &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['ultimoAcesso']) &&
+        request.resource.data.ultimoAcesso == request.time)) && (auditarEscrita() || (request.auth.uid == uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['ultimoAcesso']) && escritaLiberada()));
+    }
+    match /escolas/{escolaId} {
+      allow read: if acesso(escolaId);
+      allow create, update: if ((gestao() || editorial()) && request.resource.data.nome is string &&
+        request.resource.data.nome.size() > 0 && request.resource.data.nome.size() <= 160 && request.resource.data.ativo is bool) && auditarEscrita();
+      allow delete: if false;
+      match /estoque/{itemId} {
+        allow get: if alimentos(escolaId);
+        allow list: if alimentos(escolaId);
+        allow create: if (gestao() && itemEstoqueValido(request.resource.data)) && auditarEscrita();
+        allow update: if (gestao() && itemEstoqueValido(request.resource.data) &&
+          ((request.resource.data.quantidadeAtual == resource.data.quantidadeAtual &&
+            request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nome','categoria','unidade','quantidadeMinima','precoUnitario','validade','localArmazenamento','atualizadoEm','atualizadoPor','ativo','_auditoria','_registradoEm'])) ||
+           (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['quantidadeAtual','ultimaMovimentacaoId','atualizadoEm','atualizadoPor','_auditoria','_registradoEm']) &&
+            request.resource.data.ultimaMovimentacaoId is string &&
+            !exists(/databases/$(database)/documents/escolas/$(escolaId)/movimentacoes/$(request.resource.data.ultimaMovimentacaoId)) &&
+            getAfter(/databases/$(database)/documents/escolas/$(escolaId)/movimentacoes/$(request.resource.data.ultimaMovimentacaoId)).data.itemId == itemId &&
+            getAfter(/databases/$(database)/documents/escolas/$(escolaId)/movimentacoes/$(request.resource.data.ultimaMovimentacaoId)).data.quantidadeResultante == request.resource.data.quantidadeAtual))) && auditarEscrita();
+        allow delete: if false;
+      }
+      match /movimentacoes/{movId} {
+        allow get: if alimentos(escolaId);
+        allow list: if alimentos(escolaId);
+        allow create: if (gestao() && request.resource.data.responsavelId == request.auth.uid &&
+          request.resource.data.tipo in ['entrada', 'saida', 'perda', 'estorno'] &&
+          request.resource.data.quantidade is number && request.resource.data.quantidade > 0 &&
+          request.resource.data.assinaturaId is string && request.resource.data.metodoConfirmacao == 'identificacao_cpf' &&
+          vinculada(escolaId, request.resource.data.assinaturaId, movId, 'movimentacao') &&
+          saldoMovimentoValido(escolaId,movId,request.resource.data) && camposMovimento(request.resource.data,escolaId)) && auditarEscrita();
+        allow update, delete: if false;
+      }
+      match /vistorias/{vistoriaId} {
+        allow get: if alimentos(escolaId);
+        allow list: if alimentos(escolaId);
+        allow create: if (vistoriador(escolaId) && request.resource.data.responsavelId == request.auth.uid &&
+          !exists(/databases/$(database)/documents/escolas/$(escolaId)/assinaturas/$(request.resource.data.assinaturaResponsavelId)) &&
+          !exists(/databases/$(database)/documents/escolas/$(escolaId)/assinaturas/$(request.resource.data.assinaturaTestemunhaId)) &&
+          request.resource.data.assinaturaResponsavelId is string && request.resource.data.assinaturaTestemunhaId is string &&
+          request.resource.data.metodoConfirmacao == 'identificacao_cpf' &&
+          vinculada(escolaId, request.resource.data.assinaturaResponsavelId, vistoriaId, 'vistoria') &&
+          vinculada(escolaId, request.resource.data.assinaturaTestemunhaId, vistoriaId, 'vistoria') &&
+          identificacao(escolaId, request.resource.data.assinaturaResponsavelId).cpf != identificacao(escolaId, request.resource.data.assinaturaTestemunhaId).cpf && nomesVistoria(request.resource.data,escolaId) && primeiraParteChecklist(request.resource.data.checklist)) && auditarEscrita();
+        allow update: if (vistoriador(escolaId) &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['planoDeAcao','_auditoria','_registradoEm']) &&
+          request.resource.data.planoDeAcao is string && request.resource.data.planoDeAcao.size()<=5000 &&
+          (!(resource.data.status in ['conforme_com_ressalvas','nao_conforme']) || request.resource.data.planoDeAcao.trim().size()>0)) && auditarEscrita();
+        allow delete: if false;
+      }
+      match /assinaturas/{assinaturaId} {
+        // CPF completo fica restrito à gestão ou a quem registrou a identificação.
+        // Imagens legadas, sem CPF, mantêm a leitura prevista para a escola.
+        allow read: if alimentos(escolaId) && (gestao() || resource.data.criadoPor == request.auth.uid || !('cpf' in resource.data));
+        allow create: if vistoriador(escolaId) && request.resource.data.criadoPor == request.auth.uid &&
+          request.resource.data.documentoId is string && estruturaIdentificacaoValida(request.resource.data) &&
+          identificacaoNoDocumento(escolaId, assinaturaId, request.resource.data);
+        allow update, delete: if false;
+      }
+      match /cardapios/{id} { allow read: if alimentos(escolaId); allow write: if (gestao()) && (request.method == 'delete' ? auditarExclusao('escolas/' + escolaId + '/cardapios/' + id + '') : auditarEscrita()); }
+      match /fornecedores/{id} { allow read: if alimentos(escolaId); allow write: if (gestao()) && (request.method == 'delete' ? auditarExclusao('escolas/' + escolaId + '/fornecedores/' + id + '') : auditarEscrita()); }
+    }
+    match /auditoria/{id} {
+      allow read: if gestao();
+      allow create: if false;
+      allow update, delete: if false;
+    }
+    match /backups/{id} {
+      allow read: if gestao();
+      allow create: if (gestao() && request.resource.data.criadoPor == request.auth.uid) && auditarEscrita();
+      allow update, delete: if false;
+    }
+    function origemAlertaValida(d) {
+      let colecao = d.tipo == 'estoque_baixo' ? 'movimentacoes' : 'vistorias';
+      let origem = get(/databases/$(database)/documents/escolas/$(d.escolaId)/$(colecao)/$(d.origemId)).data;
+      return origem.responsavelId == request.auth.uid &&
+        (d.tipo == 'estoque_baixo' ? origem.quantidadeResultante <= get(/databases/$(database)/documents/escolas/$(d.escolaId)/estoque/$(origem.itemId)).data.quantidadeMinima : origem.notaGeral is number && origem.notaGeral < 10);
+    }
+    match /notificacoes/{id} {
+      allow get: if gestao() || (funcionario() && (!exists(request.path) || alimentos(resource.data.escolaId)));
+      allow list: if gestao() || alimentos(resource.data.escolaId);
+      allow create: if vistoriador(request.resource.data.escolaId) &&
+        request.resource.data.keys().hasOnly(['tipo','escolaId','origemId','titulo','mensagem','destinatarios','lida','criadoEm','_auditoria','_registradoEm']) &&
+        request.resource.data.origemId is string && request.resource.data.origemId.matches('^[A-Za-z0-9_-]{1,128}$') &&
+        id == request.resource.data.tipo + '-' + request.resource.data.escolaId + '-' + request.resource.data.origemId && origemAlertaValida(request.resource.data) &&
+        request.resource.data.tipo in ['estoque_baixo','vistoria_nao_conforme'] &&
+        textoValido(request.resource.data.titulo,200) && textoValido(request.resource.data.mensagem,1000) &&
+        request.resource.data.destinatarios == [] && request.resource.data.lida == false &&
+        request.resource.data.criadoEm == request.time && auditarEscrita();
+      allow update: if ((gestao() || (funcionario() && request.auth.uid in resource.data.destinatarios)) &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lida','_auditoria','_registradoEm']) && request.resource.data.lida is bool) && auditarEscrita();
+      allow delete: if false;
+    }
+    match /configuracoes/{id} { allow read: if gestao(); allow write: if (admin()) && (request.method == 'delete' ? auditarExclusao('configuracoes/' + id + '') : auditarEscrita()); }
+    match /parametros/sistema {
+      allow read: if funcionario();
+      allow create, update: if admin() &&
+        request.resource.data.keys().hasOnly(['diasVistoria','diasValidade','categoriasTexto','versao','atualizadoEm','_auditoria','_registradoEm']) &&
+        request.resource.data.diasVistoria is int && request.resource.data.diasVistoria>=7 && request.resource.data.diasVistoria<=365 &&
+        request.resource.data.diasValidade is int && request.resource.data.diasValidade>=1 && request.resource.data.diasValidade<=90 &&
+        textoValido(request.resource.data.categoriasTexto,2000) && request.resource.data.categoriasTexto.trim().size()>0 &&
+        request.resource.data.versao == (exists(request.path) ? resource.data.versao+1 : 1) &&
+        request.resource.data.atualizadoEm == request.time && auditarEscrita();
+      allow delete: if false;
+    }
+    match /pendencias/{id} {
+      allow get: if admin() || (funcionario() && (!exists(request.path) || resource.data.destinatarioUid == request.auth.uid));
+      allow list: if admin() || (funcionario() && resource.data.destinatarioUid == request.auth.uid);
+      allow create: if admin() && request.resource.data.keys().hasOnly(['tipo','titulo','mensagem','destinatarioUid','prazo','status','versao','criadoPor','criadoEm','atualizadoEm','_auditoria','_registradoEm']) &&
+        request.resource.data.tipo in ['vistoria','documento','outro'] && textoValido(request.resource.data.titulo,160) && request.resource.data.titulo.trim().size()>0 &&
+        textoValido(request.resource.data.mensagem,2000) && request.resource.data.prazo.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$') &&
+        get(/databases/$(database)/documents/usuarios/$(request.resource.data.destinatarioUid)).data.ativo == true &&
+        request.resource.data.status == 'pendente' && request.resource.data.versao == 1 && request.resource.data.criadoPor == request.auth.uid &&
+        request.resource.data.criadoEm == request.time && request.resource.data.atualizadoEm == request.time && auditarEscrita();
+      allow update: if (admin() || (funcionario() && resource.data.destinatarioUid == request.auth.uid)) &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','versao','atualizadoEm','_auditoria','_registradoEm']) &&
+        resource.data.status == 'pendente' && request.resource.data.status == 'concluida' &&
+        request.resource.data.versao == resource.data.versao+1 && request.resource.data.atualizadoEm == request.time && auditarEscrita();
+      allow delete: if false;
+    }
+    // PUBLICAÇÕES: nenhum documento operacional é aberto para visitantes.
+    function textoValido(v, max) { return v is string && v.size() <= max; }
+    function urlPublica(v) { return v == '' || (v is string && v.size() <= 2000 && (v.matches('^https://[^ @]+$') || v.matches('^/[^/].*$'))); }
+    function camposPublicos() { return ['tipo','titulo','resumo','texto','categoria','slug','url','imagemUrl','imagemAlt','dataInicio','dataFim','local','numero','destaque','ordem','escolaId']; }
+    function corpoPublico(d) {
+      return d.keys().hasAll(camposPublicos()) &&
+        d.tipo in ['noticia','pagina','servico','edital','evento','documento','biblioteca','transporte','cardapio','indicador','sistema'] &&
+        textoValido(d.titulo,200) && d.titulo.size() >= 3 && textoValido(d.resumo,800) && textoValido(d.texto,30000) &&
+        textoValido(d.categoria,200) && textoValido(d.slug,200) && urlPublica(d.url) &&
+        (d.imagemUrl == '' || d.imagemUrl.matches('^https://[^ @]+$')) && textoValido(d.imagemUrl,2000) && textoValido(d.imagemAlt,200) &&
+        (d.imagemUrl == '' || d.imagemAlt.size() > 0) && textoValido(d.dataInicio,10) && textoValido(d.dataFim,10) &&
+        (d.dataInicio == '' || d.dataInicio.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')) &&
+        (d.dataFim == '' || d.dataFim.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')) &&
+        (d.dataFim == '' || d.dataInicio == '' || d.dataFim >= d.dataInicio) &&
+        textoValido(d.local,200) && textoValido(d.numero,200) && d.destaque is bool &&
+        d.ordem is number && d.ordem >= 0 && d.ordem <= 9999 && textoValido(d.escolaId,128) &&
+        (d.tipo != 'evento' || d.dataInicio != '') &&
+        (d.tipo != 'cardapio' || (d.escolaId != '' && d.numero.matches('^[0-9]{4}-[0-9]{2}$') && d.texto.size() > 0));
+    }
+    function podeEditarTipo(tipo) { return tipo == 'cardapio' ? gestao() : editorial(); }
+    function mesmaPublicacao(p,d) {
+      return p.diff(d).affectedKeys().hasOnly(['publicadoEm','atualizadoPor','atualizadoEm','versao','publicado','_auditoria','_registradoEm']);
+    }
+    match /conteudos/{id} {
+      allow get: if editorial() || (gestao() && (!exists(/databases/$(database)/documents/conteudos/$(id)) || resource.data.tipo == 'cardapio'));
+      allow list: if editorial() || (gestao() && resource.data.tipo == 'cardapio');
+      allow create: if (podeEditarTipo(request.resource.data.tipo) && corpoPublico(request.resource.data) &&
+        request.resource.data.keys().hasOnly(camposPublicos().concat(['publicado','versao','atualizadoEm','atualizadoPor','_auditoria','_registradoEm'])) &&
+        request.resource.data.versao == 1 && request.resource.data.publicado is bool &&
+        request.resource.data.atualizadoPor == request.auth.uid && request.resource.data.atualizadoEm == request.time) && auditarEscrita();
+      allow update: if (podeEditarTipo(resource.data.tipo) && request.resource.data.tipo == resource.data.tipo &&
+        corpoPublico(request.resource.data) && request.resource.data.keys().hasOnly(camposPublicos().concat(['publicado','versao','atualizadoEm','atualizadoPor','_auditoria','_registradoEm'])) &&
+        request.resource.data.versao == resource.data.versao + 1 && request.resource.data.publicado is bool &&
+        request.resource.data.atualizadoPor == request.auth.uid && request.resource.data.atualizadoEm == request.time) && auditarEscrita();
+      allow delete: if false;
+    }
+    match /publicacoes/{id} {
+      allow read: if true;
+      allow create, update: if (podeEditarTipo(request.resource.data.tipo) && corpoPublico(request.resource.data) &&
+        request.resource.data.keys().hasOnly(camposPublicos().concat(['publicadoEm','_auditoria','_registradoEm'])) &&
+        request.resource.data.publicadoEm == request.time &&
+        getAfter(/databases/$(database)/documents/conteudos/$(id)).data.publicado == true &&
+        getAfter(/databases/$(database)/documents/conteudos/$(id)).data.atualizadoPor == request.auth.uid &&
+        getAfter(/databases/$(database)/documents/conteudos/$(id)).data.atualizadoEm == request.time &&
+        mesmaPublicacao(request.resource.data,getAfter(/databases/$(database)/documents/conteudos/$(id)).data) &&
+        (request.resource.data.tipo != 'cardapio' || exists(/databases/$(database)/documents/escolasPublicas/$(request.resource.data.escolaId)))) && auditarEscrita();
+      allow delete: if (podeEditarTipo(resource.data.tipo) && getAfter(/databases/$(database)/documents/conteudos/$(id)).data.publicado == false) && auditarExclusao('publicacoes/' + id + '');
+    }
+    match /portalPublico/configuracao {
+      allow read: if true;
+      allow create, update: if (editorial() && request.resource.data.keys().hasOnly(['heroTitulo','heroTexto','email','telefone','endereco','horario','publicadoEm','versao','_auditoria','_registradoEm']) &&
+        textoValido(request.resource.data.heroTitulo,200) && request.resource.data.heroTitulo.size()>0 &&
+        textoValido(request.resource.data.heroTexto,800) && textoValido(request.resource.data.email,200) &&
+        textoValido(request.resource.data.telefone,100) && textoValido(request.resource.data.endereco,300) &&
+        textoValido(request.resource.data.horario,200) && request.resource.data.publicadoEm == request.time &&
+        request.resource.data.versao == (exists(/databases/$(database)/documents/portalPublico/configuracao) ? resource.data.versao + 1 : 1)) && auditarEscrita();
+      allow delete: if false;
+    }
+    match /escolasPublicas/{escolaId} {
+      allow read: if true;
+      allow create, update: if (editorial() && request.resource.data.keys().hasOnly(['nome','endereco','contato','etapas','horario','sobre','publicadoEm','_auditoria','_registradoEm']) &&
+        request.resource.data.nome == getAfter(/databases/$(database)/documents/escolas/$(escolaId)).data.nome &&
+        getAfter(/databases/$(database)/documents/escolas/$(escolaId)).data.ativo == true &&
+        textoValido(request.resource.data.endereco,300) && textoValido(request.resource.data.contato,200) &&
+        textoValido(request.resource.data.etapas,300) && textoValido(request.resource.data.horario,200) &&
+        textoValido(request.resource.data.sobre,3000) && request.resource.data.publicadoEm == request.time) && auditarEscrita();
+      allow delete: if (editorial()) && auditarExclusao('escolasPublicas/' + escolaId + '');
+      match /vistorias/{id} {
+        allow get: if gestao() || exists(/databases/$(database)/documents/escolasPublicas/$(escolaId));
+        allow list: if exists(/databases/$(database)/documents/escolasPublicas/$(escolaId));
+        allow create, update: if (gestao() && exists(/databases/$(database)/documents/escolasPublicas/$(escolaId)) &&
+          resumoPublicoVistoria(request.resource.data,escolaId,id)) && auditarEscrita();
+        allow delete: if (gestao()) && auditarExclusao('escolasPublicas/' + escolaId + '/vistorias/' + id + '');
+      }
+    }
+    function resumoPublicoVistoria(d,escolaId,id) {
+      let v = get(/databases/$(database)/documents/escolas/$(escolaId)/vistorias/$(id)).data;
+      let r = get(/databases/$(database)/documents/escolas/$(escolaId)/assinaturas/$(v.assinaturaResponsavelId)).data;
+      return v.metodoConfirmacao == 'identificacao_cpf' && estruturaIdentificacaoValida(r) && r.documentoId == id && r.documentoTipo == 'vistoria' && r.cargoDocumento == 'responsavel' && v.responsavelNome == r.nomeSignatario &&
+         d.keys().hasOnly(['escolaId','tipo','status','nota','data','responsavelNome','publicadoEm','_auditoria','_registradoEm']) &&
+        d.escolaId == escolaId && d.tipo == v.tipo && d.status == v.status &&
+        d.nota == v.get('notaGeral',null) && d.data == v.data && d.responsavelNome == v.responsavelNome &&
+        d.publicadoEm == request.time;
+    }
+    match /equipe/{uid} {
+      allow read: if funcionario();
+      allow create, update: if (admin() && request.resource.data.keys().hasOnly(['nome','papel','ativo','escolasVinculadas','_auditoria','_registradoEm']) &&
+        request.resource.data.nome == getAfter(/databases/$(database)/documents/usuarios/$(uid)).data.nome &&
+        request.resource.data.papel == getAfter(/databases/$(database)/documents/usuarios/$(uid)).data.papel &&
+        request.resource.data.ativo == getAfter(/databases/$(database)/documents/usuarios/$(uid)).data.ativo &&
+        request.resource.data.escolasVinculadas == getAfter(/databases/$(database)/documents/usuarios/$(uid)).data.escolasVinculadas) && auditarEscrita();
+      allow delete: if (admin()) && auditarExclusao('equipe/' + uid + '');
+    }
+    function atende(d) {
+      return editorial() || (funcionario() && perfil().papel == 'diretor' &&
+        d.escolaId in perfil().escolasVinculadas && d.tipo in ['matricula','transporte']);
+    }
+    function pedidoValido(d) {
+      return d.keys().hasOnly(['tipo','nome','email','assunto','mensagem','escolaId','alunoNome','serie','donoUid','status','resposta','versao','criadoEm','atualizadoEm','_auditoria','_registradoEm']) &&
+        d.tipo in ['matricula','transporte','ouvidoria','informacao'] && textoValido(d.nome,160) && d.nome.size()>0 &&
+        textoValido(d.email,200) && d.email == request.auth.token.email && textoValido(d.assunto,200) && d.assunto.size()>0 &&
+        textoValido(d.mensagem,5000) && d.mensagem.size()>0 && textoValido(d.escolaId,128) && textoValido(d.alunoNome,160) && textoValido(d.serie,100) &&
+        (!(d.tipo in ['matricula','transporte']) || (d.alunoNome.size()>0 && d.serie.size()>0 && exists(/databases/$(database)/documents/escolasPublicas/$(d.escolaId)))) &&
+        d.donoUid == request.auth.uid && d.status == 'recebida' && d.resposta == '' && d.versao == 1 && d.criadoEm == request.time && d.atualizadoEm == request.time;
+    }
+    match /solicitacoes/{id} {
+      allow get: if logado() && (!exists(/databases/$(database)/documents/solicitacoes/$(id)) || resource.data.donoUid == request.auth.uid || atende(resource.data));
+      allow list: if logado() && (resource.data.donoUid == request.auth.uid || atende(resource.data));
+      allow create: if (logado() && request.auth.token.email_verified == true && pedidoValido(request.resource.data) &&
+        getAfter(/databases/$(database)/documents/limitesAtendimento/$(request.auth.uid)).data.ultimoEnvio == request.time &&
+        getAfter(/databases/$(database)/documents/limitesAtendimento/$(request.auth.uid)).data.ultimoProtocolo == id) && auditarEscrita();
+      allow update: if (atende(resource.data) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','resposta','versao','atendidoPor','atualizadoEm','_auditoria','_registradoEm']) &&
+        request.resource.data.status in ['recebida','em_analise','deferida','indeferida','respondida'] && textoValido(request.resource.data.resposta,5000) &&
+        (!(request.resource.data.status in ['deferida','indeferida','respondida']) || request.resource.data.resposta.size()>0) &&
+        request.resource.data.versao == resource.data.versao+1 && request.resource.data.atendidoPor == request.auth.uid && request.resource.data.atualizadoEm == request.time) && auditarEscrita();
+      allow delete: if false;
+    }
+    match /limitesAtendimento/{uid} {
+      allow get: if logado() && request.auth.uid == uid;
+      allow create, update: if logado() && request.auth.uid == uid && request.auth.token.email_verified == true &&
+        request.resource.data.keys().hasOnly(['ultimoEnvio','ultimoProtocolo']) && request.resource.data.ultimoEnvio == request.time &&
+        request.resource.data.ultimoProtocolo is string &&
+        (!exists(/databases/$(database)/documents/limitesAtendimento/$(uid)) || request.time >= resource.data.ultimoEnvio + duration.value(60,'s')) &&
+        getAfter(/databases/$(database)/documents/solicitacoes/$(request.resource.data.ultimoProtocolo)).data.donoUid == uid &&
+        getAfter(/databases/$(database)/documents/solicitacoes/$(request.resource.data.ultimoProtocolo)).data.criadoEm == request.time;
+      allow delete: if false;
+    }
+    function dirige(escolaId) { return admin() || (funcionario() && perfil().papel == 'diretor' && escolaId in perfil().escolasVinculadas); }
+    function leAluno(d) {
+      return logado() && ((request.auth.token.email_verified == true && d.responsavelUid == request.auth.uid) ||
+        dirige(d.escolaId) || (funcionario() && perfil().papel == 'professor' && request.auth.uid in d.professoresUids && d.escolaId in perfil().escolasVinculadas));
+    }
+    function professorVinculado(uid,escolaId) {
+      let p = get(/databases/$(database)/documents/usuarios/$(uid)).data;
+      return p.papel == 'professor' && p.get('ativo',true) == true && escolaId in p.escolasVinculadas;
+    }
+    function listaProfessores(p,escolaId) {
+      return p is list && p.size() <= 8 &&
+        (p.size()<1 || professorVinculado(p[0],escolaId)) && (p.size()<2 || professorVinculado(p[1],escolaId)) &&
+        (p.size()<3 || professorVinculado(p[2],escolaId)) && (p.size()<4 || professorVinculado(p[3],escolaId)) &&
+        (p.size()<5 || professorVinculado(p[4],escolaId)) && (p.size()<6 || professorVinculado(p[5],escolaId)) &&
+        (p.size()<7 || professorVinculado(p[6],escolaId)) && (p.size()<8 || professorVinculado(p[7],escolaId));
+    }
+    function alunoValido(d) {
+      return d.keys().hasOnly(['nome','turma','ano','responsavelUid','professoresUids','ativo','escolaId','versao','atualizadoEm','_auditoria','_registradoEm']) &&
+        textoValido(d.nome,160) && d.nome.size()>0 && textoValido(d.turma,100) && d.turma.size()>0 &&
+        d.ano is int && d.ano >= 2000 && d.ano <= 2100 && textoValido(d.responsavelUid,128) && d.ativo is bool &&
+        d.escolaId is string && listaProfessores(d.professoresUids,d.escolaId) && d.atualizadoEm == request.time;
+    }
+    function podeNota(a) { return a.ativo == true && (admin() || (funcionario() && perfil().papel == 'professor' && a.escolaId in perfil().escolasVinculadas && request.auth.uid in a.professoresUids)); }
+    function notaValida(d) {
+      return d.keys().hasOnly(['componente','bimestre','ano','nota','frequencia','observacao','professorUid','versao','atualizadoEm','_auditoria','_registradoEm']) &&
+        textoValido(d.componente,100) && componenteCanonico(d.componente).size()>0 && d.bimestre is int && d.bimestre>=1 && d.bimestre<=4 &&
+        d.ano is int && d.ano>=2000 && d.ano<=2100 && d.nota is number && d.nota>=0 && d.nota<=10 &&
+        d.frequencia is number && d.frequencia>=0 && d.frequencia<=100 && textoValido(d.observacao,1000) &&
+        d.professorUid is string && d.atualizadoEm == request.time;
+    }
+    match /alunos/{id} {
+      allow get: if (funcionario() && (admin() || perfil().papel == 'diretor') && !exists(/databases/$(database)/documents/alunos/$(id))) || leAluno(resource.data);
+      allow list: if leAluno(resource.data);
+      allow create: if (dirige(request.resource.data.escolaId) && alunoValido(request.resource.data) && request.resource.data.versao == 1) && auditarEscrita();
+      allow update: if (dirige(resource.data.escolaId) && request.resource.data.escolaId == resource.data.escolaId && alunoValido(request.resource.data) && request.resource.data.versao == resource.data.versao+1) && auditarEscrita();
+      allow delete: if false;
+      match /notas/{notaId} {
+        allow read: if leAluno(get(/databases/$(database)/documents/alunos/$(id)).data);
+        allow create: if (podeNota(get(/databases/$(database)/documents/alunos/$(id)).data) && notaValida(request.resource.data) &&
+          request.resource.data.professorUid == request.auth.uid && request.resource.data.versao == 1 && notaId == chaveNota(request.resource.data)) && auditarEscrita();
+        allow update: if (podeNota(get(/databases/$(database)/documents/alunos/$(id)).data) && notaValida(request.resource.data) &&
+          request.resource.data.componente == resource.data.componente && request.resource.data.ano == resource.data.ano && request.resource.data.bimestre == resource.data.bimestre &&
+          request.resource.data.professorUid == resource.data.professorUid && (admin() || resource.data.professorUid == request.auth.uid) &&
+          request.resource.data.versao == resource.data.versao+1 && notaId == chaveNota(request.resource.data)) && auditarEscrita();
+        allow delete: if false;
+      }
+    }
+    match /auditoriaPortal/{id} {
+      allow read: if admin();
+      allow create: if false;
+      allow update, delete: if false;
+    }
+  }
+}

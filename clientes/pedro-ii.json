@@ -1,0 +1,15 @@
+{
+  "id": "pedro-ii",
+  "nome": "Secretaria Municipal de Educação",
+  "municipio": "Pedro II",
+  "uf": "PI",
+  "firebase": {
+    "apiKey": "AIzaSyDhpLvfgZiNZu2phxqCyBC0_A1oPcD1bV4",
+    "authDomain": "recallapp-14074.firebaseapp.com",
+    "projectId": "recallapp-14074",
+    "storageBucket": "recallapp-14074.firebasestorage.app",
+    "messagingSenderId": "836081030906",
+    "appId": "1:836081030906:web:aa2f7da0a5160991eadb43",
+    "measurementId": "G-X8R9RPMW6X"
+  }
+}

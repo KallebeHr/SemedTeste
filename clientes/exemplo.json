@@ -1,0 +1,12 @@
+{
+  "id": "exemplo",
+  "nome": "Secretaria de Educação",
+  "municipio": "Preencha o município",
+  "uf": "UF",
+  "firebase": {
+    "apiKey": "",
+    "authDomain": "",
+    "projectId": "",
+    "appId": ""
+  }
+}
