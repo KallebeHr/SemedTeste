@@ -28,6 +28,7 @@
             <option value="sanitaria">Sanitária</option>
             <option value="estrutural">Estrutural</option>
             <option value="rotina">Rotina do refeitório</option>
+            <option value="AgroFamiliar">Agricultura Familiar</option>
           </select>
         </label>
 

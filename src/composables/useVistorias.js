@@ -53,6 +53,13 @@ export const TEMPLATES_CHECKLIST = {
     "Registro de temperatura da refeição servida",
     "Condições gerais de higiene do refeitório",
   ],
+ AgroFamiliar: [
+  "Produtos entregues são provenientes da agricultura familiar",
+  "Fornecedor corresponde ao agricultor, associação ou cooperativa cadastrada",
+  "Produtos entregues estão de acordo com os itens previstos no contrato/chamada pública",
+  "Quantidade entregue está de acordo com o solicitado",
+  "Qualidade dos produtos está dentro do padrão esperado",
+],
 };
 
 export function useVistorias(escolaId) {
