@@ -19,6 +19,8 @@ declare module 'vue' {
     AuditoriaTimeline: typeof import('./src/components/auditoria/AuditoriaTimeline.vue')['default']
     BackupManager: typeof import('./src/components/backup/BackupManager.vue')['default']
     BoletimAluno: typeof import('./src/components/portal/BoletimAluno.vue')['default']
+    CardapioEditor: typeof import('./src/components/cardapio/CardapioEditor.vue')['default']
+    CardapioFolha: typeof import('./src/components/cardapio/CardapioFolha.vue')['default']
     CartaoPublicacao: typeof import('./src/components/portal/CartaoPublicacao.vue')['default']
     ContaForm: typeof import('./src/components/portal/ContaForm.vue')['default']
     Contatos: typeof import('./src/components/contatos.vue')['default']

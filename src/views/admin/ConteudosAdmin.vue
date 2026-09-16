@@ -132,7 +132,7 @@
                   {{ e.nome }}
                 </option>
               </select></label
-            ><label class="p-field"
+            ><label v-if="!form.gradeCardapio" class="p-field"
               >Mês de referência<input
                 aria-label="Mês de referência"
                 v-model="form.numero"
@@ -144,8 +144,30 @@
             Preencha o cardápio por semana/dia e turno. Informe preparações,
             substituições e observações nutricionais. A publicação só fica
             disponível para escolas publicadas.
-          </p></template
-        ><label class="p-field"
+          </p>
+          <CardapioEditor
+            v-if="form.gradeCardapio"
+            :model-value="form.gradeCardapio"
+            @update:model-value="atualizarGrade"
+            :escola="nomeEscola"
+            :responsavel="form.local"
+          />
+          <div v-else class="p-alert">
+            <p>
+              Este cardápio usa o formato de texto. Você pode mantê-lo ou
+              preencher uma nova grade mensal.
+            </p>
+            <button class="p-button" type="button" @click="criarGrade">
+              Criar grade mensal
+            </button>
+          </div>
+          <details v-if="textoLegado">
+            <summary>
+              Texto anterior para consulta durante o preenchimento
+            </summary>
+            <p class="p-prose">{{ textoLegado }}</p>
+          </details> </template
+        ><label v-if="!form.gradeCardapio" class="p-field"
           >{{ tipo === "cardapio" ? "Cardápio completo" : "Conteúdo completo"
           }}<textarea
             v-model="form.texto"
@@ -230,7 +252,7 @@
             /></label>
           </div>
         </details>
-        <details>
+        <details v-if="!form.gradeCardapio">
           <summary>Prévia do texto público</summary>
           <article class="p-card">
             <h2>{{ form.titulo }}</h2>
@@ -294,14 +316,21 @@
   </section>
 </template>
 <script setup>
-import { ref, reactive } from "vue";
+import CardapioEditor from "../../components/cardapio/CardapioEditor.vue";
+import {
+  novoCardapio,
+  mesValido,
+  validarCardapio,
+} from "../../portal/cardapioMensal";
+
+import { ref, reactive, computed } from "vue";
 import { collection, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuth } from "../../composables/useAuth";
 import { useColecao } from "../../composables/useColecao";
 import { TIPOS_CONTEUDO, PAGINAS, SERVICOS } from "../../portal/catalogo";
 import { salvarConteudo, retirarPublicacao } from "../../portal/editorial";
-import { useSaidaSegura } from '../../composables/useSaidaSegura';
+import { useSaidaSegura } from "../../composables/useSaidaSegura";
 import { dataTexto, mensagemErro, dataHoje } from "../../portal/validacao";
 import EstadoConsulta from "../../components/portal/EstadoConsulta.vue";
 const { pode } = useAuth(),
@@ -341,12 +370,42 @@ const inicial = () => ({
     destaque: false,
     ordem: 0,
     escolaId: "",
+    ...(tipo.value === "cardapio"
+      ? { gradeCardapio: novoCardapio(dataHoje().slice(0, 7)) }
+      : {}),
   }),
   form = reactive(inicial());
+const textoLegado = ref("");
+const nomeEscola = computed(
+  () => escolas.dados.value.find((e) => e.id === form.escolaId)?.nome || "",
+);
+function atualizarGrade(grade) {
+  form.gradeCardapio = grade;
+  form.numero = grade.mes;
+  revisado.value = false;
+}
+function criarGrade() {
+  if (
+    !window.confirm(
+      "A nova grade precisará ser preenchida. O texto atual ficará visível para consulta até fechar o editor. Continuar?",
+    )
+  )
+    return;
+  textoLegado.value = form.texto;
+  atualizarGrade(
+    novoCardapio(mesValido(form.numero) ? form.numero : dataHoje().slice(0, 7)),
+  );
+}
 useSaidaSegura(() => editando.value);
 function reset(d) {
   Object.keys(form).forEach((k) => delete form[k]);
-  Object.assign(form, d);
+  Object.assign(form, {
+    ...d,
+    ...(d.gradeCardapio
+      ? { gradeCardapio: validarCardapio(d.gradeCardapio) }
+      : {}),
+  });
+  textoLegado.value = "";
   revisado.value = false;
   erro.value = "";
   editando.value = true;
@@ -359,6 +418,10 @@ function editar(c) {
 }
 async function salvar(publicar) {
   if (salvando.value) return;
+  if (publicar && !revisado.value) {
+    erro.value = "Revise o conteúdo e marque a confirmação antes de publicar.";
+    return;
+  }
   salvando.value = true;
   erro.value = "";
   mensagem.value = "";

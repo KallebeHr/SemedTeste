@@ -15,7 +15,9 @@
             até {{ dataTexto(item.dataFim) }}</template
           >
         </p>
-        <p v-if="item.local">Local: {{ item.local }}</p>
+        <p v-if="item.local && item.tipo !== 'cardapio'">
+          Local: {{ item.local }}
+        </p>
       </header>
       <img
         v-if="item.imagemUrl"
@@ -24,7 +26,18 @@
         :alt="item.imagemAlt"
         referrerpolicy="no-referrer"
       />
-      <div class="p-card p-prose">{{ item.texto }}</div>
+      <CardapioFolha
+        v-if="
+          item.tipo === 'cardapio' &&
+          gradeValida(item.gradeCardapio, item.numero)
+        "
+        :cardapio="item.gradeCardapio"
+        :escola="
+          escolas.dados.value.find((e) => e.id === item.escolaId)?.nome || ''
+        "
+        :responsavel="item.local"
+      />
+      <div v-else class="p-card p-prose">{{ item.texto }}</div>
       <p v-if="erro" class="p-alert error" role="alert">{{ erro }}</p>
       <div class="p-actions">
         <a
@@ -60,6 +73,9 @@
   </article>
 </template>
 <script setup>
+import CardapioFolha from "../../components/cardapio/CardapioFolha.vue";
+import { gradeValida } from "../../portal/cardapioMensal";
+
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { usePortal } from "../../composables/usePortal";
@@ -68,7 +84,7 @@ import { urlSegura, dataTexto, mensagemErro } from "../../portal/validacao";
 import { baixarPublicacao } from "../../portal/downloads";
 import EstadoConsulta from "../../components/portal/EstadoConsulta.vue";
 const route = useRoute(),
-  { conteudos, publicacoes } = usePortal(),
+  { conteudos, publicacoes, escolas } = usePortal(),
   item = computed(() => conteudos.value.find((c) => c.id === route.params.id)),
   baixando = ref(false),
   erro = ref(""),
@@ -88,7 +104,10 @@ async function baixar() {
   baixando.value = true;
   erro.value = "";
   try {
-    await baixarPublicacao(item.value);
+    await baixarPublicacao(
+      item.value,
+      escolas.dados.value.find((e) => e.id === item.value.escolaId)?.nome || "",
+    );
   } catch (e) {
     erro.value = mensagemErro(e);
   } finally {

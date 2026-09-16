@@ -47,8 +47,19 @@
         <div v-for="c in cardapios" :key="c.id" class="p-card p-stack">
           <h3>{{ c.titulo }}</h3>
           <p>{{ c.resumo }}</p>
-          <p class="p-prose">{{ c.texto }}</p>
-          <p v-if="c.local" class="p-small">
+          <CardapioFolha
+            v-if="gradeValida(c.gradeCardapio, c.numero)"
+            :cardapio="c.gradeCardapio"
+            :escola="
+              escolas.dados.value.find((e) => e.id === escolaId)?.nome || ''
+            "
+            :responsavel="c.local"
+          />
+          <p v-else class="p-prose">{{ c.texto }}</p>
+          <p
+            v-if="c.local && !gradeValida(c.gradeCardapio, c.numero)"
+            class="p-small"
+          >
             Responsável técnico: {{ c.local }}
           </p>
           <div class="p-actions">
@@ -57,7 +68,7 @@
               :disabled="baixando"
               @click="baixar(c)"
             >
-              Baixar cardápio em PDF</button
+              {{ baixando ? "Gerando PDF…" : "Baixar cardápio em PDF" }}</button
             ><router-link class="p-button" :to="'/publicacao/' + c.id"
               >Abrir publicação</router-link
             >
@@ -128,6 +139,9 @@
   </div>
 </template>
 <script setup>
+import CardapioFolha from "../../components/cardapio/CardapioFolha.vue";
+import { gradeValida } from "../../portal/cardapioMensal";
+
 import { ref, computed, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { collection } from "firebase/firestore";

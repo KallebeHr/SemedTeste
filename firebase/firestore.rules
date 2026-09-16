@@ -333,6 +333,15 @@ service cloud.firestore {
     function textoValido(v, max) { return v is string && v.size() <= max; }
     function urlPublica(v) { return v == '' || (v is string && v.size() <= 2000 && (v.matches('^https://[^ @]+$') || v.matches('^/[^/].*$'))); }
     function camposPublicos() { return ['tipo','titulo','resumo','texto','categoria','slug','url','imagemUrl','imagemAlt','dataInicio','dataFim','local','numero','destaque','ordem','escolaId']; }
+    // Dias serializados: 5 textos por dia, separador ASCII 31; registros ASCII 30.
+    // Valida os 31 dias completos sem exceder o limite de expressões das Rules.
+    function gradeCardapioValida(g, mes) {
+      return g is map && g.keys().hasOnly(['versao','mes','etapa','turno','observacoes','dias']) &&
+        g.versao == 1 && g.mes == mes && mes.matches('^20[0-9]{2}-(0[1-9]|1[0-2])$') &&
+        textoValido(g.etapa,100) && g.etapa.trim().size()>0 && textoValido(g.turno,60) && g.turno.trim().size()>0 &&
+        textoValido(g.observacoes,1000) && g.dias is list && g.dias.size()==31 &&
+        g.dias.join('\u001e').matches('^(((letivo\\x1F[^\\x1E\\x1F]{0,300}\\x1F[^\\x1E\\x1F]{0,500}|(feriado|sem_aula)\\x1F\\x1F)\\x1F[^\\x1E\\x1F]{0,80}\\x1F[^\\x1E\\x1F]{0,200})\\x1E){30}((letivo\\x1F[^\\x1E\\x1F]{0,300}\\x1F[^\\x1E\\x1F]{0,500}|(feriado|sem_aula)\\x1F\\x1F)\\x1F[^\\x1E\\x1F]{0,80}\\x1F[^\\x1E\\x1F]{0,200})$');
+    }
     function corpoPublico(d) {
       return d.keys().hasAll(camposPublicos()) &&
         d.tipo in ['noticia','pagina','servico','edital','evento','documento','biblioteca','transporte','cardapio','indicador','sistema'] &&
@@ -346,6 +355,7 @@ service cloud.firestore {
         textoValido(d.local,200) && textoValido(d.numero,200) && d.destaque is bool &&
         d.ordem is number && d.ordem >= 0 && d.ordem <= 9999 && textoValido(d.escolaId,128) &&
         (d.tipo != 'evento' || d.dataInicio != '') &&
+        (!('gradeCardapio' in d) || (d.tipo == 'cardapio' && gradeCardapioValida(d.gradeCardapio,d.numero))) &&
         (d.tipo != 'cardapio' || (d.escolaId != '' && d.numero.matches('^[0-9]{4}-[0-9]{2}$') && d.texto.size() > 0));
     }
     function podeEditarTipo(tipo) { return tipo == 'cardapio' ? gestao() : editorial(); }
@@ -356,11 +366,11 @@ service cloud.firestore {
       allow get: if editorial() || (gestao() && (!exists(/databases/$(database)/documents/conteudos/$(id)) || resource.data.tipo == 'cardapio'));
       allow list: if editorial() || (gestao() && resource.data.tipo == 'cardapio');
       allow create: if (podeEditarTipo(request.resource.data.tipo) && corpoPublico(request.resource.data) &&
-        request.resource.data.keys().hasOnly(camposPublicos().concat(['publicado','versao','atualizadoEm','atualizadoPor','_auditoria','_registradoEm'])) &&
+        request.resource.data.keys().hasOnly(camposPublicos().concat(['gradeCardapio','publicado','versao','atualizadoEm','atualizadoPor','_auditoria','_registradoEm'])) &&
         request.resource.data.versao == 1 && request.resource.data.publicado is bool &&
         request.resource.data.atualizadoPor == request.auth.uid && request.resource.data.atualizadoEm == request.time) && auditarEscrita();
       allow update: if (podeEditarTipo(resource.data.tipo) && request.resource.data.tipo == resource.data.tipo &&
-        corpoPublico(request.resource.data) && request.resource.data.keys().hasOnly(camposPublicos().concat(['publicado','versao','atualizadoEm','atualizadoPor','_auditoria','_registradoEm'])) &&
+        corpoPublico(request.resource.data) && request.resource.data.keys().hasOnly(camposPublicos().concat(['gradeCardapio','publicado','versao','atualizadoEm','atualizadoPor','_auditoria','_registradoEm'])) &&
         request.resource.data.versao == resource.data.versao + 1 && request.resource.data.publicado is bool &&
         request.resource.data.atualizadoPor == request.auth.uid && request.resource.data.atualizadoEm == request.time) && auditarEscrita();
       allow delete: if false;
@@ -368,7 +378,7 @@ service cloud.firestore {
     match /publicacoes/{id} {
       allow read: if true;
       allow create, update: if (podeEditarTipo(request.resource.data.tipo) && corpoPublico(request.resource.data) &&
-        request.resource.data.keys().hasOnly(camposPublicos().concat(['publicadoEm','_auditoria','_registradoEm'])) &&
+        request.resource.data.keys().hasOnly(camposPublicos().concat(['gradeCardapio','publicadoEm','_auditoria','_registradoEm'])) &&
         request.resource.data.publicadoEm == request.time &&
         getAfter(/databases/$(database)/documents/conteudos/$(id)).data.publicado == true &&
         getAfter(/databases/$(database)/documents/conteudos/$(id)).data.atualizadoPor == request.auth.uid &&
