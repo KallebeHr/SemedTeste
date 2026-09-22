@@ -5,7 +5,10 @@
         <div>
           <p class="sobretitulo">SEDUC · PEDRO II</p>
           <h1>Controle de Alimentação Escolar</h1>
-          <p>Estoque, movimentações e acompanhamento das escolas.</p>
+          <p>
+            Depósito municipal, estoque das escolas e acompanhamento da
+            alimentação.
+          </p>
         </div>
         <div class="sessao">
           <span>{{ usuario.nome }}</span
@@ -16,7 +19,12 @@
       </header>
       <div class="barra-escolas">
         <fieldset :disabled="ocupado || carregandoEscolas" class="seletor">
-          <EscolaSelector :model-value="escolaId" :escolas="escolas" @update:model-value="trocarEscola" />
+          <EscolaSelector
+            :model-value="escolaId"
+            :escolas="escolas"
+            rotulo="Unidade de estoque"
+            @update:model-value="trocarEscola"
+          />
         </fieldset>
         <button
           v-if="ehGestao"
@@ -26,6 +34,14 @@
         >
           + Cadastrar escola
         </button>
+        <button
+          v-if="ehGestao && !escolas.some((e) => ehDeposito(e.id))"
+          class="botao"
+          :disabled="ocupado || carregandoEscolas"
+          @click="abrirDeposito"
+        >
+          Ativar depósito municipal
+        </button>
       </div>
       <p v-if="erroEscolas || erroAcao" class="mensagem-erro" role="alert">
         {{ erroEscolas || erroAcao }}
@@ -34,19 +50,29 @@
         {{ mensagem }}
       </p>
       <p v-if="carregandoEscolas" class="estado" role="status">
-        Carregando escolas...
+        Carregando unidades...
       </p>
       <div v-else-if="!escolas.length && !erroEscolas" class="estado">
-        <h2>Nenhuma escola disponível</h2>
+        <h2>Nenhuma unidade disponível</h2>
         <p>
           {{
             ehGestao
-              ? "Cadastre a primeira escola para começar."
+              ? "Cadastre a primeira escola ou ative o depósito municipal para começar."
               : "Solicite à administração o vínculo da sua conta com uma escola."
           }}
         </p>
       </div>
-      <template v-if="escolaId">
+      <template v-if="escolaId"
+        ><div class="unidade-atual">
+          <strong>{{ escolaAtual.nome }}</strong>
+          <p>
+            {{
+              ehDeposito(escolaId)
+                ? "Estoque central da Educação. As retiradas e os recebimentos nas escolas são registrados separadamente."
+                : "O saldo e o histórico desta unidade são independentes do depósito municipal."
+            }}
+          </p>
+        </div>
         <nav class="abas" aria-label="Seções da alimentação escolar">
           <button
             v-for="aba in abas"
@@ -87,6 +113,14 @@
                 + Novo item
               </button>
               <button
+                v-if="ehGestao"
+                class="botao"
+                :disabled="ocupado || carregandoEstoque || !!erroEstoque"
+                @click="mostrarCatalogo = true"
+              >
+                Adicionar do catálogo
+              </button>
+              <button
                 class="botao"
                 :disabled="carregandoEstoque || !!erroEstoque"
                 @click="exportarEstoque"
@@ -96,14 +130,28 @@
             </div>
             <EstoqueList
               v-if="!carregandoEstoque && !erroEstoque"
-              :itens="itens"
+              :itens="todosItens"
+              :ocupado="ocupado"
+              :dias-validade="parametros.diasValidade"
               :pode-editar="ehGestao"
               @editar="abrirItem"
+              @movimentar="iniciarMovimentacao"
+              @arquivar="alterarArquivo($event, false)"
+              @reativar="alterarArquivo($event, true)"
+              @historico="abrirHistorico"
             />
           </section>
           <section v-if="abaAtiva === 'movimentacao'">
             <MovimentacaoForm
               v-if="ehGestao && itens.length"
+              :key="formMovKey"
+              :item-inicial="operacaoInicial?.item?.id || ''"
+              :tipo-inicial="operacaoInicial?.tipo || 'entrada'"
+              :escolas-destino="
+                ehDeposito(escolaId)
+                  ? escolas.filter((e) => !ehDeposito(e.id))
+                  : []
+              "
               :escola-id="escolaId"
               :itens="itens"
               @ocupado="ocupado = $event"
@@ -113,9 +161,21 @@
               Cadastre um item na aba Estoque para registrar entradas e saídas.
             </p>
             <HistoricoEscola
+              @ocupado="ocupado = $event"
               :escola-id="escolaId"
               :escola-nome="escolaAtual.nome"
               tipo="movimentacoes"
+            />
+          </section>
+          <section v-if="abaAtiva === 'historico'">
+            <HistoricoEscola
+              @ocupado="ocupado = $event"
+              :key="filtroItemHistorico"
+              :escola-id="escolaId"
+              :escola-nome="escolaAtual.nome"
+              tipo="movimentacoes"
+              :item-inicial="filtroItemHistorico"
+              :itens="todosItens"
             />
           </section>
           <section v-if="abaAtiva === 'vistoria'">
@@ -126,11 +186,27 @@
               @concluido="mensagem = 'Vistoria registrada com sucesso.'"
             />
             <HistoricoEscola
+              @ocupado="ocupado = $event"
               :escola-id="escolaId"
               :escola-nome="escolaAtual.nome"
               tipo="vistorias"
             />
           </section>
+          <VisitasAgricultura
+            v-if="
+              abaAtiva === 'visitasAF' &&
+              !ehDeposito(escolaId) &&
+              (ehGestao || ehDiretor)
+            "
+            :escola-id="escolaId"
+            :escola-nome="escolaAtual.nome"
+            @ocupado="ocupado = $event"
+          />
+          <DocumentosUnidade
+            v-if="abaAtiva === 'documentos' && (ehGestao || ehDiretor)"
+            :escola-id="escolaId"
+            @ocupado="ocupado = $event"
+          />
           <AuditoriaTimeline
             v-if="abaAtiva === 'auditoria' && ehGestao"
             :escola-id="escolaId"
@@ -143,9 +219,21 @@
         </div>
       </template>
       <p v-else-if="escolas.length && !carregandoEscolas" class="estado">
-        Selecione uma escola para começar.
+        Selecione uma escola ou o depósito para começar.
       </p>
     </div>
+    <v-dialog v-model="mostrarCatalogo" max-width="1000" persistent>
+      <v-card theme="light" class="alimentacao dialogo">
+        <CatalogoEstoque
+          v-if="mostrarCatalogo"
+          :key="escolaId"
+          :escola-id="escolaId"
+          :itens="todosItens"
+          @ocupado="ocupado = $event"
+          @fechar="fecharCatalogo"
+        />
+      </v-card>
+    </v-dialog>
     <v-dialog v-model="mostrarItem" max-width="720" :persistent="ocupado">
       <v-card theme="light" class="alimentacao dialogo">
         <h2>{{ itemEmEdicao ? "Editar item" : "Novo item de estoque" }}</h2>
@@ -198,6 +286,10 @@
   </div>
 </template>
 <script setup>
+import "../styles/documentos-alimentacao.css";
+import VisitasAgricultura from "../components/visitas/VisitasAgricultura.vue";
+import DocumentosUnidade from "../components/documentos/DocumentosUnidade.vue";
+import CatalogoEstoque from "../components/estoque/CatalogoEstoque.vue";
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRouter, onBeforeRouteLeave } from "vue-router";
 import EscolaSelector from "../components/escolas/EscolaSelector.vue";
@@ -212,9 +304,10 @@ import HistoricoEscola from "../components/estoque/HistoricoEscola.vue";
 import { useAuth } from "../composables/useAuth";
 import { useEscolas } from "../composables/useEscolas";
 import { useEstoque } from "../composables/useEstoque";
-import { useParametros } from '../composables/useParametros';
-import { confirmarAlteracoes } from '../composables/useSaidaSegura';
+import { useParametros } from "../composables/useParametros";
+import { confirmarAlteracoes } from "../composables/useSaidaSegura";
 import "../styles/alimentacao.css";
+import { ehDeposito } from "../utils/estoque";
 
 const router = useRouter();
 const { usuario, ehGestao, ehDiretor, sair } = useAuth();
@@ -224,23 +317,45 @@ const {
   erro: erroEscolas,
   escutarEscolas,
   criarEscola,
+  ativarDeposito,
   parar: pararEscolas,
-} = useEscolas();
+} = useEscolas({ incluirDeposito: true });
 const escolaId = ref("");
-const {parametros}=useParametros();
-function trocarEscola(id){if(id===escolaId.value || confirmarAlteracoes())escolaId.value=id;}
-function trocarAba(id){if(id===abaAtiva.value || confirmarAlteracoes())abaAtiva.value=id;}
+const operacaoInicial = ref(null),
+  formMovKey = ref(0),
+  filtroItemHistorico = ref("");
+const { parametros } = useParametros();
+function trocarEscola(id) {
+  if (id === escolaId.value || confirmarAlteracoes()) escolaId.value = id;
+}
+function trocarAba(id) {
+  if (id === abaAtiva.value || confirmarAlteracoes()) {
+    if (id === "movimentacao") {
+      operacaoInicial.value = null;
+      formMovKey.value++;
+    }
+    if (id === "historico") filtroItemHistorico.value = "";
+    abaAtiva.value = id;
+  }
+}
 const abaAtiva = ref("dashboard");
 const ocupado = ref(false);
 const mensagem = ref("");
 const erroAcao = ref("");
 const mostrarItem = ref(false);
+const mostrarCatalogo = ref(false);
+function fecharCatalogo() {
+  if (!ocupado.value && confirmarAlteracoes()) mostrarCatalogo.value = false;
+}
 const itemEmEdicao = ref(null);
 const mostrarEscola = ref(false);
 const nomeEscola = ref("");
 const erroCadastro = ref("");
 const {
   itens,
+  todosItens,
+  inativarItem,
+  reativarItem,
   carregando: carregandoEstoque,
   erro: erroEstoque,
   itensAbaixoDoMinimo,
@@ -248,7 +363,7 @@ const {
   valorTotalEstoque,
   escutarEstoque,
   parar: pararEstoque,
-} = useEstoque(escolaId,()=>parametros.value.diasValidade);
+} = useEstoque(escolaId, () => parametros.value.diasValidade);
 const escolaAtual = computed(
   () => escolas.value.find((e) => e.id === escolaId.value) || { nome: "" },
 );
@@ -256,7 +371,16 @@ const abas = computed(() => [
   { id: "dashboard", rotulo: "Painel geral" },
   { id: "estoque", rotulo: "Estoque" },
   { id: "movimentacao", rotulo: "Entrada / Saída" },
+  { id: "historico", rotulo: "Histórico" },
   { id: "vistoria", rotulo: "Vistorias" },
+  ...(ehGestao.value || ehDiretor.value
+    ? [
+        { id: "documentos", rotulo: "Documentos" },
+        ...(!ehDeposito(escolaId.value)
+          ? [{ id: "visitasAF", rotulo: "Visitas AF" }]
+          : []),
+      ]
+    : []),
   ...(ehGestao.value
     ? [
         { id: "auditoria", rotulo: "Auditoria" },
@@ -265,6 +389,12 @@ const abas = computed(() => [
     : []),
 ]);
 watch(escolaId, () => {
+  if (ehDeposito(escolaId.value) && abaAtiva.value === "visitasAF")
+    abaAtiva.value = "estoque";
+  operacaoInicial.value = null;
+  filtroItemHistorico.value = "";
+  formMovKey.value++;
+  mostrarCatalogo.value = false;
   mostrarItem.value = false;
   mensagem.value = "";
   escutarEstoque();
@@ -300,6 +430,59 @@ function itemSalvo() {
 function concluirMovimentacao() {
   mensagem.value = "Movimentação registrada com sucesso.";
   abaAtiva.value = "estoque";
+}
+function iniciarMovimentacao(operacao) {
+  if (ocupado.value || !confirmarAlteracoes()) return;
+  operacaoInicial.value = operacao;
+  formMovKey.value++;
+  abaAtiva.value = "movimentacao";
+  mensagem.value = "";
+  erroAcao.value = "";
+}
+function abrirHistorico(item) {
+  filtroItemHistorico.value = item.id;
+  abaAtiva.value = "historico";
+}
+async function alterarArquivo(item, ativo) {
+  if (
+    ocupado.value ||
+    !window.confirm(
+      `${ativo ? "Reativar" : "Arquivar"} ${item.nome}? O histórico será preservado.`,
+    )
+  )
+    return;
+  ocupado.value = true;
+  erroAcao.value = "";
+  mensagem.value = "";
+  try {
+    await (ativo ? reativarItem : inativarItem)(item.id);
+    mensagem.value = ativo
+      ? "Item reativado."
+      : "Item arquivado. Consulte-o pelo filtro Arquivados.";
+  } catch (e) {
+    erroAcao.value = e.code
+      ? "Não foi possível alterar o item. Confira a conexão e as permissões."
+      : e.message;
+  } finally {
+    ocupado.value = false;
+  }
+}
+async function abrirDeposito() {
+  if (ocupado.value || !confirmarAlteracoes()) return;
+  ocupado.value = true;
+  erroAcao.value = "";
+  try {
+    escolaId.value = await ativarDeposito();
+    abaAtiva.value = "estoque";
+    mensagem.value =
+      "Depósito municipal ativado. Cadastre os produtos para começar.";
+  } catch (e) {
+    erroAcao.value = e.code
+      ? "Não foi possível ativar o depósito. Confira a conexão e as regras publicadas."
+      : e.message;
+  } finally {
+    ocupado.value = false;
+  }
 }
 async function exportarEstoque() {
   erroAcao.value = "";
@@ -398,6 +581,16 @@ async function cadastrarEscola() {
 .abas button.ativo {
   color: #037770;
   border-color: #037770;
+}
+.unidade-atual {
+  padding: 16px;
+  background: #edf5f1;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+.unidade-atual p {
+  font-size: 0.875rem;
+  margin-top: 6px;
 }
 .conteudo {
   min-width: 0;

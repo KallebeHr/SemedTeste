@@ -1,3 +1,5 @@
+import { DEPOSITO_ID, DEPOSITO_NOME, ehDeposito } from "../utils/estoque";
+import { runTransactionAuditada } from "../portal/auditoria";
 import { writeBatchAuditado as writeBatch } from "../portal/auditoria";
 import { ref } from "vue";
 import {
@@ -33,7 +35,7 @@ function mensagemErroConsulta(falha) {
   return codigo ? `${mensagem} (${codigo})` : mensagem;
 }
 
-export function useEscolas() {
+export function useEscolas({ incluirDeposito = false } = {}) {
   const escolas = ref([]);
   const carregando = ref(false);
   const erro = ref("");
@@ -60,7 +62,9 @@ export function useEscolas() {
         query(collection(db, "escolas"), where("ativo", "==", true)),
       );
     } else {
-      const ids = [...new Set(usuario.value.escolasVinculadas)];
+      const ids = [...new Set(usuario.value.escolasVinculadas)].filter(
+        (id) => !ehDeposito(id),
+      );
       for (let i = 0; i < ids.length; i += 10) {
         consultas.push(
           query(
@@ -88,6 +92,9 @@ export function useEscolas() {
           terminadas.add(indice);
           escolas.value = [...resultados.values()]
             .flat()
+            .filter(
+              (e) => !ehDeposito(e.id) || (incluirDeposito && ehGestao.value),
+            )
             .sort((a, b) =>
               String(a.nome || "").localeCompare(String(b.nome || ""), "pt-BR"),
             );
@@ -100,6 +107,9 @@ export function useEscolas() {
           resultados.delete(indice);
           escolas.value = [...resultados.values()]
             .flat()
+            .filter(
+              (e) => !ehDeposito(e.id) || (incluirDeposito && ehGestao.value),
+            )
             .sort((a, b) =>
               String(a.nome || "").localeCompare(String(b.nome || ""), "pt-BR"),
             );
@@ -110,6 +120,27 @@ export function useEscolas() {
     );
   }
 
+  async function ativarDeposito() {
+    exigirUsuario(null, true);
+    const refDoc = doc(db, "escolas", DEPOSITO_ID);
+    await runTransactionAuditada(db, async (tx) => {
+      const snap = await tx.get(refDoc);
+      if (snap.exists()) {
+        if (snap.data().tipoUnidade !== "deposito")
+          throw new Error(
+            "O identificador do depósito já está em uso por outro cadastro. Contate o suporte.",
+          );
+        if (!snap.data().ativo) tx.update(refDoc, { ativo: true });
+      } else
+        tx.set(refDoc, {
+          nome: DEPOSITO_NOME,
+          tipoUnidade: "deposito",
+          ativo: true,
+          criadoEm: serverTimestamp(),
+        });
+    });
+    return DEPOSITO_ID;
+  }
   async function criarEscola(dados) {
     exigirUsuario(null, true);
     if (!dados.nome?.trim()) throw new Error("Informe o nome da escola.");
@@ -143,6 +174,7 @@ export function useEscolas() {
     escutarEscolas,
     parar,
     criarEscola,
+    ativarDeposito,
     atualizarEscola,
     desativarEscola,
   };

@@ -1,79 +1,256 @@
 <template>
-  <div class="estoque-list">
-    <div class="estoque-list__filtros">
-      <input
-        v-model="busca"
-        type="search"
-        placeholder="Buscar item..."
-        class="filtro-busca"
-      />
-      <select v-model="filtroCategoria">
-        <option value="">Todas as categorias</option>
-        <option v-for="c in categorias" :key="c" :value="c">
-          {{ rotuloCategoria(c) }}
-        </option>
-      </select>
-      <label class="filtro-check">
-        <input v-model="apenasAlerta" type="checkbox" />
-        Apenas com alerta
-      </label>
+  <section class="estoque-list" aria-label="Estoque da unidade selecionada">
+    <div class="indicadores">
+      <article>
+        <span>Itens ativos</span><strong>{{ resumo.ativos }}</strong
+        ><small>Tipos de produtos cadastrados</small>
+      </article>
+      <article>
+        <span>Precisam de reposição</span><strong>{{ resumo.baixos }}</strong
+        ><small>Saldo igual ou abaixo do mínimo</small>
+      </article>
+      <article>
+        <span>Sem saldo</span><strong>{{ resumo.zerados }}</strong
+        ><small>Produtos esgotados</small>
+      </article>
+      <article>
+        <span>Valor estimado</span
+        ><strong>{{ moedaEstoque(resumo.valor) }}</strong
+        ><small>Saldo × preço unitário cadastrado</small>
+      </article>
     </div>
-
-    <div class="estoque-list__grid">
+    <p v-if="resumo.vencidos" class="aviso" role="status">
+      {{ resumo.vencidos }} item(ns) com saldo e validade vencida. Confira os
+      produtos e registre perdas quando necessário.
+    </p>
+    <div class="filtros">
+      <label
+        >Buscar item ou local<input
+          v-model="busca"
+          type="search"
+          placeholder="Ex.: arroz, prateleira B" /></label
+      ><label
+        >Categoria<select v-model="categoria">
+          <option value="">Todas</option>
+          <option v-for="c in categorias" :key="c" :value="c">
+            {{ rotuloCategoria(c) }}
+          </option>
+        </select></label
+      ><label
+        >Mostrar<select v-model="situacao">
+          <option value="ativos">Itens ativos</option>
+          <option value="baixo">Precisam de reposição</option>
+          <option value="zerado">Sem saldo</option>
+          <option value="vencendo">Validade próxima</option>
+          <option value="vencido">Vencidos</option>
+          <option value="arquivado">Arquivados</option>
+        </select></label
+      ><label
+        >Ordenar<select v-model="ordem">
+          <option value="nome">Nome</option>
+          <option value="validade">Menor validade primeiro</option>
+          <option value="saldo">Menor saldo primeiro</option>
+        </select></label
+      >
+    </div>
+    <p class="orientacao">
+      Retirar reduz a quantidade. Arquivar retira o cadastro da lista ativa e
+      preserva o histórico. Não somamos kg, litros e unidades em um único saldo.
+    </p>
+    <p role="status" class="contagem">
+      {{ filtrados.length }} item(ns) encontrado(s)
+    </p>
+    <div class="itens-grid">
       <article
-        v-for="item in itensFiltrados"
+        v-for="item in filtrados"
         :key="item.id"
         class="item-card"
-        :class="{ alerta: item.quantidadeAtual <= item.quantidadeMinima }"
+        :class="estadoItem(item, diasValidade).id"
       >
         <header>
-          <h4>{{ item.nome }}</h4>
-          <span class="badge">{{ rotuloCategoria(item.categoria) }}</span>
+          <span class="categoria">{{ rotuloCategoria(item.categoria) }}</span>
+          <h3>{{ item.nome }}</h3>
+          <span class="status">{{
+            estadoItem(item, diasValidade).rotulo
+          }}</span>
         </header>
-        <div class="item-card__qtd">
-          <strong>{{ item.quantidadeAtual }}{{ item.unidade }}</strong>
-          <span>mín. {{ item.quantidadeMinima }}{{ item.unidade }}</span>
-        </div>
-        <div class="item-card__barra">
-          <div
-            class="item-card__barra-preenchida"
-            :style="{ width: percentual(item) + '%' }"
-            :class="{ baixo: item.quantidadeAtual <= item.quantidadeMinima }"
-          />
-        </div>
-        <footer>
-          <span
-            v-if="item.validade"
-            class="validade"
-            :class="{ vencendo: vencendoEmBreve(item) }"
+        <div class="saldo">
+          <span>Saldo disponível</span
+          ><strong
+            >{{ numeroEstoque(item.quantidadeAtual) }}
+            <small>{{ item.unidade }}</small></strong
           >
-            Val.: {{ formatarData(item.validade) }}
-          </span>
-          <button
-            v-if="podeEditar"
-            class="link-editar"
-            @click="$emit('editar', item)"
+        </div>
+        <dl>
+          <div>
+            <dt>Mínimo definido</dt>
+            <dd>
+              {{ numeroEstoque(item.quantidadeMinima) }} {{ item.unidade }}
+            </dd>
+          </div>
+          <div>
+            <dt>Validade</dt>
+            <dd>{{ dataValidade(item.validade) }}</dd>
+          </div>
+          <div>
+            <dt>Armazenamento</dt>
+            <dd>{{ item.localArmazenamento || "Não informado" }}</dd>
+          </div>
+          <div>
+            <dt>Valor estimado</dt>
+            <dd>
+              {{
+                moedaEstoque(item.quantidadeAtual * (item.precoUnitario || 0))
+              }}
+            </dd>
+          </div>
+        </dl>
+        <div v-if="podeEditar" class="acoes-item">
+          <template v-if="item.ativo !== false">
+            <button
+              type="button"
+              class="botao botao-primario"
+              :disabled="ocupado"
+              :aria-label="'Registrar entrada de ' + item.nome"
+              @click="$emit('movimentar', { item, tipo: 'entrada' })"
+            >
+              + Entrada
+            </button>
+            <button
+              type="button"
+              class="botao"
+              :disabled="ocupado || item.quantidadeAtual <= 0"
+              :aria-label="'Retirar ' + item.nome"
+              @click="$emit('movimentar', { item, tipo: 'saida' })"
+            >
+              − Retirar
+            </button>
+            <button
+              type="button"
+              class="botao"
+              :disabled="ocupado || item.quantidadeAtual <= 0"
+              @click="$emit('movimentar', { item, tipo: 'perda' })"
+            >
+              Perda / descarte
+            </button>
+            <button
+              type="button"
+              class="botao"
+              :disabled="ocupado"
+              @click="$emit('movimentar', { item, tipo: 'conferencia' })"
+            >
+              Conferir saldo
+            </button>
+            <button
+              type="button"
+              class="botao"
+              :disabled="ocupado"
+              @click="$emit('editar', item)"
+            >
+              Editar cadastro
+            </button>
+            <button
+              type="button"
+              class="botao"
+              :disabled="ocupado || item.quantidadeAtual !== 0"
+              title="Só é possível arquivar com saldo zerado"
+              @click="$emit('arquivar', item)"
+            >
+              Arquivar
+            </button> </template
+          ><button
+            v-else
+            type="button"
+            class="botao"
+            :disabled="ocupado"
+            @click="$emit('reativar', item)"
           >
-            Editar
+            Reativar item
           </button>
-        </footer>
+        </div>
+        <button
+          type="button"
+          class="botao historico"
+          :disabled="ocupado"
+          @click="$emit('historico', item)"
+        >
+          Ver histórico deste item
+        </button>
       </article>
-
-      <p v-if="!itensFiltrados.length" class="vazio">Nenhum item encontrado.</p>
     </div>
-  </div>
+    <div v-if="!filtrados.length" class="vazio">
+      <h3>
+        {{
+          situacao === "arquivado"
+            ? "Nenhum item arquivado encontrado"
+            : "Nenhum item neste filtro"
+        }}
+      </h3>
+      <p>
+        Confira os filtros ou cadastre um produto. Ao cadastrar, escolha a
+        unidade e o saldo inicial com atenção.
+      </p>
+    </div>
+  </section>
 </template>
-
 <script setup>
 import { ref, computed } from "vue";
-
+import {
+  numeroEstoque,
+  moedaEstoque,
+  resumoEstoque,
+  estadoItem,
+} from "../../utils/estoque";
 const props = defineProps({
   itens: { type: Array, default: () => [] },
   podeEditar: { type: Boolean, default: false },
+  ocupado: { type: Boolean, default: false },
+  diasValidade: { type: Number, default: 15 },
 });
-defineEmits(["editar"]);
-
-function rotuloCategoria(categoria) {
+defineEmits(["editar", "movimentar", "arquivar", "reativar", "historico"]);
+const busca = ref(""),
+  categoria = ref(""),
+  situacao = ref("ativos"),
+  ordem = ref("nome");
+const normalizar = (v) =>
+  String(v || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+const categorias = computed(() =>
+  [...new Set(props.itens.map((i) => i.categoria).filter(Boolean))].sort(),
+);
+const resumo = computed(() => resumoEstoque(props.itens, props.diasValidade));
+const validade = (i) =>
+  i.validade?.toMillis?.() || new Date(i.validade || "9999-12-31").getTime();
+const filtrados = computed(() =>
+  props.itens
+    .filter((i) => {
+      if ((situacao.value === "arquivado") !== (i.ativo === false))
+        return false;
+      if (categoria.value && categoria.value !== i.categoria) return false;
+      if (
+        !normalizar(`${i.nome} ${i.localArmazenamento || ""}`).includes(
+          normalizar(busca.value),
+        )
+      )
+        return false;
+      if (situacao.value === "baixo")
+        return i.quantidadeAtual <= i.quantidadeMinima;
+      return (
+        ["ativos", "arquivado"].includes(situacao.value) ||
+        estadoItem(i, props.diasValidade).id === situacao.value
+      );
+    })
+    .sort((a, b) =>
+      ordem.value === "saldo"
+        ? a.quantidadeAtual - b.quantidadeAtual
+        : ordem.value === "validade"
+          ? validade(a) - validade(b)
+          : String(a.nome).localeCompare(b.nome, "pt-BR"),
+    ),
+);
+function rotuloCategoria(c) {
   return (
     {
       perecivel: "Perecível",
@@ -81,163 +258,230 @@ function rotuloCategoria(categoria) {
       hortifruti: "Hortifruti",
       limpeza: "Limpeza",
       descartavel: "Descartável",
-    }[categoria] || categoria
+      laticinios: "Laticínios",
+      outros: "Outros",
+    }[c] ||
+    c ||
+    "Sem categoria"
   );
 }
-
-const busca = ref("");
-const filtroCategoria = ref("");
-const apenasAlerta = ref(false);
-
-const categorias = computed(() => [
-  ...new Set(props.itens.map((i) => i.categoria)),
-]);
-
-const itensFiltrados = computed(() =>
-  props.itens.filter((item) => {
-    const bateBusca = item.nome
-      .toLowerCase()
-      .includes(busca.value.toLowerCase());
-    const bateCategoria =
-      !filtroCategoria.value || item.categoria === filtroCategoria.value;
-    const bateAlerta =
-      !apenasAlerta.value || item.quantidadeAtual <= item.quantidadeMinima;
-    return bateBusca && bateCategoria && bateAlerta;
-  }),
-);
-
-function percentual(item) {
-  if (!item.quantidadeMinima) return 100;
-  const alvo = item.quantidadeMinima * 3; // referência visual: 3x o mínimo = barra cheia
-  return Math.min(100, Math.round((item.quantidadeAtual / alvo) * 100));
-}
-
-function vencendoEmBreve(item) {
-  if (!item.validade) return false;
-  const ms = item.validade.toMillis
-    ? item.validade.toMillis()
-    : new Date(item.validade).getTime();
-  return ms - Date.now() < 15 * 24 * 60 * 60 * 1000;
-}
-
-function formatarData(validade) {
-  const data = validade.toDate ? validade.toDate() : new Date(validade);
-  return data.toLocaleDateString("pt-BR");
+function dataValidade(v) {
+  if (!v) return "Não informada";
+  const d = v.toDate ? v.toDate() : new Date(v);
+  return Number.isFinite(d.getTime())
+    ? d.toLocaleDateString("pt-BR")
+    : "Não informada";
 }
 </script>
-
 <style scoped>
-.estoque-list__filtros {
-  display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
-.filtro-busca,
-.estoque-list__filtros select {
-  padding: 0.55rem 0.8rem;
-  border: 1px solid var(--cor-borda, #d9dee3);
-  border-radius: 8px;
-  font-size: 0.85rem;
-}
-.filtro-busca {
-  flex: 1;
-  min-width: 160px;
-}
-.filtro-check {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.8rem;
-  color: var(--cor-texto-suave, #52606d);
-}
-.estoque-list__grid {
+.estoque-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 0.9rem;
+  gap: 20px;
+}
+.indicadores {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.indicadores article {
+  padding: 20px;
+  border: 1px solid #dce7e3;
+  border-radius: 14px;
+  background: white;
+  display: grid;
+  gap: 8px;
+}
+.indicadores span {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.indicadores strong {
+  font-size: 1.5rem;
+  color: #037770;
+  overflow-wrap: anywhere;
+}
+.indicadores small {
+  font-size: 0.75rem;
+  color: #526b65;
+}
+.filtros {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 12px;
+}
+.filtros label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  min-width: 0;
+}
+.filtros input,
+.filtros select {
+  min-width: 0;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cadbd6;
+  border-radius: 8px;
+  background: white;
+  color: #17332f;
+  font: inherit;
+}
+.orientacao,
+.contagem {
+  font-size: 0.82rem;
+  color: #526b65;
+  margin: 0;
+}
+.itens-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 16px;
 }
 .item-card {
-  border: 1px solid var(--cor-borda, #e4e7eb);
-  border-radius: 12px;
-  padding: 0.9rem;
-  background: #fff;
+  padding: 20px;
+  background: white;
+  border: 1px solid #dce7e3;
+  border-radius: 14px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-.item-card.alerta {
-  border-color: #e0a336;
-  background: #fffaf0;
+  gap: 18px;
 }
 .item-card header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-direction: column;
-  gap: 0.5rem;
+  display: grid;
+  gap: 8px;
 }
-.item-card h4 {
+.item-card h3 {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
+  overflow-wrap: anywhere;
 }
-.badge {
-  font-size: 0.65rem;
-  background: #eef2f0;
-  color: #46614c;
-  padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-  white-space: nowrap;
+.categoria {
+  font-size: 0.75rem;
+  color: #526b65;
 }
-.item-card__qtd {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+.status {
+  justify-self: start;
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: #e8f5ef;
+  color: #195c49;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.baixo .status,
+.vencendo .status {
+  background: #fff1d8;
+  color: #795005;
+}
+.vencido .status {
+  background: #fde9e7;
+  color: #a1251c;
+}
+.arquivado .status,
+.zerado .status {
+  background: #eef1f2;
+  color: #415259;
+}
+.saldo {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  background: #f4f8f6;
+  border-radius: 9px;
+}
+.saldo span {
   font-size: 0.8rem;
-  color: var(--cor-texto-suave, #52606d);
 }
-.item-card__qtd strong {
-  font-size: 1.2rem;
-  color: #1f2933;
+.saldo strong {
+  font-size: 1.6rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
 }
-.item-card__barra {
-  height: 6px;
-  border-radius: 999px;
-  background: #eceff1;
-  overflow: hidden;
+.saldo small {
+  font-size: 0.9rem;
 }
-.item-card__barra-preenchida {
-  height: 100%;
-  background: var(--cor-primaria, #3c6e47);
-  transition: width 0.3s ease;
+dl {
+  display: grid;
+  gap: 9px;
+  font-size: 0.8rem;
+  margin: 0;
 }
-.item-card__barra-preenchida.baixo {
-  background: #d9822b;
-}
-.item-card footer {
+dl div {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-size: 0.75rem;
+  gap: 12px;
 }
-.validade {
-  color: #7b8794;
+dt {
+  color: #526b65;
 }
-.validade.vencendo {
-  color: #c0392b;
-  font-weight: 600;
+dd {
+  text-align: right;
+  max-width: 60%;
+  overflow-wrap: anywhere;
 }
-.link-editar {
-  background: none;
-  border: none;
-  color: var(--cor-primaria, #3c6e47);
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.75rem;
+.acoes-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+.acoes-item .botao,
+.historico {
+  font-size: 0.8rem;
+  padding: 10px;
+}
+.historico {
+  align-self: flex-start;
+}
+.aviso {
+  padding: 14px;
+  border-radius: 8px;
+  background: #fff0df;
+  color: #754908;
 }
 .vazio {
-  grid-column: 1 / -1;
+  padding: 30px;
   text-align: center;
-  color: #9aa5b1;
-  padding: 2rem 0;
+  background: white;
+  border: 1px dashed #bed2cc;
+  border-radius: 12px;
+}
+.vazio h3 {
+  font-size: 1rem;
+}
+.vazio p {
+  font-size: 0.875rem;
+  margin-top: 8px;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #037770;
+  outline-offset: 3px;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+@media (max-width: 900px) {
+  .indicadores,
+  .filtros {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 520px) {
+  .filtros {
+    grid-template-columns: 1fr;
+  }
+  .indicadores article {
+    padding: 13px;
+  }
+  .item-card {
+    padding: 16px;
+  }
+  .acoes-item .botao {
+    flex: 1 1 40%;
+  }
 }
 </style>

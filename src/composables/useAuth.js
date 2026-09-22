@@ -1,3 +1,4 @@
+import { ehDeposito } from "../utils/estoque";
 import { ref, computed } from "vue";
 import {
   signInWithEmailAndPassword,
@@ -194,7 +195,9 @@ export function useAuth() {
   function podeAcessarEscola(escolaId) {
     return (
       !!usuario.value &&
-      (ehGestao.value || usuario.value.escolasVinculadas.includes(escolaId))
+      (ehGestao.value ||
+        (!ehDeposito(escolaId) &&
+          usuario.value.escolasVinculadas.includes(escolaId)))
     );
   }
 

@@ -1,0 +1,196 @@
+.alimentacao .af-card {
+  background: #fff;
+  border: 1px solid #d8e5df;
+  border-radius: 16px;
+  padding: clamp(16px, 3vw, 28px);
+  margin-block: 18px;
+  min-width: 0;
+  color: #193c37;
+}
+.alimentacao .af-titulo {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.alimentacao .af-titulo h2,
+.alimentacao .af-titulo h3 {
+  margin: 0 0 8px;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+}
+.alimentacao .af-titulo p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.alimentacao .af-selo {
+  border-radius: 20px;
+  padding: 6px 12px;
+  background: #edf6f1;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+.alimentacao .af-grade {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.alimentacao .af-campos {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+.alimentacao .af-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-block: 14px;
+}
+.alimentacao .af-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+.alimentacao .af-check input {
+  min-width: 20px;
+  min-height: 20px;
+  margin-top: 3px;
+}
+.alimentacao .af-nota {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #49695f;
+}
+.alimentacao .af-aviso {
+  background: #fff3d9;
+  color: #6b4b04;
+  padding: 16px 24px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+.alimentacao .af-item {
+  border: 1px solid #d8e5df;
+  border-radius: 12px;
+  padding: 16px;
+  margin-block: 12px;
+  overflow-wrap: anywhere;
+}
+.alimentacao .af-item h4 {
+  margin: 0 0 10px;
+}
+.alimentacao .af-item p {
+  font-size: 0.9rem;
+}
+.alimentacao .af-scroll {
+  max-height: 260px;
+  overflow: auto;
+  white-space: pre-wrap;
+  font-size: 0.85rem;
+}
+.alimentacao .af-radio {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-block: 14px;
+}
+.alimentacao .af-radio label {
+  padding: 10px 18px;
+  border: 1px solid #b5cdc3;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 44px;
+}
+.alimentacao .af-painel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.alimentacao .af-painel > p {
+  flex: 1;
+  min-width: 150px;
+  background: #eef6f2;
+  border-radius: 10px;
+  padding: 16px;
+}
+.alimentacao .af-painel strong {
+  display: block;
+  font-size: 1.5rem;
+}
+.alimentacao
+  .af-card
+  input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+.alimentacao .af-card select,
+.alimentacao .af-card textarea {
+  box-sizing: border-box;
+  max-width: 100%;
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  min-height: 44px;
+  padding: 10px;
+  border: 1px solid #bcd0c6;
+  border-radius: 8px;
+  background: #fff;
+  color: #193c37;
+}
+.alimentacao .af-card .campo {
+  display: grid;
+  gap: 6px;
+}
+.alimentacao .af-card button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.alimentacao .af-card :focus-visible {
+  outline: 3px solid #006e63;
+  outline-offset: 3px;
+}
+.alimentacao .af-card fieldset {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+.alimentacao .af-card legend {
+  font-weight: 600;
+  padding: 0 0 10px;
+}
+@media (max-width: 700px) {
+  .alimentacao .af-grade {
+    grid-template-columns: 1fr;
+  }
+  .alimentacao .af-titulo {
+    flex-direction: column;
+  }
+  .alimentacao .af-acoes > .botao {
+    flex: 1;
+    min-width: 140px;
+  }
+  .alimentacao .af-item {
+    padding: 12px;
+  }
+  .alimentacao .af-radio label {
+    flex: 1;
+    justify-content: center;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .alimentacao .af-card {
+    animation: af-aparecer 0.2s ease-out;
+  }
+  @keyframes af-aparecer {
+    from {
+      opacity: 0.4;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

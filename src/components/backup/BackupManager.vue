@@ -1,9 +1,14 @@
 <template>
   <div class="backup">
     <p class="backup__descricao">
+      O JSON inclui visitas AF e referências dos documentos no B2. Os arquivos
+      binários precisam de uma cópia separada; consulte o tutorial de backup B2.
+    </p>
+    <p class="backup__descricao">
       Exportação parcial da alimentação: baixe os dados de estoque,
-      movimentações, vistorias, identificações e auditoria das escolas
-      selecionadas. O arquivo é salvo no seu computador.
+      movimentações, vistorias, identificações e auditoria das unidades
+      selecionadas (escolas e depósito municipal). O arquivo é salvo no seu
+      computador.
     </p>
     <div class="backup__selecao">
       <label v-for="escola in escolas" :key="escola.id" class="check"

@@ -1,11 +1,17 @@
 <template>
   <div class="auditoria">
     <div class="auditoria__filtros">
-      <select v-model="filtroColecao" aria-label="Filtrar auditoria por coleção" @change="aplicarFiltros">
+      <select
+        v-model="filtroColecao"
+        aria-label="Filtrar auditoria por coleção"
+        @change="aplicarFiltros"
+      >
         <option value="">Todas as coleções</option>
         <option value="estoque">Estoque</option>
         <option value="movimentacoes">Movimentações</option>
         <option value="vistorias">Vistorias</option>
+        <option value="visitasAF">Visitas AF</option>
+        <option value="documentos">Documentos e digitalizações</option>
         <option value="assinaturas">Assinaturas</option>
         <option value="escolas">Escolas</option>
       </select>

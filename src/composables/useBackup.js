@@ -17,6 +17,9 @@ const SUBCOLECOES = [
   "assinaturas",
   "cardapios",
   "fornecedores",
+  "documentos",
+  "visitasAF",
+  "visitasAFIdentificacoes",
 ];
 
 export function useBackup() {

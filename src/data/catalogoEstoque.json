@@ -1,0 +1,6002 @@
+[
+  {
+    "id": "d6c37a2bf3d25e28",
+    "nome": "Arroz branco tipo 1 — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "332e1f8300a82c73",
+    "nome": "Arroz branco tipo 1 — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "3a4bb101b0ae05cd",
+    "nome": "Arroz branco tipo 1 — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "7b6016eee32270a5",
+    "nome": "Arroz branco tipo 1 — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "aa0f250eb55030b6",
+    "nome": "Arroz parboilizado — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "8aff619ee3178470",
+    "nome": "Arroz parboilizado — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "98cda58dddde01de",
+    "nome": "Arroz parboilizado — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "25e5799c4d9e2ab5",
+    "nome": "Arroz parboilizado — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "b93d4446857b3377",
+    "nome": "Arroz integral — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "cea7a212cbf67db9",
+    "nome": "Arroz integral — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "2b5efa9d65d69e4f",
+    "nome": "Arroz integral — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "09033b5461a7ede9",
+    "nome": "Arroz integral — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "5c50df0fb2f5a8a8",
+    "nome": "Arroz quebradinho — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "6304decacc656f7e",
+    "nome": "Arroz quebradinho — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "3d7922684dfffd63",
+    "nome": "Arroz quebradinho — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "53c9cf661267fdea",
+    "nome": "Arroz quebradinho — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "eef90169ebc0339d",
+    "nome": "Feijão carioca — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "9acd0de9eb4c0dcd",
+    "nome": "Feijão carioca — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "8640f12f9bc04126",
+    "nome": "Feijão carioca — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "41f7d3331f05de8f",
+    "nome": "Feijão carioca — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "ac73677d8b457503",
+    "nome": "Feijão preto — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "29415ae4feb81a19",
+    "nome": "Feijão preto — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "97224c99d8101242",
+    "nome": "Feijão preto — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "4014a974d50b1670",
+    "nome": "Feijão preto — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "bcd0d3afdde84c95",
+    "nome": "Feijão branco — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "d0a4a408cd8aa1c8",
+    "nome": "Feijão branco — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "c5b4a6710e8df302",
+    "nome": "Feijão branco — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "5ff6a97e1e07902c",
+    "nome": "Feijão branco — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "ec57eeba6a70654d",
+    "nome": "Feijão fradinho — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "adac06eddbe852a6",
+    "nome": "Feijão fradinho — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "11ec106045126ba1",
+    "nome": "Feijão fradinho — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "58b605d83a9f5686",
+    "nome": "Feijão fradinho — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "51d58e8aa2a0eafd",
+    "nome": "Feijão vermelho — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "c616fbf35743a53b",
+    "nome": "Feijão vermelho — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "e56c574fb18272b9",
+    "nome": "Feijão vermelho — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "65217fc73d179f9e",
+    "nome": "Feijão vermelho — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "62804dce94aeca46",
+    "nome": "Feijão de corda seco — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "4b58dbd57dc7d407",
+    "nome": "Feijão de corda seco — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "d62830f171c1da57",
+    "nome": "Feijão de corda seco — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "95d5a36bbd82fc39",
+    "nome": "Feijão de corda seco — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "625326462189619e",
+    "nome": "Lentilha — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "7a3b3a69dce215f7",
+    "nome": "Lentilha — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "6b3a9a6f393f874c",
+    "nome": "Lentilha — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "3e5d5acafa002e41",
+    "nome": "Lentilha — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "daf5623af420b676",
+    "nome": "Grão-de-bico — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "02755693b8c67e79",
+    "nome": "Grão-de-bico — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "8f50ec82b1e50bb1",
+    "nome": "Grão-de-bico — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "48c1e59dc391251b",
+    "nome": "Grão-de-bico — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "401d4f0115ce128b",
+    "nome": "Ervilha seca — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "74a162c543542d63",
+    "nome": "Ervilha seca — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "072dd1491948942a",
+    "nome": "Ervilha seca — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "c8f8ef9130ece66d",
+    "nome": "Ervilha seca — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "b0362c376a704578",
+    "nome": "Milho para pipoca — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "cfd662ee0119d682",
+    "nome": "Milho para pipoca — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "1c03575ac729e6f0",
+    "nome": "Milho para pipoca — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "551424be137a184f",
+    "nome": "Milho para pipoca — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "3bbf5332baf0a88c",
+    "nome": "Milho para canjica — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "2106ec4fa37642b2",
+    "nome": "Milho para canjica — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "c1c0b8603dff83e3",
+    "nome": "Milho para canjica — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "70e847e063a0aed3",
+    "nome": "Milho para canjica — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "e02401780a5d17ed",
+    "nome": "Canjiquinha de milho — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "45dfa9516a35d719",
+    "nome": "Canjiquinha de milho — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "c72442989157a67b",
+    "nome": "Canjiquinha de milho — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "3b6702ac9269d5e8",
+    "nome": "Canjiquinha de milho — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "cc0ee12857faa7fa",
+    "nome": "Flocão de milho — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "36b596d129687862",
+    "nome": "Flocão de milho — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "24a9020ccb3ff815",
+    "nome": "Flocão de milho — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "09bf6612dc506eb9",
+    "nome": "Flocão de milho — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "a9974b670c1c3aae",
+    "nome": "Fubá de milho — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "e83628519f18c950",
+    "nome": "Fubá de milho — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "d45beb15e36d9727",
+    "nome": "Fubá de milho — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "2e5a8777ff435450",
+    "nome": "Fubá de milho — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "e129367f2382e32e",
+    "nome": "Farinha de milho flocada — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "1d682051da48406d",
+    "nome": "Farinha de milho flocada — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "de7caf4a6a59da1b",
+    "nome": "Farinha de milho flocada — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "ac4259588afdc97c",
+    "nome": "Farinha de milho flocada — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "922a1c2ca1ef34f5",
+    "nome": "Farinha de mandioca branca — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "a7683b7c847f6003",
+    "nome": "Farinha de mandioca branca — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "ce4c5e6b4599b5ba",
+    "nome": "Farinha de mandioca branca — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "5794a2a2e532288e",
+    "nome": "Farinha de mandioca branca — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "dcb02de35eeb2cc0",
+    "nome": "Farinha de mandioca amarela — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "62d3d07eda3a7a1b",
+    "nome": "Farinha de mandioca amarela — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "cf0bd896c1d5a55e",
+    "nome": "Farinha de mandioca amarela — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "6a7c9b5f29f6bf34",
+    "nome": "Farinha de mandioca amarela — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "4d77b3d17b27e17a",
+    "nome": "Farinha de mandioca torrada — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "d7b9c8b658ac6a04",
+    "nome": "Farinha de mandioca torrada — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "4784c50278c1a883",
+    "nome": "Farinha de mandioca torrada — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "a0aefce62c947e50",
+    "nome": "Farinha de mandioca torrada — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "eaa1fabe8fdbfabc",
+    "nome": "Farinha de trigo — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "620dc7b1be07275f",
+    "nome": "Farinha de trigo — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "0d2b5e1df279cbbf",
+    "nome": "Farinha de trigo — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "05899bd5237ad8ab",
+    "nome": "Farinha de trigo — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "43016760e3f1c931",
+    "nome": "Farinha de trigo integral — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "0d0aa11a9b329b47",
+    "nome": "Farinha de trigo integral — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "24752e52462a5399",
+    "nome": "Farinha de trigo integral — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "67102fe9008141f2",
+    "nome": "Farinha de trigo integral — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "7b314a2c6337b51a",
+    "nome": "Farinha de arroz — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "68fb94efcebb97c1",
+    "nome": "Farinha de arroz — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "6dfda86e3e37de87",
+    "nome": "Farinha de arroz — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "0cf86bee40720d56",
+    "nome": "Farinha de arroz — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "1bee7767c2beba80",
+    "nome": "Farinha de aveia — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "bab7a2e0e1b57562",
+    "nome": "Farinha de aveia — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "ff92dff5518e1eee",
+    "nome": "Farinha de aveia — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "2d067b4e4d3f9010",
+    "nome": "Farinha de aveia — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "4f94f9abab37dbe9",
+    "nome": "Aveia em flocos finos — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "8b6c40e2cf089f6d",
+    "nome": "Aveia em flocos finos — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "14add9d022a11ae1",
+    "nome": "Aveia em flocos finos — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "015e9f4d890fbab0",
+    "nome": "Aveia em flocos finos — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "a75b70c9a26ce30f",
+    "nome": "Aveia em flocos grossos — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "4abe726f00376faf",
+    "nome": "Aveia em flocos grossos — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "bc40cf8832366703",
+    "nome": "Aveia em flocos grossos — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "d999ceab30cf07cb",
+    "nome": "Aveia em flocos grossos — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "4b438b857f59b49d",
+    "nome": "Farelo de aveia — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "8d97b03210aecca2",
+    "nome": "Farelo de aveia — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "c0fd36ae4ab7b055",
+    "nome": "Farelo de aveia — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "00357d6986a76b29",
+    "nome": "Farelo de aveia — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "a2c01017a20408dd",
+    "nome": "Amido de milho — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "6218680543905f2d",
+    "nome": "Amido de milho — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "415f7f8b3c180e2b",
+    "nome": "Amido de milho — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "fa49b0b1452e6d5c",
+    "nome": "Amido de milho — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "788576a27fd027fe",
+    "nome": "Polvilho doce — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "bb325df5c3c576ae",
+    "nome": "Polvilho doce — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "0a4598e8006aaf54",
+    "nome": "Polvilho doce — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "b177be2c749e2678",
+    "nome": "Polvilho doce — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "1c5ec7293f64461a",
+    "nome": "Polvilho azedo — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "9139eee9c1c39eff",
+    "nome": "Polvilho azedo — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "bb428cdade23e78f",
+    "nome": "Polvilho azedo — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "55458c8a079dd525",
+    "nome": "Polvilho azedo — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "641797a0d10888b3",
+    "nome": "Goma de tapioca — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "0faa869ca649e25a",
+    "nome": "Goma de tapioca — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "008bbdf2753b87bc",
+    "nome": "Goma de tapioca — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "901f6f236cf366a1",
+    "nome": "Goma de tapioca — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "b896693bb24a22a8",
+    "nome": "Sagu — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "174bc49038b76ff0",
+    "nome": "Sagu — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "d7ff1eb8f4a0516e",
+    "nome": "Sagu — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "53372a9c9101ad1b",
+    "nome": "Sagu — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "6e31b32e419bc268",
+    "nome": "Trigo para quibe — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "2ae1be29dbe5530a",
+    "nome": "Trigo para quibe — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "e24d5cd43148beac",
+    "nome": "Trigo para quibe — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "e5e5524d14531c3d",
+    "nome": "Trigo para quibe — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "aa18bc46fdc69188",
+    "nome": "Proteína de soja texturizada — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "d7dfbeaff454ded3",
+    "nome": "Proteína de soja texturizada — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "b38a52a89a96b6ef",
+    "nome": "Proteína de soja texturizada — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "0d231dea1d93645e",
+    "nome": "Proteína de soja texturizada — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "dedbb76f27219887",
+    "nome": "Açúcar cristal — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "48a30b31415f3597",
+    "nome": "Açúcar cristal — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "7eeafb972b029b00",
+    "nome": "Açúcar cristal — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "852dff1c2f30b755",
+    "nome": "Açúcar cristal — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "9f0d13b54434de69",
+    "nome": "Açúcar refinado — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "583184a5cc6e76ee",
+    "nome": "Açúcar refinado — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "2808bf73321b6f4f",
+    "nome": "Açúcar refinado — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "c0277ecc69ba5b16",
+    "nome": "Açúcar refinado — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "7c22d085f36a7d39",
+    "nome": "Açúcar demerara — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "075498a68fa6b3f0",
+    "nome": "Açúcar demerara — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "d747e2588ee4f6a0",
+    "nome": "Açúcar demerara — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "3c6fb7f0b92d1b97",
+    "nome": "Açúcar demerara — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "371b31bd5adc4f07",
+    "nome": "Açúcar mascavo — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "6d098e78e753b5c1",
+    "nome": "Açúcar mascavo — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "cc64e37b48fdf44c",
+    "nome": "Açúcar mascavo — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "d7d7f3b73caa9a1a",
+    "nome": "Açúcar mascavo — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "2e08168eaf06d6f1",
+    "nome": "Sal refinado iodado — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "011670130bca4cf9",
+    "nome": "Sal refinado iodado — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "7eb2571629a1e57c",
+    "nome": "Sal refinado iodado — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "65b49711b253bd05",
+    "nome": "Sal refinado iodado — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "5619334acf5d5b7c",
+    "nome": "Sal grosso — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "9a61ada594677792",
+    "nome": "Sal grosso — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "dfcafc8fc7118bd5",
+    "nome": "Sal grosso — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "2432833982af4995",
+    "nome": "Sal grosso — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "f9ada5ae6b54e163",
+    "nome": "Quinoa em grãos — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "49ae17c521bcad2b",
+    "nome": "Quinoa em grãos — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "f90324ac88116e9f",
+    "nome": "Quinoa em grãos — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "8b5d9817212bb53c",
+    "nome": "Quinoa em grãos — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "876804c0327d65b4",
+    "nome": "Linhaça marrom — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "0f79e8c3a88be165",
+    "nome": "Linhaça marrom — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "6711f46efa742718",
+    "nome": "Linhaça marrom — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "fdb953975fce6573",
+    "nome": "Linhaça marrom — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "884bad775522ac05",
+    "nome": "Linhaça dourada — pacote 500 g",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "5dbee129b3d198a0",
+    "nome": "Linhaça dourada — pacote 1 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "5672093b4a433427",
+    "nome": "Linhaça dourada — pacote 2 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "93c9a16b0a094a21",
+    "nome": "Linhaça dourada — pacote 5 kg",
+    "categoria": "Grãos, farinhas e cereais",
+    "unidade": "pct"
+  },
+  {
+    "id": "9d1716a5ac631021",
+    "nome": "Macarrão espaguete — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "7af30ff4abff6f77",
+    "nome": "Macarrão espaguete — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "78ff99590e48730b",
+    "nome": "Macarrão espaguete — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "2b916191731108eb",
+    "nome": "Macarrão espaguete — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "31273371420cc338",
+    "nome": "Macarrão parafuso — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "f7d70f56e68a4bdf",
+    "nome": "Macarrão parafuso — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "881eb228d339d73d",
+    "nome": "Macarrão parafuso — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "5d663ab3ad973ef0",
+    "nome": "Macarrão parafuso — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "88120e531bc62a0a",
+    "nome": "Macarrão penne — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "dbcf515d7c8f7a28",
+    "nome": "Macarrão penne — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "8b9267f749bd5f70",
+    "nome": "Macarrão penne — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "67c3f53f372a4c65",
+    "nome": "Macarrão penne — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "c37541c3eb8dce1d",
+    "nome": "Macarrão gravata — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "fe71eef442d13a3a",
+    "nome": "Macarrão gravata — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "f73096a9f954a8d0",
+    "nome": "Macarrão gravata — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "b896a5d20e6c1433",
+    "nome": "Macarrão gravata — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "7c5fe55f86405b05",
+    "nome": "Macarrão conchinha — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "47108979962706ac",
+    "nome": "Macarrão conchinha — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "286f54a9388ad426",
+    "nome": "Macarrão conchinha — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "ed5e8db21fd824ae",
+    "nome": "Macarrão conchinha — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "8d964d4a3150e66d",
+    "nome": "Macarrão ave-maria — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "45299822856f2614",
+    "nome": "Macarrão ave-maria — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "8e1e74ae0bec45c4",
+    "nome": "Macarrão ave-maria — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "9bb87ccbbfb20a62",
+    "nome": "Macarrão ave-maria — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "5e4d5a650a8f2763",
+    "nome": "Macarrão cabelo de anjo — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "3a7cce93925ee1c4",
+    "nome": "Macarrão cabelo de anjo — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "fb2411712bad3537",
+    "nome": "Macarrão cabelo de anjo — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "e07b67a58af678a7",
+    "nome": "Macarrão cabelo de anjo — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "54f63bbae156f0c9",
+    "nome": "Macarrão argolinha — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "7fed760a8cb96a35",
+    "nome": "Macarrão argolinha — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "e7e7523a28f53dbd",
+    "nome": "Macarrão argolinha — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "df8a326636899c3d",
+    "nome": "Macarrão argolinha — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "de29b9cf3b86bec6",
+    "nome": "Macarrão integral espaguete — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "b5da33639a426d33",
+    "nome": "Macarrão integral espaguete — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "b860ea7bf89c6451",
+    "nome": "Macarrão integral espaguete — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "81b73fad005e4102",
+    "nome": "Macarrão integral espaguete — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "cbb77f6fdd10dc87",
+    "nome": "Macarrão integral parafuso — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "19de3de7239c4ed8",
+    "nome": "Macarrão integral parafuso — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "ec1c7b1b8ef40f18",
+    "nome": "Macarrão integral parafuso — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "e4451d11dbd3afaf",
+    "nome": "Macarrão integral parafuso — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "13edf067e75fc8ba",
+    "nome": "Massa para lasanha — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "0f69b7f6f0ba0d9a",
+    "nome": "Massa para lasanha — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "bd1443cd7de52911",
+    "nome": "Massa para lasanha — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "91ce448cafbe1a5f",
+    "nome": "Massa para lasanha — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "f47b1b7c6d526564",
+    "nome": "Massa para sopa — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "0b873c4aa0d6d405",
+    "nome": "Massa para sopa — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "dc72400e10666afc",
+    "nome": "Massa para sopa — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "26ff15af3fd73682",
+    "nome": "Massa para sopa — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "643f6a07774e0052",
+    "nome": "Massa para pastel — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "63d383f93b7d81a9",
+    "nome": "Massa para pastel — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "3b0c6c59eb91cd00",
+    "nome": "Massa para pastel — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "3d0b6ad7927f965d",
+    "nome": "Massa para pastel — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "f796eca921d76295",
+    "nome": "Biscoito água e sal — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "3c3ced5c3fcceaad",
+    "nome": "Biscoito água e sal — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "05d6c2e02d91006e",
+    "nome": "Biscoito água e sal — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "ba52a1f99c239ddc",
+    "nome": "Biscoito água e sal — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "5bcc7c88e07a967c",
+    "nome": "Biscoito cream cracker — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "e9d925e363c2d06a",
+    "nome": "Biscoito cream cracker — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "060aa57c5f5a90ca",
+    "nome": "Biscoito cream cracker — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "e33c48ec3b151a56",
+    "nome": "Biscoito cream cracker — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "de89894db9e14d8b",
+    "nome": "Biscoito de maisena — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "402029f7ea43d494",
+    "nome": "Biscoito de maisena — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "b7f08d3dd7ade193",
+    "nome": "Biscoito de maisena — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "ad395ae8f1186879",
+    "nome": "Biscoito de maisena — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "3605754bcc9d413a",
+    "nome": "Biscoito de leite — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "b1e56921b089856d",
+    "nome": "Biscoito de leite — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "b1b9b275f6de360f",
+    "nome": "Biscoito de leite — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "1f7abc5b10f49529",
+    "nome": "Biscoito de leite — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "2634f7d6491c6f94",
+    "nome": "Biscoito integral — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "49d9c21956225e4b",
+    "nome": "Biscoito integral — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "c03d32bf7e12f2a8",
+    "nome": "Biscoito integral — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "456817249e2a5e21",
+    "nome": "Biscoito integral — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "04905d3348bb1db4",
+    "nome": "Biscoito de polvilho — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "6cb5fa483d87ce18",
+    "nome": "Biscoito de polvilho — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "6c50766f41d42cfa",
+    "nome": "Biscoito de polvilho — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "738c59c9a950fc8e",
+    "nome": "Biscoito de polvilho — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "0db0ba3666f78b06",
+    "nome": "Biscoito de arroz — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "e497046dad96d11e",
+    "nome": "Biscoito de arroz — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "06a76cf9a8188518",
+    "nome": "Biscoito de arroz — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "c7d824a15ee694d0",
+    "nome": "Biscoito de arroz — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "26193b6475ed2179",
+    "nome": "Pão de forma — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "18810ac6a8abd0b8",
+    "nome": "Pão de forma — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "0f409ff2c4f61274",
+    "nome": "Pão de forma — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "3c70a430aa16f4d5",
+    "nome": "Pão de forma — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "fee364379e12765c",
+    "nome": "Pão de forma integral — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "823d79a2fee621cb",
+    "nome": "Pão de forma integral — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "90b7495146b6afd1",
+    "nome": "Pão de forma integral — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "e95153e7d16790c5",
+    "nome": "Pão de forma integral — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "c1f1b81d03a084a0",
+    "nome": "Pão para cachorro-quente — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "22742f9d39cd656c",
+    "nome": "Pão para cachorro-quente — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "ef6b4cffede7e1a0",
+    "nome": "Pão para cachorro-quente — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "8d27a264a5a576eb",
+    "nome": "Pão para cachorro-quente — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "0236a37644ad7b21",
+    "nome": "Pão para hambúrguer — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "e25025597a91a60a",
+    "nome": "Pão para hambúrguer — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "2a589b362f9fa318",
+    "nome": "Pão para hambúrguer — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "8ee8cf63664187ba",
+    "nome": "Pão para hambúrguer — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "b6152b1fea39aad3",
+    "nome": "Torrada tradicional — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "bd1d16020840099c",
+    "nome": "Torrada tradicional — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "6f899a7a8c6d76a7",
+    "nome": "Torrada tradicional — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "f5d2801d7fc08cfd",
+    "nome": "Torrada tradicional — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "e5df15e7f5ad19fb",
+    "nome": "Torrada integral — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "564aa51742f4c757",
+    "nome": "Torrada integral — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "8818a8c9740e082e",
+    "nome": "Torrada integral — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "3c0dcf3d7419e8de",
+    "nome": "Torrada integral — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "edb85eb46a2a64fa",
+    "nome": "Rosquinha de coco — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "33d901ee962951c5",
+    "nome": "Rosquinha de coco — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "27807f9beedfe139",
+    "nome": "Rosquinha de coco — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "0ef695ce0a01b827",
+    "nome": "Rosquinha de coco — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "62362d79fe7b87aa",
+    "nome": "Rosquinha de leite — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "32b90777c1a19368",
+    "nome": "Rosquinha de leite — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "d19f7e2fc462985f",
+    "nome": "Rosquinha de leite — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "780352d0cc1bbb04",
+    "nome": "Rosquinha de leite — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "b6b648172cbc65b2",
+    "nome": "Farinha de rosca — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "a362bd11d68d9730",
+    "nome": "Farinha de rosca — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "f95f27c1305b9f71",
+    "nome": "Farinha de rosca — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "197c65dad5630c92",
+    "nome": "Farinha de rosca — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "e69f60b8b1f2ff29",
+    "nome": "Granola sem açúcar — pacote 200 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "7110156df9d249b8",
+    "nome": "Granola sem açúcar — pacote 400 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "37f176a125890a89",
+    "nome": "Granola sem açúcar — pacote 500 g",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "1e589496b8d048d0",
+    "nome": "Granola sem açúcar — pacote 1 kg",
+    "categoria": "Massas e panificação",
+    "unidade": "pct"
+  },
+  {
+    "id": "0f38a1788542a1c2",
+    "nome": "Banana-prata — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "2024c1213d753273",
+    "nome": "Banana-prata — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "84b3f09b52bf705c",
+    "nome": "Banana-nanica — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "1a6e665863e8fcd8",
+    "nome": "Banana-nanica — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "78879945418f60a3",
+    "nome": "Banana-maçã — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "4c4debc60619e5c9",
+    "nome": "Banana-maçã — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "1f1f85c13c380312",
+    "nome": "Banana-da-terra — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "2d05c7fcfcddf608",
+    "nome": "Banana-da-terra — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "82470f73daeceed7",
+    "nome": "Maçã gala — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "6c5cd0869a7ef8ca",
+    "nome": "Maçã gala — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "44b41a1794d19874",
+    "nome": "Maçã fuji — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "fd51545d81c4c8a5",
+    "nome": "Maçã fuji — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "b77f37182e9fa8ce",
+    "nome": "Maçã verde — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "c3fea3a7d8207bc8",
+    "nome": "Maçã verde — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "205beeff58d43773",
+    "nome": "Laranja-pera — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "eb55fbf0f4d9978d",
+    "nome": "Laranja-pera — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "7832809173d1882d",
+    "nome": "Laranja-lima — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "0702340cb95f6719",
+    "nome": "Laranja-lima — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "239f154a325d8f94",
+    "nome": "Laranja-bahia — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "9b4b7a72e7bf155f",
+    "nome": "Laranja-bahia — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "68f93a24b9745913",
+    "nome": "Tangerina poncã — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "9eee8c54b798ff59",
+    "nome": "Tangerina poncã — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "2aed2652a9ba632f",
+    "nome": "Tangerina murcote — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "3552cda0249c80ba",
+    "nome": "Tangerina murcote — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "7960fa3d28476e78",
+    "nome": "Limão-taiti — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "ccf95ca98cdedd2d",
+    "nome": "Limão-taiti — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "7f480ed390a4a403",
+    "nome": "Limão-cravo — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "c983177b1361b24e",
+    "nome": "Limão-cravo — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "a7c095d0480d2751",
+    "nome": "Limão-siciliano — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "cec94ad538571672",
+    "nome": "Limão-siciliano — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "5e0755996cc7179f",
+    "nome": "Mamão formosa — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "91b677574e6cb8ca",
+    "nome": "Mamão formosa — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "bb46242de8669a86",
+    "nome": "Mamão papaia — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "2a1485e64df4c003",
+    "nome": "Mamão papaia — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "8ea26ae5aba43ee1",
+    "nome": "Melancia — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "bb14ce2d52c126b8",
+    "nome": "Melancia — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "610160a3c037d8c2",
+    "nome": "Melão amarelo — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "993b81d5dfbc0214",
+    "nome": "Melão amarelo — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "f247d47ba9f1d42e",
+    "nome": "Melão cantaloupe — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "84f97645c4d81780",
+    "nome": "Melão cantaloupe — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "4153643291fe0944",
+    "nome": "Abacaxi pérola — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "9a2af73cae8f03a2",
+    "nome": "Abacaxi pérola — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "041592316558d5b7",
+    "nome": "Abacaxi havaí — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "43f468326d02c96c",
+    "nome": "Abacaxi havaí — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "ead0237975e16031",
+    "nome": "Manga tommy — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "0078a8550f6172f0",
+    "nome": "Manga tommy — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "acbb6753d33ab574",
+    "nome": "Manga palmer — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "1f3b49644744cda8",
+    "nome": "Manga palmer — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "93c2f5f1fd5cf026",
+    "nome": "Manga rosa — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "a40efd3400e50eb7",
+    "nome": "Manga rosa — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "57f7a3b330557174",
+    "nome": "Goiaba vermelha — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "fa65fab1f2089e71",
+    "nome": "Goiaba vermelha — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "5ebc68a669c856ce",
+    "nome": "Goiaba branca — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "21d2a58bc50c36be",
+    "nome": "Goiaba branca — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "04bd0f364c5cd873",
+    "nome": "Maracujá — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "4d2fbe126896a6eb",
+    "nome": "Maracujá — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "671d34da33e8447f",
+    "nome": "Acerola — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "3de87030eda65d2c",
+    "nome": "Acerola — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "d9a184c8b153249b",
+    "nome": "Caju — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "fc2378da7f78806c",
+    "nome": "Caju — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "fae6f1170d1100e7",
+    "nome": "Cajá — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "0191ba9084afe85b",
+    "nome": "Cajá — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "fa63a569a46ab1f9",
+    "nome": "Umbu — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "0ad40e97427735ab",
+    "nome": "Umbu — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "d9f15ba5a24cb549",
+    "nome": "Graviola — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "af7ba0c497f46a58",
+    "nome": "Graviola — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "93f70535209b555c",
+    "nome": "Abacate — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "0d1fe8a58329bd3f",
+    "nome": "Abacate — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "26559743fd988de9",
+    "nome": "Uva roxa — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "2418cc71aff4c917",
+    "nome": "Uva roxa — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "9fc9246269b730e0",
+    "nome": "Uva verde — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "c609039b8feadd8d",
+    "nome": "Uva verde — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "7f1106e4ae3e9cb7",
+    "nome": "Morango — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "47915f3bcda733a2",
+    "nome": "Morango — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "95029564a248a3bd",
+    "nome": "Pera — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "c8d788f21b2bb8a2",
+    "nome": "Pera — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "3bdf9f5aa437ec67",
+    "nome": "Pêssego — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "ace20f828482de14",
+    "nome": "Pêssego — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "e8d3d1d232dab047",
+    "nome": "Ameixa fresca — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "8b2d4dec16d28961",
+    "nome": "Ameixa fresca — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "2c7728f1e1ad5c7c",
+    "nome": "Caqui — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "efd7bd968e8b1894",
+    "nome": "Caqui — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "8f7dfe9f5d74e4ac",
+    "nome": "Kiwi — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "37ef77b15a92e443",
+    "nome": "Kiwi — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "abce5f5003f3d57e",
+    "nome": "Coco verde — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "e5e16805131a30b3",
+    "nome": "Coco verde — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "bfbd139eac333c7b",
+    "nome": "Coco seco — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "5297474b929bc1cc",
+    "nome": "Coco seco — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "ca1a585b75f44e52",
+    "nome": "Jaca — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "458a6797f5cdedba",
+    "nome": "Jaca — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "7af02d327aba68dd",
+    "nome": "Pinha — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "5b46b2185c7e5249",
+    "nome": "Pinha — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "1d56c3f4fe5209ad",
+    "nome": "Seriguela — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "7f24ea750312877e",
+    "nome": "Seriguela — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "1e36915df04f3654",
+    "nome": "Tamarindo — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "988699d38f7b510e",
+    "nome": "Tamarindo — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "7daa2538111fe64b",
+    "nome": "Pitanga — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "217867fba5baa994",
+    "nome": "Pitanga — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "62d115c9111dff01",
+    "nome": "Jabuticaba — a granel",
+    "categoria": "Frutas",
+    "unidade": "kg"
+  },
+  {
+    "id": "33b1487ebdbba859",
+    "nome": "Jabuticaba — caixa sem peso padronizado",
+    "categoria": "Frutas",
+    "unidade": "cx"
+  },
+  {
+    "id": "2a182a34f01129af",
+    "nome": "Abóbora cabotiá — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "115161b17e1a0328",
+    "nome": "Abóbora cabotiá — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "d00c808de6698a78",
+    "nome": "Abóbora moranga — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "1d2b8c01d67167d0",
+    "nome": "Abóbora moranga — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "e39cf0547394c9db",
+    "nome": "Abóbora de leite — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "d8e82d7420f30062",
+    "nome": "Abóbora de leite — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "694a77eb1e2959f5",
+    "nome": "Abobrinha italiana — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "51883206f0729495",
+    "nome": "Abobrinha italiana — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "99914cca17b2bec8",
+    "nome": "Abobrinha brasileira — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "60158c17d1221cac",
+    "nome": "Abobrinha brasileira — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "9cba336e59196ef5",
+    "nome": "Chuchu — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "81f90fb7921fd6b7",
+    "nome": "Chuchu — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "fe8754827ec33014",
+    "nome": "Cenoura — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "97fd468061516248",
+    "nome": "Cenoura — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "58bc83b13752df33",
+    "nome": "Beterraba — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "544389cbb6fcc0e3",
+    "nome": "Beterraba — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "327336173f04b248",
+    "nome": "Batata inglesa — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "a65017fca44e77d1",
+    "nome": "Batata inglesa — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "3a1abc2105fd8d57",
+    "nome": "Batata-doce branca — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "5b37254ce3333457",
+    "nome": "Batata-doce branca — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "bd825a1dced36036",
+    "nome": "Batata-doce roxa — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "f374e2e66b09360a",
+    "nome": "Batata-doce roxa — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "a8ff2a2dca70a822",
+    "nome": "Macaxeira — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "3f0bacd2daca0cfe",
+    "nome": "Macaxeira — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "557ea09972b74c28",
+    "nome": "Inhame — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "20f4d236cc3e2c61",
+    "nome": "Inhame — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "81aebfd20f715021",
+    "nome": "Cará — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "a0c12fc2ab48a3eb",
+    "nome": "Cará — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "557c59bfe8f9d547",
+    "nome": "Mandioquinha — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "9ebb6c992e96d998",
+    "nome": "Mandioquinha — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "4ecb9cd323df1601",
+    "nome": "Tomate comum — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "4095b1958c37f115",
+    "nome": "Tomate comum — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "c0e1de901030d786",
+    "nome": "Tomate cereja — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "a7d8dbe764b5e259",
+    "nome": "Tomate cereja — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "383766378dddc005",
+    "nome": "Tomate italiano — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "3452e73ab35e92b5",
+    "nome": "Tomate italiano — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "d9af9ff20bc4540a",
+    "nome": "Cebola branca — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "2b6f31b3ec9c5f4f",
+    "nome": "Cebola branca — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "1f582c497c5c7e31",
+    "nome": "Cebola roxa — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "5a7ccfad51864a70",
+    "nome": "Cebola roxa — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "2575383c02406667",
+    "nome": "Alho — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "3005375d0359ae9b",
+    "nome": "Alho — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "506c32838844f571",
+    "nome": "Pimentão verde — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "45e5a17bc168d02a",
+    "nome": "Pimentão verde — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "e6d254e499412b70",
+    "nome": "Pimentão vermelho — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "18d3b5f15335425a",
+    "nome": "Pimentão vermelho — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "b437e2370c7dfe0d",
+    "nome": "Pimentão amarelo — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "c50d50a867bf201b",
+    "nome": "Pimentão amarelo — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "07b66b8ad07203e8",
+    "nome": "Pepino comum — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "4ad87f0508e1f509",
+    "nome": "Pepino comum — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "10f5a71c434f35ff",
+    "nome": "Pepino japonês — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "05c34a8be3340011",
+    "nome": "Pepino japonês — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "1725ee3b0ff27b5a",
+    "nome": "Berinjela — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "719dbd08a2b4e01a",
+    "nome": "Berinjela — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "22fb6c6ebdd8a3c3",
+    "nome": "Jiló — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "16ea7e83aa60abbe",
+    "nome": "Jiló — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "c06dde7d56ee777d",
+    "nome": "Quiabo — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "39ade81a2af4cf52",
+    "nome": "Quiabo — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "7f021059d5538b2f",
+    "nome": "Maxixe — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "259d6308353ae4eb",
+    "nome": "Maxixe — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "a05631a4681bfe25",
+    "nome": "Vagem — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "fd22fb66c861649b",
+    "nome": "Vagem — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "32f246557c3ac060",
+    "nome": "Ervilha fresca — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "f1772e52b5f719f1",
+    "nome": "Ervilha fresca — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "94ff6a0325d7bb44",
+    "nome": "Milho verde em espiga — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "b1d8bb8d4a6a3482",
+    "nome": "Milho verde em espiga — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "31cf3f14982d6eb6",
+    "nome": "Feijão-verde — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "b4c5f81a34a49d7e",
+    "nome": "Feijão-verde — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "add159c086203f31",
+    "nome": "Repolho verde — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "0ac2f59b31fda8da",
+    "nome": "Repolho verde — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "7a356d746d7be02a",
+    "nome": "Repolho roxo — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "5f0848407eca4ad4",
+    "nome": "Repolho roxo — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "59d87f6c89de2f86",
+    "nome": "Couve-flor — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "b5fc232d19f3a8bf",
+    "nome": "Couve-flor — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "bd83a6f8cf1e2a31",
+    "nome": "Brócolis — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "6a2e81d97ddaac25",
+    "nome": "Brócolis — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "ad6a8816b732bd74",
+    "nome": "Alface crespa — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "03dbba6476dcbad9",
+    "nome": "Alface crespa — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "eb1c55ab065e7a02",
+    "nome": "Alface lisa — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "3004202eff736e78",
+    "nome": "Alface lisa — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "c62b26f4c64c7815",
+    "nome": "Alface americana — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "13ffaa4f25402106",
+    "nome": "Alface americana — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "449aaa1dc221fd97",
+    "nome": "Couve-manteiga — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "12a0da4a2c9e41db",
+    "nome": "Couve-manteiga — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "e4bf4ae6286be540",
+    "nome": "Acelga — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "6940e3f2ec36d823",
+    "nome": "Acelga — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "e3cb557ed93b01c0",
+    "nome": "Espinafre — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "f59993e1ac6ea2ae",
+    "nome": "Espinafre — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "a269b8d482da94af",
+    "nome": "Rúcula — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "b6034157974de731",
+    "nome": "Rúcula — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "41505f8dcfc7ffd6",
+    "nome": "Agrião — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "2c9651bf32a9da38",
+    "nome": "Agrião — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "f2c3d169501d72b0",
+    "nome": "Chicória — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "367134b72676c59f",
+    "nome": "Chicória — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "3a27f18be3a2a9c0",
+    "nome": "Coentro fresco — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "062a9e8da4f06396",
+    "nome": "Coentro fresco — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "815280f4331df9b7",
+    "nome": "Cebolinha fresca — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "c7787136cfb5b1ae",
+    "nome": "Cebolinha fresca — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "ad94972bca49acf7",
+    "nome": "Salsa fresca — a granel",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "kg"
+  },
+  {
+    "id": "9c171b65cd05c946",
+    "nome": "Salsa fresca — caixa sem peso padronizado",
+    "categoria": "Verduras, legumes e raízes",
+    "unidade": "cx"
+  },
+  {
+    "id": "a30b65d50c9083b0",
+    "nome": "Peito de frango sem osso — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "50a05f5bb5073f3f",
+    "nome": "Peito de frango sem osso — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "470a57102fa06b42",
+    "nome": "Peito de frango sem osso — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "529c9dfc2f7d36fb",
+    "nome": "Peito de frango com osso — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "7c276eb20a1f860a",
+    "nome": "Peito de frango com osso — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "c72b8e13d710f89f",
+    "nome": "Peito de frango com osso — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "691a2c6837817dea",
+    "nome": "Coxa de frango — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "2890e0913de75759",
+    "nome": "Coxa de frango — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "519e5888e185eeec",
+    "nome": "Coxa de frango — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "ddb8dc8a6ca866db",
+    "nome": "Sobrecoxa de frango — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "ee25e7edff439276",
+    "nome": "Sobrecoxa de frango — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "084eaa6d7d670cb7",
+    "nome": "Sobrecoxa de frango — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "f86ed6dcf36296d6",
+    "nome": "Coxa e sobrecoxa de frango — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "9ffead649a7f685c",
+    "nome": "Coxa e sobrecoxa de frango — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "5b4383c303189b9b",
+    "nome": "Coxa e sobrecoxa de frango — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "1e4f12622ecddd26",
+    "nome": "Frango inteiro — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "a3ea7329d996519c",
+    "nome": "Frango inteiro — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "cf07906f27d1d698",
+    "nome": "Frango inteiro — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "a99275a8248aa18b",
+    "nome": "Filé de frango — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "6e97591008a5b5d4",
+    "nome": "Filé de frango — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "8961ba0f68dcfaeb",
+    "nome": "Filé de frango — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "6f3e90cb735c2d51",
+    "nome": "Fígado de frango — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "51eb0eb9edefb8c6",
+    "nome": "Fígado de frango — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "0e3ad063a0299fd4",
+    "nome": "Fígado de frango — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "9dac40509b0ddeda",
+    "nome": "Moela de frango — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "aab1bd3926ebbe6a",
+    "nome": "Moela de frango — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "6db76a19a157d5bf",
+    "nome": "Moela de frango — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "546e3ee863be559b",
+    "nome": "Patinho bovino — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "695a38ae051b7c40",
+    "nome": "Patinho bovino — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "b52e751f1d00d2ff",
+    "nome": "Patinho bovino — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "e81df3fd8854e7b3",
+    "nome": "Acém bovino — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "8b235c9cdbc901f9",
+    "nome": "Acém bovino — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "62b9bb62f2bda4a3",
+    "nome": "Acém bovino — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "59f12255f2c9e4cd",
+    "nome": "Músculo bovino — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "4a15fba61aef6bd1",
+    "nome": "Músculo bovino — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "a7b363956bea2394",
+    "nome": "Músculo bovino — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "9aaa08faae948a86",
+    "nome": "Paleta bovina — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "bfdd06b2cc278f4b",
+    "nome": "Paleta bovina — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "36267a06e5c5dc07",
+    "nome": "Paleta bovina — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "7b0f407a461a0234",
+    "nome": "Coxão mole bovino — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "1cd26666a0602568",
+    "nome": "Coxão mole bovino — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "788d0852f80083e3",
+    "nome": "Coxão mole bovino — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "bb1fbc46882480bc",
+    "nome": "Coxão duro bovino — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "d17cd26f60371126",
+    "nome": "Coxão duro bovino — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "e22b7804bf224ce6",
+    "nome": "Coxão duro bovino — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "9a97014afca69bde",
+    "nome": "Peito bovino — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "9bb619679a80e402",
+    "nome": "Peito bovino — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "e4d68fed49e23bdc",
+    "nome": "Peito bovino — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "bcdc89252c0a9c4e",
+    "nome": "Carne bovina moída — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "43477825ba19e1c4",
+    "nome": "Carne bovina moída — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "68862d657e168c62",
+    "nome": "Carne bovina moída — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "95ded93370d82cc6",
+    "nome": "Fígado bovino — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "a09da29e9e3953da",
+    "nome": "Fígado bovino — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "c0e7065244c85ca3",
+    "nome": "Fígado bovino — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "7ad4b9d26427d5cd",
+    "nome": "Carne bovina em cubos — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "bb4869cbb97f05c5",
+    "nome": "Carne bovina em cubos — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "d00b60962ed5a240",
+    "nome": "Carne bovina em cubos — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "b3dc8d59cee12b7f",
+    "nome": "Carne bovina em tiras — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "7b29930a2b9c1cdf",
+    "nome": "Carne bovina em tiras — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "5bb6e4d3a7f852d2",
+    "nome": "Carne bovina em tiras — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "f7b6acd30f073567",
+    "nome": "Lombo suíno — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "073171b27172bb0c",
+    "nome": "Lombo suíno — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "4c3bd65e641f777d",
+    "nome": "Lombo suíno — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "32400005601e4304",
+    "nome": "Pernil suíno — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "33024650c38eebe5",
+    "nome": "Pernil suíno — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "bc60c33898b6e96b",
+    "nome": "Pernil suíno — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "f906fe968a420621",
+    "nome": "Paleta suína — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "38381f7930e16f02",
+    "nome": "Paleta suína — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "e8f8820506dcb097",
+    "nome": "Paleta suína — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "553cf58c5091ff7b",
+    "nome": "Bisteca suína — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "20fd814cbb9cd974",
+    "nome": "Bisteca suína — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "6a422f7ff88fd14d",
+    "nome": "Bisteca suína — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "57951ca02e55a903",
+    "nome": "Filé de tilápia — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "e620c65b042b190d",
+    "nome": "Filé de tilápia — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "e79eda8d8eeb2261",
+    "nome": "Filé de tilápia — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "3c4ba73c90851803",
+    "nome": "Filé de merluza — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "47af87006b953599",
+    "nome": "Filé de merluza — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "da7db69b35bf65b0",
+    "nome": "Filé de merluza — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "220801ea8547eee0",
+    "nome": "Filé de pescada — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "0a093685ccf658d2",
+    "nome": "Filé de pescada — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "1d2a60ae78f5ed96",
+    "nome": "Filé de pescada — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "0b7c0bf89b6fb64d",
+    "nome": "Sardinha fresca — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "d1a8a5b6e0fbd1eb",
+    "nome": "Sardinha fresca — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "8caa7794bd84d9ee",
+    "nome": "Sardinha fresca — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "a0f6fce66faab783",
+    "nome": "Peixe inteiro limpo — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "2cd83e99ba8c084a",
+    "nome": "Peixe inteiro limpo — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "ab34e179ad507b50",
+    "nome": "Peixe inteiro limpo — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "21b68435b52bc9fa",
+    "nome": "Carne de frango moída — a granel",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "kg"
+  },
+  {
+    "id": "7bf6270b322fd938",
+    "nome": "Carne de frango moída — embalagem 1 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "111d9ed15798403c",
+    "nome": "Carne de frango moída — embalagem 2 kg",
+    "categoria": "Carnes, pescados e ovos",
+    "unidade": "pct"
+  },
+  {
+    "id": "8bdd849e4ef72c3a",
+    "nome": "Leite integral em pó — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "cd3bdfe2b22d8bc5",
+    "nome": "Leite integral em pó — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "eced5343a9b6f08b",
+    "nome": "Leite integral em pó — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "c87fc3fb7e423d99",
+    "nome": "Leite integral em pó — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "1b192a3ca59820e9",
+    "nome": "Leite desnatado em pó — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "b80aec2b42638fe8",
+    "nome": "Leite desnatado em pó — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "e8c7faa1df235f42",
+    "nome": "Leite desnatado em pó — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "f734ea828a26f34f",
+    "nome": "Leite desnatado em pó — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "07800de3c84c2341",
+    "nome": "Leite sem lactose em pó — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "dced8e49d5d08e44",
+    "nome": "Leite sem lactose em pó — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "500e420c3005708d",
+    "nome": "Leite sem lactose em pó — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "80e324864a12385e",
+    "nome": "Leite sem lactose em pó — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "436a164431859d29",
+    "nome": "Composto lácteo — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "508937615816adb1",
+    "nome": "Composto lácteo — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "c4d8c9380209dc94",
+    "nome": "Composto lácteo — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "b77f17ac2dcca420",
+    "nome": "Composto lácteo — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "2e1d57ce826f7c27",
+    "nome": "Queijo muçarela — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "c4173fc2d0b99e5f",
+    "nome": "Queijo muçarela — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "7382390859abf8a7",
+    "nome": "Queijo muçarela — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "c9cc47f5076eea86",
+    "nome": "Queijo muçarela — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "10172e3857ce287a",
+    "nome": "Queijo coalho — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "f975946e0712ca28",
+    "nome": "Queijo coalho — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "68bf157c43c71625",
+    "nome": "Queijo coalho — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "6b3f9976d0a35809",
+    "nome": "Queijo coalho — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "cb3c85fea9a8646b",
+    "nome": "Queijo minas frescal — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "f902fc2cbd561ab9",
+    "nome": "Queijo minas frescal — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "5f83ee682de53329",
+    "nome": "Queijo minas frescal — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "25fdd6575382f82a",
+    "nome": "Queijo minas frescal — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "6886c77da0429ed9",
+    "nome": "Queijo ricota — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "4d0c7e55ed24ee2c",
+    "nome": "Queijo ricota — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "00c0429e3cde3ebb",
+    "nome": "Queijo ricota — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "6c530f786cc51479",
+    "nome": "Queijo ricota — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "8283fab719926806",
+    "nome": "Queijo prato — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "e98ed601867ac07e",
+    "nome": "Queijo prato — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "6d7092dce04b7957",
+    "nome": "Queijo prato — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "720e4b79611b1d6e",
+    "nome": "Queijo prato — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "8664e07212e87ed4",
+    "nome": "Queijo parmesão ralado — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "d2d0ced51c14147e",
+    "nome": "Queijo parmesão ralado — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "5e241eb3f0f6db06",
+    "nome": "Queijo parmesão ralado — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "585770aca25b59e6",
+    "nome": "Queijo parmesão ralado — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "000f232697345f78",
+    "nome": "Requeijão cremoso — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "3609b55d4fd61978",
+    "nome": "Requeijão cremoso — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "40d17e79b5febae2",
+    "nome": "Requeijão cremoso — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "0633ccbbc5c8747a",
+    "nome": "Requeijão cremoso — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "71709e8c138eaa1f",
+    "nome": "Manteiga com sal — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "78d65d8044adcede",
+    "nome": "Manteiga com sal — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "f804f1f93ffa8456",
+    "nome": "Manteiga com sal — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "062c83bc79dfabfb",
+    "nome": "Manteiga com sal — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "d1deef687e72f40b",
+    "nome": "Manteiga sem sal — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "210cadfc13c594d8",
+    "nome": "Manteiga sem sal — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "d8d021c5fc166cc4",
+    "nome": "Manteiga sem sal — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "eae5e48f4f134293",
+    "nome": "Manteiga sem sal — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "07ecee15c35c7c37",
+    "nome": "Creme de leite — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "a7b871065aa5ab30",
+    "nome": "Creme de leite — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "b95abcbd9b251d0f",
+    "nome": "Creme de leite — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "c53017892cb9373e",
+    "nome": "Creme de leite — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "36bfb64ef50bd20e",
+    "nome": "Iogurte natural — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "c60210a2bf3bd00f",
+    "nome": "Iogurte natural — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "20abe1f667901b43",
+    "nome": "Iogurte natural — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "8cd252f4456ce7b9",
+    "nome": "Iogurte natural — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "ce5ccd660c8e4500",
+    "nome": "Iogurte de morango — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "e905ad1bb022deca",
+    "nome": "Iogurte de morango — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "eea0aed89780f907",
+    "nome": "Iogurte de morango — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "2ed037908e0d1db4",
+    "nome": "Iogurte de morango — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "b013d63316a0d382",
+    "nome": "Iogurte de coco — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "ac79660dd343ca49",
+    "nome": "Iogurte de coco — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "53644c98ddc86ca8",
+    "nome": "Iogurte de coco — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "4efc10919c626025",
+    "nome": "Iogurte de coco — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "508490bb74ce9640",
+    "nome": "Coalhada natural — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "20276241fda7f047",
+    "nome": "Coalhada natural — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "b0535c501726d8c8",
+    "nome": "Coalhada natural — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "134a7d39274fe75e",
+    "nome": "Coalhada natural — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "79ac43f7700777fe",
+    "nome": "Bebida láctea de morango — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "e4a6ff8eb502c151",
+    "nome": "Bebida láctea de morango — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "6e0de78e06398ba3",
+    "nome": "Bebida láctea de morango — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "909f7524376bf29f",
+    "nome": "Bebida láctea de morango — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "de47ab32d7749c4b",
+    "nome": "Bebida láctea de chocolate — embalagem 200 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "cb970b2b8252251c",
+    "nome": "Bebida láctea de chocolate — embalagem 400 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "3119838482d4ddc8",
+    "nome": "Bebida láctea de chocolate — embalagem 500 g",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "57c8033958a32677",
+    "nome": "Bebida láctea de chocolate — embalagem 1 kg",
+    "categoria": "Leites e derivados",
+    "unidade": "un"
+  },
+  {
+    "id": "5a35af35477c6aa1",
+    "nome": "Óleo de soja — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "154879e7492d44da",
+    "nome": "Óleo de soja — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "4de876c759bddf69",
+    "nome": "Óleo de soja — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "8a83419ddbf98b1c",
+    "nome": "Óleo de soja — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "12c9cc3e99648273",
+    "nome": "Óleo de milho — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "457192b035d10abe",
+    "nome": "Óleo de milho — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "8cff55992400cade",
+    "nome": "Óleo de milho — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "8298ec6f6cd6c4f1",
+    "nome": "Óleo de milho — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "afcd91ef1a1ce18f",
+    "nome": "Óleo de girassol — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "fe53efa7ec07c7e1",
+    "nome": "Óleo de girassol — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "566aaf9ea4573af2",
+    "nome": "Óleo de girassol — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "566e922f5dc50789",
+    "nome": "Óleo de girassol — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "1f57622cf848a5a0",
+    "nome": "Óleo de canola — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "1fa288c0fe609a90",
+    "nome": "Óleo de canola — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "0783591ba93451bd",
+    "nome": "Óleo de canola — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "90811801d414ef35",
+    "nome": "Óleo de canola — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "fff4b47e404d806e",
+    "nome": "Azeite de oliva — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "a392fb9b357593d0",
+    "nome": "Azeite de oliva — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "bfbb40c50611a751",
+    "nome": "Azeite de oliva — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "dd893d4924cd99e2",
+    "nome": "Azeite de oliva — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "f1c6c72f91377bb4",
+    "nome": "Vinagre de álcool — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "9b586fe6f444fb54",
+    "nome": "Vinagre de álcool — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "b56c0be8747c4fe7",
+    "nome": "Vinagre de álcool — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "cf1ac8d053fefaab",
+    "nome": "Vinagre de álcool — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "f6a4ed105d32e588",
+    "nome": "Vinagre de maçã — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "7117de34f85ae740",
+    "nome": "Vinagre de maçã — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "82935bc51f2edf01",
+    "nome": "Vinagre de maçã — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "4140738b4c02404a",
+    "nome": "Vinagre de maçã — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "6ef963ef6a38c15e",
+    "nome": "Vinagre de vinho — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "84371387369c6932",
+    "nome": "Vinagre de vinho — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "b31f5b4818ac2829",
+    "nome": "Vinagre de vinho — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "8f8a86cc60aaf123",
+    "nome": "Vinagre de vinho — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "42c5738708dc34e1",
+    "nome": "Leite de coco — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "9c608d4b1365f6ab",
+    "nome": "Leite de coco — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "f85296b7e21a4508",
+    "nome": "Leite de coco — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "bfb5042b3f2e1024",
+    "nome": "Leite de coco — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "08f40633550e9475",
+    "nome": "Suco de uva integral — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "5415521ec023f089",
+    "nome": "Suco de uva integral — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "852040ce6aaf349b",
+    "nome": "Suco de uva integral — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "7e4694a306cd9f4e",
+    "nome": "Suco de uva integral — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "b4990960b190928d",
+    "nome": "Suco de maçã integral — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "e11f0148d8b5e72b",
+    "nome": "Suco de maçã integral — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "51a763963f4e7404",
+    "nome": "Suco de maçã integral — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "40b291182e08f1c4",
+    "nome": "Suco de maçã integral — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "09c6666d09e69249",
+    "nome": "Leite UHT integral — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "ba2cf69de0c3e8a7",
+    "nome": "Leite UHT integral — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "63c7e15a49f699c6",
+    "nome": "Leite UHT integral — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "94d451d496ce4a83",
+    "nome": "Leite UHT integral — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "3f25b3dbff3d7f9e",
+    "nome": "Leite UHT desnatado — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "1fc9db918c2900a2",
+    "nome": "Leite UHT desnatado — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "51db884a946d89b0",
+    "nome": "Leite UHT desnatado — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "f42b1d1a522887a5",
+    "nome": "Leite UHT desnatado — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "4f866f87863c0e62",
+    "nome": "Leite UHT sem lactose — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "c9c641dac44935b0",
+    "nome": "Leite UHT sem lactose — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "6819d0dd8b150e09",
+    "nome": "Leite UHT sem lactose — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "4ddbda6111bd92c9",
+    "nome": "Leite UHT sem lactose — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "8153e07356326305",
+    "nome": "Água mineral sem gás — embalagem 200 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "a789ea8290b3e554",
+    "nome": "Água mineral sem gás — embalagem 500 ml",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "a537303bd6f48674",
+    "nome": "Água mineral sem gás — embalagem 1 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "5ec008832257c344",
+    "nome": "Água mineral sem gás — embalagem 5 L",
+    "categoria": "Óleos, conservas e ingredientes",
+    "unidade": "un"
+  },
+  {
+    "id": "403355cb63710736",
+    "nome": "Detergente neutro — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "f9a673ade5038785",
+    "nome": "Detergente neutro — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "50a6a3862b60ee05",
+    "nome": "Detergente neutro — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "4128a9c2abe27776",
+    "nome": "Detergente neutro — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "f2c91c0ff10cb04d",
+    "nome": "Detergente para louças — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "24f0f922b1314559",
+    "nome": "Detergente para louças — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "75fc05fd4b9f08d8",
+    "nome": "Detergente para louças — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "822477bd7b7be9be",
+    "nome": "Detergente para louças — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "fc3219849bcf2f10",
+    "nome": "Desinfetante de uso geral — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "63da49622dad2591",
+    "nome": "Desinfetante de uso geral — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "996e3c0f1acc5e4d",
+    "nome": "Desinfetante de uso geral — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "1cf7154ddca5e8e8",
+    "nome": "Desinfetante de uso geral — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "ccb53aae0ae9a599",
+    "nome": "Água sanitária — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "dfe9536b1dab72e1",
+    "nome": "Água sanitária — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "b2bb0b2a8df5135b",
+    "nome": "Água sanitária — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "f2185c4c5df930c2",
+    "nome": "Água sanitária — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "6eeae6f707e1a660",
+    "nome": "Alvejante sem cloro — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "361d50f402f62253",
+    "nome": "Alvejante sem cloro — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "5928aa9ded88c2f7",
+    "nome": "Alvejante sem cloro — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "fed57828fade9900",
+    "nome": "Alvejante sem cloro — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "e55c09fb26ed8533",
+    "nome": "Limpador multiuso — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "a67d3839582e1b0b",
+    "nome": "Limpador multiuso — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "42a88261b1ca7922",
+    "nome": "Limpador multiuso — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "36733140a1e7376f",
+    "nome": "Limpador multiuso — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "68b9e2fb7a290e06",
+    "nome": "Limpador de piso — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "f99459e37cf9eda6",
+    "nome": "Limpador de piso — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "145f41782d9ffd82",
+    "nome": "Limpador de piso — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "657046bcef1cbf0f",
+    "nome": "Limpador de piso — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "1aaa34ffdf545c35",
+    "nome": "Limpador perfumado — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "02bbf45778a2520c",
+    "nome": "Limpador perfumado — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "362fb1c600238984",
+    "nome": "Limpador perfumado — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "c3b2e6c9c8213f8b",
+    "nome": "Limpador perfumado — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "86f89de06b3b2be1",
+    "nome": "Desengordurante de cozinha — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "3a0247b720f5be18",
+    "nome": "Desengordurante de cozinha — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "67c80e9899df9216",
+    "nome": "Desengordurante de cozinha — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "47198db05ff128c3",
+    "nome": "Desengordurante de cozinha — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "283a472c226e7d99",
+    "nome": "Desengordurante de piso — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "cdea141a3a538b86",
+    "nome": "Desengordurante de piso — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "a6eb23dcd2338a6e",
+    "nome": "Desengordurante de piso — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "296ced240edeabb0",
+    "nome": "Desengordurante de piso — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "a3fc21c24aca505f",
+    "nome": "Limpa-vidros — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "b8fbb2401ab58f2b",
+    "nome": "Limpa-vidros — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "696e1eaa0656654d",
+    "nome": "Limpa-vidros — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "27a6d445b77233be",
+    "nome": "Limpa-vidros — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "a6aeb482f7051ff4",
+    "nome": "Limpa-inox — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "76bd8b8ced81fdc0",
+    "nome": "Limpa-inox — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "e9d4dafe59b224d4",
+    "nome": "Limpa-inox — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "c73c20a933678e6e",
+    "nome": "Limpa-inox — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "f1530fb00b48305b",
+    "nome": "Sabão líquido para roupas — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "2803fdbe57ea86da",
+    "nome": "Sabão líquido para roupas — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "9e2825c50a9482de",
+    "nome": "Sabão líquido para roupas — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "fdcdfdd60f6efe95",
+    "nome": "Sabão líquido para roupas — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "a9aecb91b43fcd24",
+    "nome": "Amaciante de roupas — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "ce7e7d3833532c4e",
+    "nome": "Amaciante de roupas — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "e625acf238b0c3a9",
+    "nome": "Amaciante de roupas — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "e86c35fceb98908f",
+    "nome": "Amaciante de roupas — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "489b1a4832dca681",
+    "nome": "Sabonete líquido — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "cf825da8c8a6006e",
+    "nome": "Sabonete líquido — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "b3cd7011401ae707",
+    "nome": "Sabonete líquido — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "df90ca1121aac12f",
+    "nome": "Sabonete líquido — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "ba12c0a8e37ff660",
+    "nome": "Álcool líquido 70% — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "d2bd6d485c08e0b8",
+    "nome": "Álcool líquido 70% — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "8535829e6a544dac",
+    "nome": "Álcool líquido 70% — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "824dd38414ae069e",
+    "nome": "Álcool líquido 70% — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "c7bf6ad3c8d437da",
+    "nome": "Álcool em gel 70% — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "5cff6ee19a1caab1",
+    "nome": "Álcool em gel 70% — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "ba7f3a1ccce56fbe",
+    "nome": "Álcool em gel 70% — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "2c5b555aa3c294d1",
+    "nome": "Álcool em gel 70% — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "6a1860c722b32c44",
+    "nome": "Limpador sanitário — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "24a8fa14c7134eb8",
+    "nome": "Limpador sanitário — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "b81217c9153a35f7",
+    "nome": "Limpador sanitário — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "1aaa5a192a8a2399",
+    "nome": "Limpador sanitário — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "7f769a6027c50577",
+    "nome": "Detergente para máquina de lavar louça — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "b1078dfaee025d10",
+    "nome": "Detergente para máquina de lavar louça — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "607ee491c104f37c",
+    "nome": "Detergente para máquina de lavar louça — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "057f7750111f06e8",
+    "nome": "Detergente para máquina de lavar louça — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "e200f23ede7677b8",
+    "nome": "Limpador neutro concentrado — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "a7e142f007065ae1",
+    "nome": "Limpador neutro concentrado — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "69a0b2b75fe14023",
+    "nome": "Limpador neutro concentrado — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "efa517a1d0d539df",
+    "nome": "Limpador neutro concentrado — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "654f9c476e6bdbb0",
+    "nome": "Limpador para banheiro — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "27ab8d7f0cc32415",
+    "nome": "Limpador para banheiro — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "ca9c2d64a6339f4d",
+    "nome": "Limpador para banheiro — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "adc80c00398c0f5b",
+    "nome": "Limpador para banheiro — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "3c2915e155638fb0",
+    "nome": "Limpador para azulejos — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "2f6b12f03c590f9c",
+    "nome": "Limpador para azulejos — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "f4f4ae40e50a3686",
+    "nome": "Limpador para azulejos — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "0f361f4e4057acaf",
+    "nome": "Limpador para azulejos — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "b7f5ffaeb7407629",
+    "nome": "Removedor de ceras — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "920fcef498f08ebf",
+    "nome": "Removedor de ceras — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "6c90beaf09ce1e22",
+    "nome": "Removedor de ceras — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "036e7aa75349d512",
+    "nome": "Removedor de ceras — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "6144e82f6c8fe853",
+    "nome": "Cera líquida — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "c1b34aa1d9d8d953",
+    "nome": "Cera líquida — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "b55ade98f1d5aee4",
+    "nome": "Cera líquida — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "e89cae758318c1c5",
+    "nome": "Cera líquida — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "e72ecec13c176d5e",
+    "nome": "Lustra-móveis — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "491edee321413429",
+    "nome": "Lustra-móveis — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "b4c20878c4aca1ab",
+    "nome": "Lustra-móveis — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "6c3939539dac69ba",
+    "nome": "Lustra-móveis — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "50e63396e4b56b02",
+    "nome": "Limpador de alumínio — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "3f0745a65480dc30",
+    "nome": "Limpador de alumínio — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "b916054ba43f077c",
+    "nome": "Limpador de alumínio — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "7df967f867b45c51",
+    "nome": "Limpador de alumínio — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "5f98085136fbcd35",
+    "nome": "Sabão líquido de coco — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "be714c39dcd1b052",
+    "nome": "Sabão líquido de coco — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "8eede7c8f4919f1e",
+    "nome": "Sabão líquido de coco — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "82c8c4474b04912e",
+    "nome": "Sabão líquido de coco — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "58f45e68eb5e0eb0",
+    "nome": "Limpador enzimático de uso geral — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "0a737e13ffdc3b44",
+    "nome": "Limpador enzimático de uso geral — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "8b59b43a9b936d1d",
+    "nome": "Limpador enzimático de uso geral — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "4cc8cc8bdd7baabb",
+    "nome": "Limpador enzimático de uso geral — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "f02906d797d88190",
+    "nome": "Detergente alcalino de uso profissional — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "51cd9cadb28a3485",
+    "nome": "Detergente alcalino de uso profissional — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "749431aaf99cac62",
+    "nome": "Detergente alcalino de uso profissional — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "f52611020f3bc625",
+    "nome": "Detergente alcalino de uso profissional — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "a07e592d744b5f50",
+    "nome": "Sanitizante para superfícies — frasco 500 ml",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "19a5c43475e6b266",
+    "nome": "Sanitizante para superfícies — frasco 1 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "e7da76712841d7c5",
+    "nome": "Sanitizante para superfícies — galão 2 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "1d01b9a7c7738025",
+    "nome": "Sanitizante para superfícies — galão 5 L",
+    "categoria": "Limpeza e higienização",
+    "unidade": "un"
+  },
+  {
+    "id": "8fd63cf2763ca40c",
+    "nome": "Saco de lixo 15 L — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "b0981acf870e2b28",
+    "nome": "Saco de lixo 15 L — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "b3c9931276a370eb",
+    "nome": "Saco de lixo 30 L — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "67a723d0a73cdd71",
+    "nome": "Saco de lixo 30 L — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "33633a4410b9516b",
+    "nome": "Saco de lixo 50 L — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "259a7b4c1408ef7b",
+    "nome": "Saco de lixo 50 L — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "0b01fe0a3231eb7e",
+    "nome": "Saco de lixo 100 L — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "4363b47abdf8b55b",
+    "nome": "Saco de lixo 100 L — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "4b549dc21852f0b6",
+    "nome": "Saco de lixo 200 L — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "088a92fc682cfac2",
+    "nome": "Saco de lixo 200 L — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "4fe737824831a3ab",
+    "nome": "Saco para alimentos 1 kg — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "3e3c24ed8699c713",
+    "nome": "Saco para alimentos 1 kg — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "3444c3255574a0b3",
+    "nome": "Saco para alimentos 2 kg — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "fa18f0759ac77338",
+    "nome": "Saco para alimentos 2 kg — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "57e93583ab515634",
+    "nome": "Saco para alimentos 5 kg — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "05f1c60f08d09d5c",
+    "nome": "Saco para alimentos 5 kg — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "9c03b4dddfb14010",
+    "nome": "Saco para alimentos 10 kg — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "575f7bba32ef6dc1",
+    "nome": "Saco para alimentos 10 kg — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "18e59261940cc003",
+    "nome": "Copo descartável 50 ml — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "53a3eec0d492842a",
+    "nome": "Copo descartável 50 ml — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "aa637f6ad8683967",
+    "nome": "Copo descartável 180 ml — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "df45e5b77b632934",
+    "nome": "Copo descartável 180 ml — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "ea192bbce8c5c90d",
+    "nome": "Copo descartável 200 ml — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "2b624b59e6bd9498",
+    "nome": "Copo descartável 200 ml — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "6aab76228e465fe8",
+    "nome": "Copo descartável 300 ml — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "5412846490d2561f",
+    "nome": "Copo descartável 300 ml — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "0b1faf0fb0595341",
+    "nome": "Prato descartável 15 cm — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "f85b85007295f3a1",
+    "nome": "Prato descartável 15 cm — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "dbd8f3b258af229f",
+    "nome": "Prato descartável 21 cm — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "6d40125abbbd473d",
+    "nome": "Prato descartável 21 cm — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "f959da18e0a011bc",
+    "nome": "Colher descartável — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "b34ce9f484736315",
+    "nome": "Colher descartável — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "e3524a4497e32aef",
+    "nome": "Garfo descartável — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "6eb92efe98ae4476",
+    "nome": "Garfo descartável — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "59673496a2d6e13e",
+    "nome": "Faca descartável — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "ebece266800a5ef4",
+    "nome": "Faca descartável — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "ec1f350ca4d7b607",
+    "nome": "Touca descartável — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "8fd33ab43d0e6d53",
+    "nome": "Touca descartável — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "931aa56eb5030c9c",
+    "nome": "Máscara descartável — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "e756b9bd29ca1008",
+    "nome": "Máscara descartável — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "d15773856737c247",
+    "nome": "Luva descartável tamanho P — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "1268465ec2ff34ab",
+    "nome": "Luva descartável tamanho P — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "24de759cdc97e841",
+    "nome": "Luva descartável tamanho M — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "e65334394b6e288f",
+    "nome": "Luva descartável tamanho M — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "5ba62d175737cc6c",
+    "nome": "Luva descartável tamanho G — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "d4c08d7d32223e79",
+    "nome": "Luva descartável tamanho G — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "663bd4b830e26122",
+    "nome": "Guardanapo de papel 20 × 20 cm — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "5c41b9c0189714b0",
+    "nome": "Guardanapo de papel 20 × 20 cm — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "17a86ff8d4d4df01",
+    "nome": "Guardanapo de papel 30 × 30 cm — pacote 50 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "2956e1a600637935",
+    "nome": "Guardanapo de papel 30 × 30 cm — pacote 100 unidades",
+    "categoria": "Descartáveis, higiene e proteção",
+    "unidade": "pct"
+  },
+  {
+    "id": "f83753b8a3e5f6a5",
+    "nome": "Vassoura de nylon — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "baaca05d76d01a29",
+    "nome": "Vassoura de nylon — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "8d1e93e37ad13559",
+    "nome": "Vassoura de piaçava — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "0f6cafc552fd2b51",
+    "nome": "Vassoura de piaçava — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "8b13cb20eb25a438",
+    "nome": "Vassoura de pelo — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "3d5d9f5c48d11d92",
+    "nome": "Vassoura de pelo — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "d74d82e76f96afb9",
+    "nome": "Rodo 40 cm — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "6bdce84c72b06d29",
+    "nome": "Rodo 40 cm — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "27814d12f2adefcc",
+    "nome": "Rodo 60 cm — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "8724cf558b3ae1a1",
+    "nome": "Rodo 60 cm — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "60f406dd2b4846ed",
+    "nome": "Pá de lixo — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "b3c8775ee5a07cf0",
+    "nome": "Pá de lixo — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "53f5cc13d813c9ea",
+    "nome": "Escova para piso — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "8983b4a15ea0b654",
+    "nome": "Escova para piso — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "c734ffb61b9cedf1",
+    "nome": "Escova para louça — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "4d4ce80a49953a30",
+    "nome": "Escova para louça — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "801b10dd2ff7e3b8",
+    "nome": "Escova para garrafa — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "d7e0bf4703349cf7",
+    "nome": "Escova para garrafa — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "90ce2173aa34d175",
+    "nome": "Esponja dupla face — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "35939b60e04e18fd",
+    "nome": "Esponja dupla face — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "00c6418caeab1603",
+    "nome": "Esponja de fibra não abrasiva — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "06b2432e620755fa",
+    "nome": "Esponja de fibra não abrasiva — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "c95cf1c856a7a2f0",
+    "nome": "Esponja de fibra abrasiva — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "0df37658c4f5715f",
+    "nome": "Esponja de fibra abrasiva — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "46f84cfb2918127b",
+    "nome": "Pano de chão — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "9f6f19dd1657dcd3",
+    "nome": "Pano de chão — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "e21fed53419c6571",
+    "nome": "Pano de prato — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "8c56a0a7e2fa9552",
+    "nome": "Pano de prato — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "017369353f9ef274",
+    "nome": "Pano multiuso — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "5d6a98b63eb5878e",
+    "nome": "Pano multiuso — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "2e7afccf2fb65be5",
+    "nome": "Flanela — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "2d39e08d0cfaaf81",
+    "nome": "Flanela — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "1d6109cc6b57978d",
+    "nome": "Balde plástico 10 L — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "be03a98d5b80bc3c",
+    "nome": "Balde plástico 10 L — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "44c89f76124567cb",
+    "nome": "Balde plástico 20 L — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "d7e9892b79998598",
+    "nome": "Balde plástico 20 L — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "68f4220619bf8366",
+    "nome": "Bacia plástica 5 L — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "28dc4202bdd2d5e7",
+    "nome": "Bacia plástica 5 L — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "445be566917ffd06",
+    "nome": "Bacia plástica 10 L — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "fa5c4dd9f861c715",
+    "nome": "Bacia plástica 10 L — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "99df865023ae5909",
+    "nome": "Bacia plástica 20 L — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "103819edb84baf0f",
+    "nome": "Bacia plástica 20 L — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "7c8c03ba668cc1db",
+    "nome": "Lixeira com pedal 15 L — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "50b56b562e37c509",
+    "nome": "Lixeira com pedal 15 L — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "1b62cf2859b68176",
+    "nome": "Lixeira com pedal 30 L — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "7598192c6988d7bc",
+    "nome": "Lixeira com pedal 30 L — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "91dced88f24112d1",
+    "nome": "Lixeira com pedal 50 L — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "bcf79e2ede102665",
+    "nome": "Lixeira com pedal 50 L — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "d90e54abc4e25509",
+    "nome": "Borrifador 500 ml — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "623b6dccc225db86",
+    "nome": "Borrifador 500 ml — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "84abbaaf9fc5f6f8",
+    "nome": "Borrifador 1 L — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "8a6dd1ded05b65cc",
+    "nome": "Borrifador 1 L — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "cedde5ab54e4be8c",
+    "nome": "Frasco dosador 500 ml — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "c4e71d45e689a333",
+    "nome": "Frasco dosador 500 ml — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "b1000d5c35c58296",
+    "nome": "Frasco dosador 1 L — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "aa1a5bc9f2515060",
+    "nome": "Frasco dosador 1 L — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "0ca1a04a84487497",
+    "nome": "Funil plástico — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "ed755ec906c6bd36",
+    "nome": "Funil plástico — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "cf811362163c63eb",
+    "nome": "Jarra graduada 1 L — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "d4b027df9b5fb2aa",
+    "nome": "Jarra graduada 1 L — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "a0b2f15f204063d3",
+    "nome": "Jarra graduada 2 L — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "8e0f65705c5978a9",
+    "nome": "Jarra graduada 2 L — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "01cfe35672132df9",
+    "nome": "Concha inox — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "1e804f62e6cc93c8",
+    "nome": "Concha inox — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "fec195f202c7609f",
+    "nome": "Escumadeira inox — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "57c39db69ea92da0",
+    "nome": "Escumadeira inox — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "6b0a844b3e609a97",
+    "nome": "Colher de servir inox — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "c44f09a5761b2a46",
+    "nome": "Colher de servir inox — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "e3563fc4d83a1f10",
+    "nome": "Pegador de alimentos inox — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "a5b5f845b00f7c6e",
+    "nome": "Pegador de alimentos inox — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "3967a821c3d3bbaa",
+    "nome": "Espátula de silicone — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "6c931fe86bdbc9c8",
+    "nome": "Espátula de silicone — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "84bb3815b0d7751a",
+    "nome": "Peneira inox — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "0bd5f2678dfae81e",
+    "nome": "Peneira inox — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "c236ef356e9b8fb7",
+    "nome": "Ralador inox — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "0939fa581f336eb8",
+    "nome": "Ralador inox — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "58a2e0c625176ed7",
+    "nome": "Abridor de latas — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "81056dd757dfdee5",
+    "nome": "Abridor de latas — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "293d16a59c42f708",
+    "nome": "Descascador de legumes — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "be4fd71e3041b6ce",
+    "nome": "Descascador de legumes — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "89a069cd4e72c1fd",
+    "nome": "Tábua de corte branca — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "6b60ac60bb9219c7",
+    "nome": "Tábua de corte branca — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "95094e98ab2e46e8",
+    "nome": "Tábua de corte verde — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "1db18aee63c77d6d",
+    "nome": "Tábua de corte verde — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "1dbd1e394adca64b",
+    "nome": "Tábua de corte vermelha — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "bd93bbdcddb1f76d",
+    "nome": "Tábua de corte vermelha — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "a286dea441fe54cc",
+    "nome": "Faca de cozinha 6 polegadas — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "13ec49174526a5f6",
+    "nome": "Faca de cozinha 6 polegadas — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "588fecb89de284e8",
+    "nome": "Faca de cozinha 8 polegadas — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "f5f2a9234ce9fe94",
+    "nome": "Faca de cozinha 8 polegadas — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "7b2e691b9beb21a8",
+    "nome": "Avental impermeável — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "73b3b70e2edb3769",
+    "nome": "Avental impermeável — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "b21f9e2f1c4f47d9",
+    "nome": "Termômetro para alimentos — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "7534cf7d88a3dd88",
+    "nome": "Termômetro para alimentos — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "bb59b9b375d96a88",
+    "nome": "Termômetro para geladeira — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "d759677e5542bec9",
+    "nome": "Termômetro para geladeira — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "7f2b06b7cc658427",
+    "nome": "Etiqueta de identificação de prateleira — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "a0093042eab40b08",
+    "nome": "Etiqueta de identificação de prateleira — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  },
+  {
+    "id": "9e552591b3d0e155",
+    "nome": "Caneta permanente — unidade avulsa",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "un"
+  },
+  {
+    "id": "fb8d05d503dee233",
+    "nome": "Caneta permanente — caixa com 6 unidades",
+    "categoria": "Utensílios e materiais de apoio",
+    "unidade": "cx"
+  }
+]

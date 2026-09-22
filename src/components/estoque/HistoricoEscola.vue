@@ -21,14 +21,51 @@
       >Buscar no histórico carregado<input
         v-model="busca"
         type="search"
-        placeholder="Nome, item ou tipo"
+        placeholder="Nome, item, tipo, motivo ou destino"
     /></label>
+    <div class="filtros-historico">
+      <label v-if="tipo === 'movimentacoes'" class="busca"
+        >Item<select v-model="itemFiltro">
+          <option value="">Todos os itens</option>
+          <option v-for="i in itens" :key="i.id" :value="i.id">
+            {{ i.nome }}
+          </option>
+        </select></label
+      >
+      <label class="busca"
+        >{{ tipo === "movimentacoes" ? "Operação" : "Tipo de vistoria"
+        }}<select v-model="tipoFiltro">
+          <option value="">Todas</option>
+          <template v-if="tipo === 'movimentacoes'">
+            <option value="entrada">Entrada</option>
+            <option value="saida">Saída</option>
+            <option value="perda">Perda / descarte</option>
+            <option value="estorno">Estorno</option>
+          </template>
+          <template v-else>
+            <option
+              v-for="t in escolaId === 'deposito-municipal'
+                ? ['deposito_diaria', 'deposito_semanal', 'deposito_mensal']
+                : ['recebimento', 'sanitaria', 'estrutural', 'rotina']"
+              :key="t"
+              :value="t"
+            >
+              {{ rotulo(t) }}
+            </option>
+          </template>
+        </select></label
+      >
+      <label class="busca">De<input v-model="dataInicio" type="date" /></label
+      ><label class="busca"
+        >Até<input v-model="dataFim" type="date" :min="dataInicio"
+      /></label>
+    </div>
     <p v-if="carregando" role="status">Carregando histórico...</p>
     <p v-if="erro || erroPdf" class="mensagem-erro" role="alert">
       {{ erro || erroPdf }}
     </p>
     <p v-if="!carregando && !erro && !registros.length">
-      Nenhum registro para esta escola.
+      Nenhum registro para esta unidade.
     </p>
     <p v-else-if="registros.length && !filtrados.length">
       Nenhum resultado para essa busca.
@@ -54,7 +91,7 @@
               <td>
                 {{
                   tipo === "movimentacoes"
-                    ? r.quantidade
+                    ? numeroEstoque(r.quantidade) + " " + (r.unidade || "")
                     : (r.notaGeral == null
                         ? "Não se aplica"
                         : r.notaGeral + "/10") +
@@ -109,8 +146,10 @@
                   <strong>Observações:</strong> {{ r.observacoes }}
                 </p>
                 <p v-if="r.quantidadeAnterior != null">
-                  <strong>Saldo:</strong> {{ r.quantidadeAnterior }} →
-                  {{ r.quantidadeResultante }}
+                  <strong>Saldo:</strong>
+                  {{ numeroEstoque(r.quantidadeAnterior) }} →
+                  {{ numeroEstoque(r.quantidadeResultante) }}
+                  {{ r.unidade || "" }}
                 </p>
                 <ul v-if="r.checklist?.length">
                   <li v-for="(c, i) in r.checklist" :key="i">
@@ -118,6 +157,11 @@
                     }}<span v-if="c.observacao">: {{ c.observacao }}</span>
                   </li>
                 </ul>
+                <DocumentosUnidade
+                  :escola-id="escolaId"
+                  :vinculo="{ tipo, id: r.id }"
+                  @ocupado="$emit('ocupado', $event)"
+                />
               </td>
             </tr>
           </template>
@@ -135,14 +179,23 @@
   </section>
 </template>
 <script setup>
+import DocumentosUnidade from "../documentos/DocumentosUnidade.vue";
+import { numeroEstoque } from "../../utils/estoque";
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useMovimentacoes } from "../../composables/useMovimentacoes";
 import { useVistorias } from "../../composables/useVistorias";
+defineEmits(["ocupado"]);
 const props = defineProps({
+  itemInicial: { type: String, default: "" },
+  itens: { type: Array, default: () => [] },
   escolaId: { type: String, required: true },
   escolaNome: { type: String, required: true },
   tipo: { type: String, required: true },
 });
+const itemFiltro = ref(props.itemInicial),
+  tipoFiltro = ref(""),
+  dataInicio = ref(""),
+  dataFim = ref("");
 const api =
   props.tipo === "movimentacoes"
     ? useMovimentacoes(props.escolaId)
@@ -159,17 +212,31 @@ const normalizarBusca = (texto) =>
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
 const filtrados = computed(() =>
-  registros.value.filter((r) =>
-    normalizarBusca(
+  registros.value.filter((r) => {
+    const d = r.data?.toDate ? r.data.toDate() : new Date(r.data),
+      inicio = dataInicio.value
+        ? new Date(dataInicio.value + "T00:00:00")
+        : null,
+      fim = dataFim.value ? new Date(dataFim.value + "T23:59:59.999") : null;
+    if (
+      (itemFiltro.value && r.itemId !== itemFiltro.value) ||
+      (tipoFiltro.value && r.tipo !== tipoFiltro.value) ||
+      (inicio && !(d >= inicio)) ||
+      (fim && !(d <= fim))
+    )
+      return false;
+    return normalizarBusca(
       [
         r.itemNome,
+        r.motivo,
+        r.observacoes,
         r.tipo,
         r.responsavelNome,
         r.identificacaoResponsavel?.nome,
         r.identificacaoTestemunha?.nome,
       ].join(" "),
-    ).includes(normalizarBusca(busca.value)),
-  ),
+    ).includes(normalizarBusca(busca.value));
+  }),
 );
 onMounted(() => api.escutar());
 onUnmounted(api.parar);
@@ -181,6 +248,9 @@ function rotulo(valor) {
       conforme: "Conforme",
       nao_aplicavel: "Não se aplica",
       sanitaria: "Sanitária",
+      deposito_diaria: "Vistoria diária",
+      deposito_semanal: "Vistoria semanal",
+      deposito_mensal: "Vistoria mensal",
       saida: "Saída",
     }[valor] || String(valor || "Não informado").replaceAll("_", " ")
   );
@@ -230,6 +300,16 @@ h2 {
   margin-bottom: 15px;
   font-size: 0.8125rem;
 }
+.filtros-historico {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.filtros-historico .busca {
+  flex: 1;
+  min-width: 150px;
+}
+.busca select,
 .busca input {
   padding: 10px;
   border: 1px solid #dfe9e6;

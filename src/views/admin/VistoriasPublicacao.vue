@@ -10,7 +10,11 @@
     <EstadoConsulta :consulta="escolas" /><label class="p-field"
       >Escola<select aria-label="Escola" v-model="escolaId">
         <option value="">Selecione uma escola</option>
-        <option v-for="e in escolas.dados.value" :key="e.id" :value="e.id">
+        <option
+          v-for="e in escolas.dados.value.filter((e) => !ehDeposito(e.id))"
+          :key="e.id"
+          :value="e.id"
+        >
           {{ e.nome }}
         </option>
       </select></label
@@ -61,6 +65,7 @@
   </section>
 </template>
 <script setup>
+import { ehDeposito } from "../../utils/estoque";
 import { transacaoConfirmada } from "../../portal/transacao";
 import { ref, computed } from "vue";
 import {

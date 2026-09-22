@@ -3,7 +3,19 @@
     <p v-if="sucesso" role="status" class="mov-form__sucesso">
       Movimentação registrada com sucesso. O saldo do estoque foi atualizado.
     </p>
-    <div v-if="etapa === 'form'" class="mov-form__tabs">
+    <h3>
+      {{
+        conferencia ? "Conferir quantidade física" : "Registrar movimentação"
+      }}
+    </h3>
+    <p>
+      {{
+        conferencia
+          ? "Conte o produto e informe a quantidade encontrada. O sistema registra apenas a diferença, com motivo e identificação."
+          : "Escolha o item, informe a quantidade e confira o saldo antes de confirmar."
+      }}
+    </p>
+    <div v-if="etapa === 'form' && !conferencia" class="mov-form__tabs">
       <button :class="{ ativo: tipo === 'entrada' }" @click="tipo = 'entrada'">
         Entrada
       </button>
@@ -32,26 +44,32 @@
       </label>
 
       <label class="campo">
-        <span>Quantidade ({{ unidadeSelecionada }})</span>
+        <span
+          >{{
+            conferencia ? "Quantidade contada" : "Quantidade a movimentar"
+          }}
+          ({{ unidadeSelecionada }})</span
+        >
         <input
           v-model.number="quantidade"
           type="number"
-          min="0.01"
-          step="0.01"
+          :min="conferencia ? 0 : 0.000001"
+          step="0.000001"
           required
         />
       </label>
 
-      <label v-if="tipo === 'entrada'" class="campo">
+      <label v-if="tipo === 'entrada' && !conferencia" class="campo">
         <span>Nota fiscal</span>
         <input
           v-model="notaFiscal"
+          maxlength="200"
           type="text"
           placeholder="Nº da nota fiscal"
         />
       </label>
 
-      <label v-if="tipo === 'entrada'" class="campo">
+      <label v-if="tipo === 'entrada' && !conferencia" class="campo">
         <span>Fornecedor</span>
         <select v-model="fornecedorId">
           <option value="">Não informado</option>
@@ -61,10 +79,41 @@
         </select>
       </label>
 
+      <div
+        v-if="itemSelecionado"
+        class="saldo-resumo campo--largo"
+        role="status"
+      >
+        <span
+          >Saldo atual:
+          <strong
+            >{{ numeroEstoque(itemSelecionado.quantidadeAtual) }}
+            {{ unidadeSelecionada }}</strong
+          ></span
+        ><span
+          >Saldo previsto:
+          <strong>{{ saldoPrevisto }} {{ unidadeSelecionada }}</strong></span
+        >
+      </div>
+      <label
+        v-if="tipo === 'saida' && !conferencia && escolasDestino.length"
+        class="campo campo--largo"
+        ><span>Destino da retirada (opcional)</span
+        ><select v-model="destinoId">
+          <option value="">Outro destino / consumo local</option>
+          <option v-for="e in escolasDestino" :key="e.id" :value="e.id">
+            {{ e.nome }}
+          </option></select
+        ><small
+          >Registra o destino no histórico desta retirada. A escola deve
+          registrar a entrada após conferir o recebimento.</small
+        ></label
+      >
       <label class="campo campo--largo">
         <span>Motivo</span>
         <input
           v-model="motivo"
+          maxlength="800"
           type="text"
           :placeholder="
             tipo === 'saida'
@@ -77,7 +126,7 @@
 
       <label class="campo campo--largo">
         <span>Observações (opcional)</span>
-        <textarea v-model="observacoes" rows="2" />
+        <textarea v-model="observacoes" maxlength="2500" rows="2" />
       </label>
 
       <div class="mov-form__acoes">
@@ -94,7 +143,10 @@
       <h4>Identifique o responsável</h4>
       <p class="resumo">
         {{ rotuloTipo }} de
-        <strong>{{ quantidade }}{{ unidadeSelecionada }}</strong> —
+        <strong
+          >{{ dadosConfirmados?.quantidade }} {{ unidadeSelecionada }}</strong
+        >
+        —
         {{ itemSelecionado?.nome }}
       </p>
       <AssinaturaDigital
@@ -147,8 +199,14 @@
 </template>
 
 <script setup>
+import {
+  numeroEstoque,
+  saldoApos,
+  ajusteConferencia,
+  quantidadeValida,
+} from "../../utils/estoque";
 import { ref, computed } from "vue";
-import { useSaidaSegura } from '../../composables/useSaidaSegura';
+import { useSaidaSegura } from "../../composables/useSaidaSegura";
 import { collection, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 import AssinaturaDigital from "../assinatura/AssinaturaDigital.vue";
@@ -161,10 +219,19 @@ const props = defineProps({
   escolaId: { type: String, required: true },
   itens: { type: Array, default: () => [] },
   fornecedores: { type: Array, default: () => [] },
+  itemInicial: { type: String, default: "" },
+  tipoInicial: { type: String, default: "entrada" },
+  escolasDestino: { type: Array, default: () => [] },
 });
 const emit = defineEmits(["concluido", "ocupado"]);
-const tipo = ref("entrada");
-const itemId = ref("");
+const conferencia = props.tipoInicial === "conferencia";
+const tipo = ref(
+  ["entrada", "saida", "perda"].includes(props.tipoInicial)
+    ? props.tipoInicial
+    : "entrada",
+);
+const itemId = ref(props.itemInicial),
+  destinoId = ref("");
 const quantidade = ref(null);
 const notaFiscal = ref("");
 const fornecedorId = ref("");
@@ -176,7 +243,14 @@ const processando = ref(false);
 const identificacao = ref(null),
   rascunho = ref(null),
   sucesso = ref(false);
-useSaidaSegura(() => !sucesso.value && (!!itemId.value || !!quantidade.value || !!motivo.value || etapa.value !== 'form'));
+useSaidaSegura(
+  () =>
+    !sucesso.value &&
+    (!!itemId.value ||
+      !!quantidade.value ||
+      !!motivo.value ||
+      etapa.value !== "form"),
+);
 const { usuario } = useAuth();
 const tentouSalvar = ref(false);
 let assinaturaPreparada;
@@ -188,11 +262,27 @@ const itemSelecionado = computed(() =>
   props.itens.find((i) => i.id === itemId.value),
 );
 const unidadeSelecionada = computed(() => itemSelecionado.value?.unidade ?? "");
-const rotuloTipo = computed(
-  () =>
-    ({ entrada: "Entrada", saida: "Saída", perda: "Perda/descarte" })[
-      tipo.value
-    ],
+const saldoPrevisto = computed(() => {
+  try {
+    return numeroEstoque(
+      conferencia
+        ? quantidadeValida(quantidade.value)
+        : saldoApos(
+            itemSelecionado.value?.quantidadeAtual,
+            tipo.value,
+            quantidade.value,
+          ),
+    );
+  } catch {
+    return "—";
+  }
+});
+const rotuloTipo = computed(() =>
+  conferencia
+    ? "Ajuste de saldo"
+    : { entrada: "Entrada", saida: "Saída", perda: "Perda/descarte" }[
+        tipo.value
+      ],
 );
 
 function avancar() {
@@ -205,16 +295,39 @@ function avancar() {
   if (
     !itemSelecionado.value ||
     !Number.isFinite(Number(quantidade.value)) ||
-    Number(quantidade.value) <= 0
+    (conferencia
+      ? quantidade.value === null || Number(quantidade.value) < 0
+      : Number(quantidade.value) <= 0)
   ) {
     erro.value = "Selecione um item e informe uma quantidade maior que zero.";
     return;
   }
   if (
+    !conferencia &&
     tipo.value !== "entrada" &&
     quantidade.value > itemSelecionado.value.quantidadeAtual
   ) {
     erro.value = `Quantidade maior que o disponível (${itemSelecionado.value.quantidadeAtual} ${unidadeSelecionada.value}).`;
+    return;
+  }
+  let ajustes;
+  try {
+    ajustes = conferencia
+      ? ajusteConferencia(
+          itemSelecionado.value.quantidadeAtual,
+          quantidade.value,
+        )
+      : {
+          tipo: tipo.value,
+          quantidade: quantidadeValida(quantidade.value, "Quantidade", false),
+        };
+    saldoApos(
+      itemSelecionado.value.quantidadeAtual,
+      ajustes.tipo,
+      ajustes.quantidade,
+    );
+  } catch (e) {
+    erro.value = e.message;
     return;
   }
   movimentacaoId = doc(
@@ -222,12 +335,27 @@ function avancar() {
   ).id;
   dadosConfirmados = {
     itemId: itemId.value,
-    tipo: tipo.value,
-    quantidade: Number(quantidade.value),
-    motivo: motivo.value.trim(),
-    notaFiscal: notaFiscal.value || null,
-    fornecedorId: fornecedorId.value || null,
-    observacoes: observacoes.value,
+    ...ajustes,
+    motivo:
+      (conferencia
+        ? `Conferência física: saldo anterior ${itemSelecionado.value.quantidadeAtual}; contado ${quantidade.value}. `
+        : "") + motivo.value.trim(),
+    notaFiscal:
+      !conferencia && tipo.value === "entrada"
+        ? notaFiscal.value || null
+        : null,
+    fornecedorId:
+      !conferencia && tipo.value === "entrada"
+        ? fornecedorId.value || null
+        : null,
+    observacoes: [
+      observacoes.value,
+      destinoId.value && tipo.value === "saida" && !conferencia
+        ? `Destino: ${props.escolasDestino.find((e) => e.id === destinoId.value)?.nome || destinoId.value} (ID: ${destinoId.value}). Confirmar recebimento separadamente.`
+        : "",
+    ]
+      .filter(Boolean)
+      .join("\n"),
   };
   assinaturaPreparada = null;
   identificacao.value = null;
@@ -297,6 +425,12 @@ async function finalizar() {
     rascunho.value = null;
     emit("concluido", movimentacao);
   } catch (e) {
+    if (e.message?.startsWith("O saldo mudou durante")) {
+      tentouSalvar.value = false;
+      etapa.value = "form";
+      identificacao.value = null;
+      assinaturaPreparada = null;
+    }
     erro.value =
       e.code === "permission-denied"
         ? "O Firestore negou o registro. Confira as regras publicadas e o perfil da conta. (permission-denied)"
@@ -310,6 +444,15 @@ async function finalizar() {
 </script>
 
 <style scoped>
+.saldo-resumo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+  background: #edf5f1;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
 .mov-form {
   display: flex;
   flex-direction: column;

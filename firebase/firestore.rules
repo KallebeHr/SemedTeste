@@ -11,8 +11,9 @@ service cloud.firestore {
     function gestao() { return funcionario() && perfil().papel in ['master','admin','nutricionista','gerente']; }
     function admin() { return funcionario() && perfil().papel in ['master','admin']; }
     function editorial() { return funcionario() && perfil().papel in ['master','admin','alimentador']; }
-    function acesso(escolaId) { return funcionario() && (gestao() || editorial() || escolaId in perfil().escolasVinculadas); }
-    function alimentos(escolaId) { return funcionario() && (perfil().papel in ['master','admin','nutricionista','gerente'] || (perfil().papel == 'diretor' && escolaId in perfil().escolasVinculadas)); }
+    function acesso(escolaId) { return funcionario() && (gestao() || editorial() || (escolaId != 'deposito-municipal' && escolaId in perfil().escolasVinculadas)); }
+    function alimentos(escolaId) { return funcionario() && (perfil().papel in ['master','admin','nutricionista','gerente'] || (escolaId != 'deposito-municipal' && perfil().papel == 'diretor' && escolaId in perfil().escolasVinculadas)); }
+    function gestaoEstoque(escolaId) { return gestao() && (escolaId != 'deposito-municipal' || (get(/databases/$(database)/documents/escolas/$(escolaId)).data.tipoUnidade == 'deposito' && get(/databases/$(database)/documents/escolas/$(escolaId)).data.ativo == true)); }
     function vistoriador(escolaId) { return alimentos(escolaId); }
 
     // Registros imutáveis com estados anterior/posterior verificados no servidor.
@@ -87,14 +88,14 @@ service cloud.firestore {
       return d.keys().hasOnly(['nome','ativo','categoria','unidade','quantidadeAtual','quantidadeMinima','precoUnitario','validade','localArmazenamento','atualizadoEm','atualizadoPor','ultimaMovimentacaoId','_auditoria','_registradoEm']) &&
         textoValido(d.get('categoria',''),100) && d.get('unidade','kg') in ['kg','l','un','cx','pct'] &&
         (d.get('validade',null) == null || d.validade is timestamp) && textoValido(d.get('localArmazenamento',''),300) &&
-        d.nome is string && d.nome.size()>0 && d.nome.size()<=160 && d.ativo is bool &&
+        d.nome is string && d.nome.size()>0 && d.nome.size()<=160 && d.ativo is bool && (d.ativo == true || d.quantidadeAtual == 0) &&
         d.quantidadeAtual is number && d.quantidadeAtual>=0 && d.quantidadeAtual<=1000000000 &&
         d.quantidadeMinima is number && d.quantidadeMinima>=0 && d.quantidadeMinima<=1000000000 &&
         d.precoUnitario is number && d.precoUnitario>=0 && d.precoUnitario<=1000000000;
     }
     function camposMovimento(d,escolaId) {
       let i = identificacao(escolaId,d.assinaturaId);
-      return d.keys().hasOnly(['tipo','itemId','itemNome','quantidade','quantidadeAnterior','quantidadeResultante','motivo','notaFiscal','fornecedorId','responsavelId','responsavelNome','registradoPorNome','metodoConfirmacao','identificacaoResponsavel','assinaturaId','observacoes','data','_auditoria','_registradoEm']) &&
+      return d.keys().hasOnly(['tipo','itemId','itemNome','unidade','quantidade','quantidadeAnterior','quantidadeResultante','motivo','notaFiscal','fornecedorId','responsavelId','responsavelNome','registradoPorNome','metodoConfirmacao','identificacaoResponsavel','assinaturaId','observacoes','data','_auditoria','_registradoEm']) &&
         d.data is timestamp && textoValido(d.motivo,1000) && d.motivo.trim().size()>0 &&
         textoValido(d.get('observacoes',''),3000) && textoValido(d.get('itemNome',''),160) &&
         (d.get('notaFiscal',null) == null || textoValido(d.notaFiscal,200)) &&
@@ -106,7 +107,7 @@ service cloud.firestore {
       let antes = get(/databases/$(database)/documents/escolas/$(escolaId)/estoque/$(d.itemId)).data;
       let depois = getAfter(/databases/$(database)/documents/escolas/$(escolaId)/estoque/$(d.itemId)).data;
       let esperado = antes.quantidadeAtual + (d.tipo in ['entrada','estorno'] ? d.quantidade : -d.quantidade);
-      return antes.ativo == true && d.quantidade<=1000000000 && d.quantidadeAnterior == antes.quantidadeAtual &&
+      return (!('unidade' in d) || d.unidade == antes.get('unidade','kg')) && antes.ativo == true && d.quantidade<=1000000000 && d.quantidadeAnterior == antes.quantidadeAtual &&
         d.quantidadeResultante >= 0 && d.quantidadeResultante >= esperado - 0.000001 && d.quantidadeResultante <= esperado + 0.000001 &&
         depois.quantidadeAtual == d.quantidadeResultante && depois.ultimaMovimentacaoId == movId;
     }
@@ -191,7 +192,7 @@ service cloud.firestore {
       let c = d.checklist;
       return d.keys().hasOnly(['tipo','checklist','fotos','planoDeAcao','status','notaGeral','assinaturaResponsavelId','assinaturaTestemunhaId','metodoConfirmacao','identificacaoResponsavel','identificacaoTestemunha','responsavelId','responsavelNome','registradoPorNome','data','criadoEm','_auditoria','_registradoEm']) &&
         d.get('fotos',[]) is list && d.get('fotos',[]).size() == 0 && c is list && c.size()>0 && c.size()<=8 &&
-        d.tipo in ['recebimento','sanitaria','estrutural','rotina'] && d.data is timestamp &&
+        d.tipo in ['recebimento','sanitaria','estrutural','rotina','deposito_diaria','deposito_semanal','deposito_mensal'] && d.data is timestamp &&
         resultadoVistoriaValido(d,[estadoChecklist(c,0), estadoChecklist(c,1), estadoChecklist(c,2), estadoChecklist(c,3), estadoChecklist(c,4), estadoChecklist(c,5), estadoChecklist(c,6), estadoChecklist(c,7)]);
     }
 
@@ -214,14 +215,15 @@ service cloud.firestore {
     }
     match /escolas/{escolaId} {
       allow read: if acesso(escolaId);
-      allow create, update: if ((gestao() || editorial()) && request.resource.data.nome is string &&
+      allow create, update: if ((gestao() || editorial()) && (escolaId != 'deposito-municipal' || (gestao() && request.resource.data.tipoUnidade == 'deposito')) && request.resource.data.nome is string &&
         request.resource.data.nome.size() > 0 && request.resource.data.nome.size() <= 160 && request.resource.data.ativo is bool) && auditarEscrita();
       allow delete: if false;
       match /estoque/{itemId} {
         allow get: if alimentos(escolaId);
         allow list: if alimentos(escolaId);
-        allow create: if (gestao() && itemEstoqueValido(request.resource.data)) && auditarEscrita();
-        allow update: if (gestao() && itemEstoqueValido(request.resource.data) &&
+        allow create: if (gestaoEstoque(escolaId) && itemEstoqueValido(request.resource.data)) && auditarEscrita();
+        allow update: if (gestaoEstoque(escolaId) && itemEstoqueValido(request.resource.data) &&
+          (request.resource.data.get('unidade','kg') == resource.data.get('unidade','kg') || (resource.data.quantidadeAtual == 0 && resource.data.get('ultimaMovimentacaoId',null) == null)) &&
           ((request.resource.data.quantidadeAtual == resource.data.quantidadeAtual &&
             request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nome','categoria','unidade','quantidadeMinima','precoUnitario','validade','localArmazenamento','atualizadoEm','atualizadoPor','ativo','_auditoria','_registradoEm'])) ||
            (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['quantidadeAtual','ultimaMovimentacaoId','atualizadoEm','atualizadoPor','_auditoria','_registradoEm']) &&
@@ -234,7 +236,7 @@ service cloud.firestore {
       match /movimentacoes/{movId} {
         allow get: if alimentos(escolaId);
         allow list: if alimentos(escolaId);
-        allow create: if (gestao() && request.resource.data.responsavelId == request.auth.uid &&
+        allow create: if (gestaoEstoque(escolaId) && request.resource.data.responsavelId == request.auth.uid &&
           request.resource.data.tipo in ['entrada', 'saida', 'perda', 'estorno'] &&
           request.resource.data.quantidade is number && request.resource.data.quantidade > 0 &&
           request.resource.data.assinaturaId is string && request.resource.data.metodoConfirmacao == 'identificacao_cpf' &&
@@ -242,10 +244,16 @@ service cloud.firestore {
           saldoMovimentoValido(escolaId,movId,request.resource.data) && camposMovimento(request.resource.data,escolaId)) && auditarEscrita();
         allow update, delete: if false;
       }
+      // Gravações destas coleções são feitas exclusivamente pela API autenticada.
+      match /documentos/{id} { allow read: if alimentos(escolaId); allow write: if false; }
+      match /visitasAF/{id} { allow read: if alimentos(escolaId); allow write: if false; }
+      match /visitasAFIdentificacoes/{id} { allow read: if alimentos(escolaId) && (gestao() || resource.data.criadoPor == request.auth.uid); allow write: if false; }
       match /vistorias/{vistoriaId} {
         allow get: if alimentos(escolaId);
         allow list: if alimentos(escolaId);
-        allow create: if (vistoriador(escolaId) && request.resource.data.responsavelId == request.auth.uid &&
+        allow create: if (vistoriador(escolaId) &&
+          (!(request.resource.data.tipo in ['deposito_diaria','deposito_semanal','deposito_mensal']) ||
+            (escolaId == 'deposito-municipal' && get(/databases/$(database)/documents/escolas/$(escolaId)).data.ativo == true && get(/databases/$(database)/documents/escolas/$(escolaId)).data.tipoUnidade == 'deposito')) && request.resource.data.responsavelId == request.auth.uid &&
           !exists(/databases/$(database)/documents/escolas/$(escolaId)/assinaturas/$(request.resource.data.assinaturaResponsavelId)) &&
           !exists(/databases/$(database)/documents/escolas/$(escolaId)/assinaturas/$(request.resource.data.assinaturaTestemunhaId)) &&
           request.resource.data.assinaturaResponsavelId is string && request.resource.data.assinaturaTestemunhaId is string &&
@@ -399,7 +407,7 @@ service cloud.firestore {
     }
     match /escolasPublicas/{escolaId} {
       allow read: if true;
-      allow create, update: if (editorial() && request.resource.data.keys().hasOnly(['nome','endereco','contato','etapas','horario','sobre','publicadoEm','_auditoria','_registradoEm']) &&
+      allow create, update: if (escolaId != 'deposito-municipal' && editorial() && request.resource.data.keys().hasOnly(['nome','endereco','contato','etapas','horario','sobre','publicadoEm','_auditoria','_registradoEm']) &&
         request.resource.data.nome == getAfter(/databases/$(database)/documents/escolas/$(escolaId)).data.nome &&
         getAfter(/databases/$(database)/documents/escolas/$(escolaId)).data.ativo == true &&
         textoValido(request.resource.data.endereco,300) && textoValido(request.resource.data.contato,200) &&

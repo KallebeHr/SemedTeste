@@ -16,15 +16,23 @@
     "test:seguranca": "firebase emulators:exec --only firestore --project demo-seduc \"node --test tests/seguranca/auditoria.test.cjs\"",
     "test:recuperacao": "firebase emulators:exec --only firestore,auth --project demo-seduc \"node --test --test-concurrency=1 tests/seguranca/recuperacao.test.cjs tests/seguranca/migracao.test.cjs\"",
     "test:clientes": "node --test tests/seguranca/clientes.test.cjs",
-    "migrar:notas": "node scripts/migrar-notas.cjs"
+    "migrar:notas": "node scripts/migrar-notas.cjs",
+    "predev": "node scripts/preparar-ocr.cjs",
+    "api:alimentacao": "node --env-file-if-exists=.env.server scripts/alimentacao-local.cjs",
+    "test:alimentacao": "firebase emulators:exec --only firestore --project demo-seduc \"node --test --test-concurrency=1 tests/alimentacao/*.test.cjs\"",
+    "backup:b2": "node --env-file-if-exists=.env.server scripts/backup-b2.cjs"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "3.1136.0",
     "@mdi/font": "7.0.96",
+    "@tesseract.js-data/por": "1.0.0",
     "@vueuse/core": "14.4.0",
     "firebase": "^12.18.0",
     "firebase-admin": "14.3.0",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.8",
+    "sharp": "0.35.4",
+    "tesseract.js": "7.0.0",
     "vue": "^3.4.0",
     "vue-router": "^4.6.4",
     "vuetify": "^3.5.0",
@@ -54,7 +62,11 @@
     "node": ">=22.12.0"
   },
   "overrides": {
-    "gaxios@6.7.1": {"uuid":"11.1.1"},
-    "teeny-request@9.0.0": {"uuid":"11.1.1"}
+    "gaxios@6.7.1": {
+      "uuid": "11.1.1"
+    },
+    "teeny-request@9.0.0": {
+      "uuid": "11.1.1"
+    }
   }
 }

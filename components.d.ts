@@ -19,12 +19,15 @@ declare module 'vue' {
     AuditoriaTimeline: typeof import('./src/components/auditoria/AuditoriaTimeline.vue')['default']
     BackupManager: typeof import('./src/components/backup/BackupManager.vue')['default']
     BoletimAluno: typeof import('./src/components/portal/BoletimAluno.vue')['default']
+    CapturaDocumento: typeof import('./src/components/documentos/CapturaDocumento.vue')['default']
     CardapioEditor: typeof import('./src/components/cardapio/CardapioEditor.vue')['default']
     CardapioFolha: typeof import('./src/components/cardapio/CardapioFolha.vue')['default']
     CartaoPublicacao: typeof import('./src/components/portal/CartaoPublicacao.vue')['default']
+    CatalogoEstoque: typeof import('./src/components/estoque/CatalogoEstoque.vue')['default']
     ContaForm: typeof import('./src/components/portal/ContaForm.vue')['default']
     Contatos: typeof import('./src/components/contatos.vue')['default']
     DashboardGeral: typeof import('./src/components/dashboard/DashboardGeral.vue')['default']
+    DocumentosUnidade: typeof import('./src/components/documentos/DocumentosUnidade.vue')['default']
     EscolaSelector: typeof import('./src/components/escolas/EscolaSelector.vue')['default']
     EstadoConsulta: typeof import('./src/components/portal/EstadoConsulta.vue')['default']
     EstoqueForm: typeof import('./src/components/estoque/EstoqueForm.vue')['default']
@@ -54,6 +57,7 @@ declare module 'vue' {
     SessaoSegura: typeof import('./src/components/portal/SessaoSegura.vue')['default']
     SobreNos: typeof import('./src/components/SobreNos.vue')['default']
     SubNavHeader: typeof import('./src/components/SubNavHeader.vue')['default']
+    VisitasAgricultura: typeof import('./src/components/visitas/VisitasAgricultura.vue')['default']
     VistoriaForm: typeof import('./src/components/vistoria/VistoriaForm.vue')['default']
   }
 }

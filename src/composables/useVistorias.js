@@ -24,6 +24,33 @@ import {
 import { executarComPrazo } from "../utils/operacaoComPrazo";
 
 export const TEMPLATES_CHECKLIST = {
+  deposito_diaria: [
+    "Área de recebimento, corredores e prateleiras limpos e desobstruídos",
+    "Alimentos separados de produtos de limpeza e materiais incompatíveis",
+    "Temperaturas dos equipamentos verificadas e registradas quando aplicável",
+    "Embalagens íntegras e ausência de sinais de pragas ou contaminação",
+    "Produtos próximos do vencimento identificados para priorizar a saída",
+    "Entradas e retiradas do dia registradas com responsável e destino",
+  ],
+  deposito_semanal: [
+    "Contagem dos itens selecionados confere com o saldo do sistema",
+    "Divergências de estoque identificadas e encaminhadas para conferência",
+    "Lotes e validades organizados para saída dos que vencem primeiro",
+    "Condições de armazenamento, limpeza e controle de pragas verificadas",
+    "Estoques mínimos e necessidades de reposição revisados",
+    "Comprovantes de recebimento e distribuição para as escolas conferidos",
+    "Pendências da vistoria anterior verificadas",
+  ],
+  deposito_mensal: [
+    "Inventário mensal conferido com os saldos registrados",
+    "Perdas, avarias e vencimentos do período revisados e justificados",
+    "Recebimentos e distribuições do mês conciliados com os documentos",
+    "Estoque mínimo e planejamento de reposição revisados",
+    "Condições de estrutura, equipamentos e manutenção avaliadas",
+    "Separação de alimentos, limpeza e demais materiais verificada",
+    "Pendências das vistorias anteriores e ações corretivas revisadas",
+    "Relatórios do período conferidos pela equipe responsável",
+  ],
   recebimento: [
     "Embalagens íntegras, sem violação",
     "Temperatura adequada (produtos refrigerados/congelados)",
@@ -53,13 +80,6 @@ export const TEMPLATES_CHECKLIST = {
     "Registro de temperatura da refeição servida",
     "Condições gerais de higiene do refeitório",
   ],
- AgroFamiliar: [
-  "Produtos entregues são provenientes da agricultura familiar",
-  "Fornecedor corresponde ao agricultor, associação ou cooperativa cadastrada",
-  "Produtos entregues estão de acordo com os itens previstos no contrato/chamada pública",
-  "Quantidade entregue está de acordo com o solicitado",
-  "Qualidade dos produtos está dentro do padrão esperado",
-],
 };
 
 export function useVistorias(escolaId) {
@@ -139,6 +159,13 @@ export function useVistorias(escolaId) {
     const usuario = exigirUsuario(escolaId);
     if (!ehGestao.value && !ehDiretor.value)
       throw new Error("Sua conta não pode registrar vistorias.");
+    if (
+      tipo?.startsWith("deposito_") &&
+      (escolaId !== "deposito-municipal" || !ehGestao.value)
+    )
+      throw new Error(
+        "Esta periodicidade é exclusiva da gestão do depósito municipal.",
+      );
     if (
       !TEMPLATES_CHECKLIST[tipo] ||
       !Array.isArray(checklist) ||

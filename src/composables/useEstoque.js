@@ -1,3 +1,4 @@
+import { quantidadeValida, saldoApos } from "../utils/estoque";
 import {
   writeBatchAuditado as writeBatch,
   runTransactionAuditada as runTransaction,
@@ -7,8 +8,6 @@ import {
   collection,
   doc,
   onSnapshot,
-  query,
-  where,
   serverTimestamp,
   Timestamp,
 } from "firebase/firestore";
@@ -42,24 +41,19 @@ function mensagemErroConsulta(falha) {
   return codigo ? `${mensagem} (${codigo})` : mensagem;
 }
 
-function numeroNaoNegativo(valor, campo) {
-  if (
-    valor === "" ||
-    valor === null ||
-    !Number.isFinite(Number(valor)) ||
-    Number(valor) < 0
-  ) {
-    throw new Error(`${campo} deve ser um número igual ou maior que zero.`);
-  }
-  return Number(valor);
-}
+const numeroNaoNegativo = (v, c) => quantidadeValida(v, c);
 
 function dadosDoItem(dados, novo) {
   if (!dados.nome?.trim()) throw new Error("Informe o nome do item.");
-  if (dados.nome.trim().length > 160 || String(dados.categoria || '').length > 100 ||
-    !['kg', 'l', 'un', 'cx', 'pct'].includes(dados.unidade || 'kg') ||
-    String(dados.localArmazenamento || '').length > 300)
-    throw new Error('Confira nome, categoria, unidade e local de armazenamento.');
+  if (
+    dados.nome.trim().length > 160 ||
+    String(dados.categoria || "").length > 100 ||
+    !["kg", "l", "un", "cx", "pct"].includes(dados.unidade || "kg") ||
+    String(dados.localArmazenamento || "").length > 300
+  )
+    throw new Error(
+      "Confira nome, categoria, unidade e local de armazenamento.",
+    );
   const payload = {
     nome: dados.nome.trim(),
     categoria: dados.categoria,
@@ -81,7 +75,13 @@ function dadosDoItem(dados, novo) {
 }
 
 export function useEstoque(escolaId, diasValidade = 15) {
-  const itens = ref([]);
+  const todosItens = ref([]);
+  const itens = computed(() =>
+    todosItens.value.filter((i) => i.ativo !== false),
+  );
+  const itensArquivados = computed(() =>
+    todosItens.value.filter((i) => i.ativo === false),
+  );
   const carregando = ref(false);
   const erro = ref("");
   const { exigirUsuario } = useAuth();
@@ -96,7 +96,12 @@ export function useEstoque(escolaId, diasValidade = 15) {
       const ms = i.validade.toMillis
         ? i.validade.toMillis()
         : new Date(i.validade).getTime();
-      return ms <= Date.now() + Math.min(90,Math.max(1,Number(toValue(diasValidade))||15)) * 86400000;
+      return (
+        ms <=
+        Date.now() +
+          Math.min(90, Math.max(1, Number(toValue(diasValidade)) || 15)) *
+            86400000
+      );
     }),
   );
   const valorTotalEstoque = computed(() =>
@@ -110,7 +115,7 @@ export function useEstoque(escolaId, diasValidade = 15) {
     geracao += 1;
     unsubscribe?.();
     unsubscribe = null;
-    itens.value = [];
+    todosItens.value = [];
     carregando.value = false;
   }
   function escutarEstoque() {
@@ -121,16 +126,13 @@ export function useEstoque(escolaId, diasValidade = 15) {
     carregando.value = true;
     const atual = geracao;
     // A ordenação por nome é feita localmente para dispensar o índice composto.
-    const q = query(
-      collection(db, "escolas", id, "estoque"),
-      where("ativo", "==", true),
-    );
+    const q = collection(db, "escolas", id, "estoque");
     unsubscribe = onSnapshot(
       q,
       (snap) => {
         if (atual !== geracao) return;
-        itens.value = snap.docs
-          .map((d) => ({ ...d.data(), id: d.id }))
+        todosItens.value = snap.docs
+          .map((d) => ({ unidade: "kg", ...d.data(), id: d.id }))
           .sort((a, b) =>
             String(a.nome || "").localeCompare(String(b.nome || ""), "pt-BR"),
           );
@@ -139,7 +141,7 @@ export function useEstoque(escolaId, diasValidade = 15) {
       (falha) => {
         if (atual !== geracao) return;
         console.error("Consulta de estoque falhou:", falha);
-        itens.value = [];
+        todosItens.value = [];
         erro.value = mensagemErroConsulta(falha);
         carregando.value = false;
       },
@@ -177,18 +179,38 @@ export function useEstoque(escolaId, diasValidade = 15) {
     await runTransaction(db, async (tx) => {
       const snap = await tx.get(itemRef);
       if (!snap.exists()) throw new Error("Item não encontrado.");
+      const antigo = snap.data();
+      if (
+        payload.unidade !== (antigo.unidade || "kg") &&
+        (antigo.quantidadeAtual > 0 || antigo.ultimaMovimentacaoId)
+      )
+        throw new Error(
+          "A unidade não pode mudar após existir saldo ou movimentação. Cadastre outro item.",
+        );
       tx.update(itemRef, payload);
     });
   }
 
-  async function inativarItem(itemId, _dadosAntes) {
-    const id = toValue(escolaId);
-    exigirUsuario(id, true);
-    const batch = writeBatch(db);
-    batch.update(doc(db, "escolas", id, "estoque", itemId), { ativo: false });
-
-    await batch.commit();
+  async function definirAtivo(itemId, ativo) {
+    const id = toValue(escolaId),
+      usuario = exigirUsuario(id, true),
+      referencia = doc(db, "escolas", id, "estoque", itemId);
+    await runTransaction(db, async (tx) => {
+      const snap = await tx.get(referencia);
+      if (!snap.exists()) throw new Error("Item não encontrado.");
+      if (!ativo && snap.data().quantidadeAtual !== 0)
+        throw new Error(
+          "Registre a retirada ou perda do saldo antes de arquivar.",
+        );
+      tx.update(referencia, {
+        ativo,
+        atualizadoPor: usuario.uid,
+        atualizadoEm: serverTimestamp(),
+      });
+    });
   }
+  const inativarItem = (itemId) => definirAtivo(itemId, false),
+    reativarItem = (itemId) => definirAtivo(itemId, true);
 
   async function registrarMovimentacao({
     movimentacaoId,
@@ -200,6 +222,7 @@ export function useEstoque(escolaId, diasValidade = 15) {
     fornecedorId = null,
     observacoes = "",
     assinatura,
+    quantidadeAnteriorConfirmada = null,
   }) {
     const id = toValue(escolaId);
     const usuario = exigirUsuario(id, true);
@@ -215,9 +238,13 @@ export function useEstoque(escolaId, diasValidade = 15) {
         "Informe uma quantidade maior que zero, com até seis casas decimais.",
       );
     if (!motivo?.trim()) throw new Error("Informe o motivo da movimentação.");
-    if (motivo.length > 1000 || String(observacoes || '').length > 3000 ||
-      String(notaFiscal || '').length > 200 || String(fornecedorId || '').length > 128)
-      throw new Error('Os textos da movimentação excedem o limite permitido.');
+    if (
+      motivo.length > 1000 ||
+      String(observacoes || "").length > 3000 ||
+      String(notaFiscal || "").length > 200 ||
+      String(fornecedorId || "").length > 128
+    )
+      throw new Error("Os textos da movimentação excedem o limite permitido.");
     if (!movimentacaoId)
       throw new Error("Confirme a identificação da movimentação.");
     validarIdentificacaoPreparada(assinatura, {
@@ -248,20 +275,19 @@ export function useEstoque(escolaId, diasValidade = 15) {
             item.quantidadeAtual ?? 0,
             "Saldo",
           );
-          const saldo =
-            Math.round(
-              (anterior +
-                (["entrada", "estorno"].includes(tipo) ? qtd : -qtd)) *
-                1000000,
-            ) / 1000000;
-          if (saldo < 0)
+          if (
+            quantidadeAnteriorConfirmada !== null &&
+            anterior !== quantidadeAnteriorConfirmada
+          )
             throw new Error(
-              `Quantidade insuficiente. Disponível: ${anterior} ${item.unidade}.`,
+              "O saldo mudou durante a conferência. Volte ao estoque e faça uma nova contagem antes de ajustar.",
             );
+          const saldo = saldoApos(anterior, tipo, qtd);
           const movimentacao = {
             tipo,
             itemId,
             itemNome: item.nome,
+            unidade: item.unidade || "kg",
             quantidade: qtd,
             quantidadeAnterior: anterior,
             quantidadeResultante: saldo,
@@ -314,6 +340,8 @@ export function useEstoque(escolaId, diasValidade = 15) {
   }
   return {
     itens,
+    todosItens,
+    itensArquivados,
     carregando,
     erro,
     itensAbaixoDoMinimo,
@@ -323,6 +351,7 @@ export function useEstoque(escolaId, diasValidade = 15) {
     cadastrarItem,
     editarItem,
     inativarItem,
+    reativarItem,
     registrarMovimentacao,
     parar,
   };

@@ -1,3 +1,4 @@
+require("./preparar-ocr.cjs");
 const { spawnSync } = require("node:child_process");
 const fs = require("node:fs"),
   path = require("node:path");

@@ -86,7 +86,10 @@
           </p>
           <EstadoConsulta :consulta="escolas" />
           <div class="p-grid two">
-            <label v-for="e in escolas.dados.value" :key="e.id" class="p-check"
+            <label
+              v-for="e in escolas.dados.value.filter((e) => !ehDeposito(e.id))"
+              :key="e.id"
+              class="p-check"
               ><input
                 v-model="form.escolasVinculadas"
                 type="checkbox"
@@ -108,11 +111,66 @@
         </div>
       </fieldset>
     </form>
-    <section v-if="existente && editando" class="p-card p-stack" aria-labelledby="conta-auth"><h2 id="conta-auth">Segurança da conta</h2><p>Confirme sua senha de Master para operações no Authentication. Desativar também suspende o perfil. Reativar o login mantém o perfil suspenso até você liberá-lo em “Salvar acesso”.</p>
-      <form class="p-actions" @submit.prevent="confirmarMaster"><label class="p-field">Sua senha de Master<input v-model="senhaMaster" type="password" autocomplete="current-password" required /></label><button class="p-button" :disabled="ocupado">Confirmar minha identidade</button></form>
-      <div class="p-actions"><button class="p-button" :disabled="ocupado" @click="acaoConta('revogar_sessoes')">Encerrar sessões do usuário</button><button class="p-button" :disabled="ocupado" @click="acaoConta('desativar_auth')">Desativar login</button><button class="p-button" :disabled="ocupado" @click="acaoConta('reativar_auth')">Reativar login</button><button class="p-button" :disabled="ocupado" @click="redefinir">Enviar recuperação de senha</button></div>
+    <section
+      v-if="existente && editando"
+      class="p-card p-stack"
+      aria-labelledby="conta-auth"
+    >
+      <h2 id="conta-auth">Segurança da conta</h2>
+      <p>
+        Confirme sua senha de Master para operações no Authentication. Desativar
+        também suspende o perfil. Reativar o login mantém o perfil suspenso até
+        você liberá-lo em “Salvar acesso”.
+      </p>
+      <form class="p-actions" @submit.prevent="confirmarMaster">
+        <label class="p-field"
+          >Sua senha de Master<input
+            v-model="senhaMaster"
+            type="password"
+            autocomplete="current-password"
+            required /></label
+        ><button class="p-button" :disabled="ocupado">
+          Confirmar minha identidade
+        </button>
+      </form>
+      <div class="p-actions">
+        <button
+          class="p-button"
+          :disabled="ocupado"
+          @click="acaoConta('revogar_sessoes')"
+        >
+          Encerrar sessões do usuário</button
+        ><button
+          class="p-button"
+          :disabled="ocupado"
+          @click="acaoConta('desativar_auth')"
+        >
+          Desativar login</button
+        ><button
+          class="p-button"
+          :disabled="ocupado"
+          @click="acaoConta('reativar_auth')"
+        >
+          Reativar login</button
+        ><button class="p-button" :disabled="ocupado" @click="redefinir">
+          Enviar recuperação de senha
+        </button>
+      </div>
     </section>
-    <details class="p-card"><summary>Últimas operações no Authentication</summary><EstadoConsulta :consulta="operacoes" /><ul><li v-for="o in operacoes.dados.value" :key="o.id">{{o.acao}} · {{o.alvoUid}} · {{o.estado}} · {{dataTexto(o.criadoEm)}} · {{o.atorNome}}</li></ul><p class="p-small">Até 25 operações recentes. “Verificar” ou “em execução” por tempo prolongado exigem conferir o Firebase antes de repetir.</p></details>
+    <details class="p-card">
+      <summary>Últimas operações no Authentication</summary>
+      <EstadoConsulta :consulta="operacoes" />
+      <ul>
+        <li v-for="o in operacoes.dados.value" :key="o.id">
+          {{ o.acao }} · {{ o.alvoUid }} · {{ o.estado }} ·
+          {{ dataTexto(o.criadoEm) }} · {{ o.atorNome }}
+        </li>
+      </ul>
+      <p class="p-small">
+        Até 25 operações recentes. “Verificar” ou “em execução” por tempo
+        prolongado exigem conferir o Firebase antes de repetir.
+      </p>
+    </details>
     <label class="p-field"
       >Pesquisar usuário<input
         aria-label="Pesquisar usuário"
@@ -152,20 +210,35 @@
   </div>
 </template>
 <script setup>
+import { ehDeposito } from "../../utils/estoque";
 import { computed, reactive, ref } from "vue";
 import { collection, query, orderBy, limit } from "firebase/firestore";
-import { reauthenticateWithCredential, EmailAuthProvider, sendPasswordResetEmail } from 'firebase/auth';
+import {
+  reauthenticateWithCredential,
+  EmailAuthProvider,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 import { db, auth } from "../../firebase";
-import { administrarConta } from '../../portal/administracaoServidor';
+import { administrarConta } from "../../portal/administracaoServidor";
 import { useColecao } from "../../composables/useColecao";
 import { CARGOS, cargoAtual } from "../../portal/permissoes";
 import { salvarPerfil } from "../../portal/usuarios";
-import { useSaidaSegura } from '../../composables/useSaidaSegura';
-import { normalizarBusca, mensagemErro, dataTexto } from "../../portal/validacao";
+import { useSaidaSegura } from "../../composables/useSaidaSegura";
+import {
+  normalizarBusca,
+  mensagemErro,
+  dataTexto,
+} from "../../portal/validacao";
 import EstadoConsulta from "../../components/portal/EstadoConsulta.vue";
 const rotuloCargo = (papel) => CARGOS[cargoAtual(papel)] || papel;
-const senhaMaster=ref('');
-const operacoes=useColecao(()=>query(collection(db,'operacoesAdmin'),orderBy('criadoEm','desc'),limit(25)));
+const senhaMaster = ref("");
+const operacoes = useColecao(() =>
+  query(
+    collection(db, "operacoesAdmin"),
+    orderBy("criadoEm", "desc"),
+    limit(25),
+  ),
+);
 const contas = useColecao(() => collection(db, "usuarios")),
   escolas = useColecao(() => collection(db, "escolas"));
 const form = reactive({}),
@@ -204,11 +277,74 @@ function abrir(u) {
   editando.value = true;
   erro.value = "";
   mensagem.value = "";
-  senhaMaster.value='';
+  senhaMaster.value = "";
 }
-async function confirmarMaster(){if(ocupado.value)return;ocupado.value=true;erro.value='';mensagem.value='';try{await reauthenticateWithCredential(auth.currentUser,EmailAuthProvider.credential(auth.currentUser.email,senhaMaster.value));mensagem.value='Identidade confirmada por 15 minutos para estas operações.';}catch(e){erro.value=mensagemErro(e);}finally{senhaMaster.value='';ocupado.value=false;}}
-async function acaoConta(acao){if(ocupado.value || !window.confirm('Confirmar '+({'revogar_sessoes':'encerramento das sessões','desativar_auth':'desativação do login','reativar_auth':'reativação do login'}[acao])+' de '+form.nome+'?'))return;ocupado.value=true;erro.value='';mensagem.value='';try{await administrarConta(acao,form.uid);if(acao==='desativar_auth')form.ativo=false;mensagem.value='Operação confirmada e registrada no histórico.';}catch(e){erro.value=mensagemErro(e);}finally{ocupado.value=false;}}
-async function redefinir(){if(ocupado.value || !window.confirm('Enviar recuperação de senha para '+form.email+'?'))return;ocupado.value=true;erro.value='';try{await sendPasswordResetEmail(auth,form.email);mensagem.value='Solicitação enviada. O destinatário deve conferir também a caixa de spam.';}catch(e){erro.value=mensagemErro(e);}finally{ocupado.value=false;}}
+async function confirmarMaster() {
+  if (ocupado.value) return;
+  ocupado.value = true;
+  erro.value = "";
+  mensagem.value = "";
+  try {
+    await reauthenticateWithCredential(
+      auth.currentUser,
+      EmailAuthProvider.credential(auth.currentUser.email, senhaMaster.value),
+    );
+    mensagem.value =
+      "Identidade confirmada por 15 minutos para estas operações.";
+  } catch (e) {
+    erro.value = mensagemErro(e);
+  } finally {
+    senhaMaster.value = "";
+    ocupado.value = false;
+  }
+}
+async function acaoConta(acao) {
+  if (
+    ocupado.value ||
+    !window.confirm(
+      "Confirmar " +
+        {
+          revogar_sessoes: "encerramento das sessões",
+          desativar_auth: "desativação do login",
+          reativar_auth: "reativação do login",
+        }[acao] +
+        " de " +
+        form.nome +
+        "?",
+    )
+  )
+    return;
+  ocupado.value = true;
+  erro.value = "";
+  mensagem.value = "";
+  try {
+    await administrarConta(acao, form.uid);
+    if (acao === "desativar_auth") form.ativo = false;
+    mensagem.value = "Operação confirmada e registrada no histórico.";
+  } catch (e) {
+    erro.value = mensagemErro(e);
+  } finally {
+    ocupado.value = false;
+  }
+}
+async function redefinir() {
+  if (
+    ocupado.value ||
+    !window.confirm("Enviar recuperação de senha para " + form.email + "?")
+  )
+    return;
+  ocupado.value = true;
+  erro.value = "";
+  try {
+    await sendPasswordResetEmail(auth, form.email);
+    mensagem.value =
+      "Solicitação enviada. O destinatário deve conferir também a caixa de spam.";
+  } catch (e) {
+    erro.value = mensagemErro(e);
+  } finally {
+    ocupado.value = false;
+  }
+}
 async function salvar() {
   if (ocupado.value) return;
   ocupado.value = true;

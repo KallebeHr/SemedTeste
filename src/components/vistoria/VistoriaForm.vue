@@ -24,14 +24,24 @@
         <label class="campo">
           <span>Tipo de vistoria</span>
           <select v-model="tipo" @change="carregarTemplate">
-            <option value="recebimento">Recebimento de mercadorias</option>
-            <option value="sanitaria">Sanitária</option>
-            <option value="estrutural">Estrutural</option>
-            <option value="rotina">Rotina do refeitório</option>
-            <option value="AgroFamiliar">Agricultura Familiar</option>
+            <template v-if="deposito">
+              <option value="deposito_diaria">Vistoria diária</option>
+              <option value="deposito_semanal">Vistoria semanal</option>
+              <option value="deposito_mensal">Vistoria mensal</option>
+            </template>
+            <template v-else>
+              <option value="recebimento">Recebimento de mercadorias</option>
+              <option value="sanitaria">Sanitária</option>
+              <option value="estrutural">Estrutural</option>
+              <option value="rotina">Rotina do refeitório</option>
+            </template>
           </select>
         </label>
 
+        <p v-if="deposito">
+          {{ orientacaoDeposito[tipo] }} O registro usa a data de conclusão e
+          não altera os saldos do estoque.
+        </p>
         <p class="progresso-avaliacao">
           {{ checklist.length - respostasPendentes }} de
           {{ checklist.length }} itens avaliados. Marque cada item para
@@ -248,7 +258,7 @@
 </template>
 <script setup>
 import { ref, computed, nextTick } from "vue";
-import { useSaidaSegura } from '../../composables/useSaidaSegura';
+import { useSaidaSegura } from "../../composables/useSaidaSegura";
 import { doc, collection } from "firebase/firestore";
 import { db } from "../../firebase";
 import AssinaturaDigital from "../assinatura/AssinaturaDigital.vue";
@@ -263,7 +273,16 @@ import { validarIdentificacao, mascararCpf } from "../../utils/identificacao";
 const props = defineProps({ escolaId: { type: String, required: true } });
 const emit = defineEmits(["concluido", "ocupado"]);
 const { usuario } = useAuth();
-const tipo = ref("recebimento");
+const deposito = computed(() => props.escolaId === "deposito-municipal");
+const tipo = ref(deposito.value ? "deposito_diaria" : "recebimento");
+const orientacaoDeposito = {
+  deposito_diaria:
+    "Verifique as condições do depósito e as movimentações do dia.",
+  deposito_semanal:
+    "Revise contagens, validades, reposição e pendências da semana.",
+  deposito_mensal:
+    "Consolide o inventário, as perdas e as ações corretivas do mês.",
+};
 const checklist = ref([]);
 const planoDeAcao = ref(""),
   erro = ref(""),
@@ -276,7 +295,13 @@ const identificacaoResponsavel = ref(null),
 const rascunhoResponsavel = ref(null),
   rascunhoTestemunha = ref(null);
 const feedbackEl = ref(null);
-useSaidaSegura(() => !sucesso.value && (etapa.value !== 'form' || !!planoDeAcao.value || checklist.value.some(c => !!c.status)));
+useSaidaSegura(
+  () =>
+    !sucesso.value &&
+    (etapa.value !== "form" ||
+      !!planoDeAcao.value ||
+      checklist.value.some((c) => !!c.status)),
+);
 let vistoriaId, dadosConfirmados;
 let preparadas = [];
 const { registrarVistoria, calcularNota, calcularStatus } = useVistorias(

@@ -1,3 +1,4 @@
+import { ehDeposito } from "../utils/estoque";
 export const CARGOS = Object.freeze({
   master: "Master",
   alimentador: "Alimentador",
@@ -49,7 +50,9 @@ export function escolaPermitida(perfil, id) {
   return (
     !!perfil &&
     perfil.ativo !== false &&
-    (todasEscolas(perfil) || (perfil.escolasVinculadas || []).includes(id))
+    (ehDeposito(id)
+      ? ["master", "nutricionista"].includes(cargoAtual(perfil.papel))
+      : todasEscolas(perfil) || (perfil.escolasVinculadas || []).includes(id))
   );
 }
 export function destinoAdministrativo(valor) {

@@ -94,6 +94,7 @@
   </section>
 </template>
 <script setup>
+import { ehDeposito } from "../../utils/estoque";
 import { transacaoConfirmada } from "../../portal/transacao";
 import { ref, reactive, computed } from "vue";
 import { collection, doc, serverTimestamp } from "firebase/firestore";
@@ -107,9 +108,9 @@ const consulta = useColecao(() => collection(db, "escolas")),
   { escolas } = usePortal(),
   publicadas = computed(() => new Set(escolas.dados.value.map((e) => e.id))),
   ordenadas = computed(() =>
-    [...consulta.dados.value].sort((a, b) =>
-      a.nome.localeCompare(b.nome, "pt-BR"),
-    ),
+    consulta.dados.value
+      .filter((e) => !ehDeposito(e.id))
+      .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR")),
   ),
   aberto = ref(false),
   ocupado = ref(false),

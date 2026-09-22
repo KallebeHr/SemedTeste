@@ -1,99 +1,124 @@
 <template>
-  <form class="estoque-form" @submit.prevent="salvar">
-    <label class="campo">
-      <span>Nome do item</span>
-      <input v-model="form.nome" type="text" required />
-    </label>
+  <form @submit.prevent="salvar">
+    <fieldset class="estoque-form" :disabled="salvando">
+      <label class="campo">
+        <span>Nome do item</span>
+        <input v-model="form.nome" type="text" maxlength="160" required />
+      </label>
 
-    <label class="campo">
-      <span>Categoria</span>
-      <select v-model="form.categoria" required>
-        <option v-for="categoria in categoriasDisponiveis" :key="categoria" :value="categoria">{{categoria}}</option>
-      </select>
-    </label>
+      <label class="campo">
+        <span>Categoria</span>
+        <select v-model="form.categoria" required>
+          <option
+            v-for="categoria in categoriasDisponiveis"
+            :key="categoria"
+            :value="categoria"
+          >
+            {{ categoria }}
+          </option>
+        </select>
+      </label>
 
-    <label class="campo">
-      <span>Unidade</span>
-      <select v-model="form.unidade" required>
-        <option value="kg">kg</option>
-        <option value="l">litro</option>
-        <option value="un">unidade</option>
-        <option value="cx">caixa</option>
-        <option value="pct">pacote</option>
-      </select>
-    </label>
+      <label class="campo">
+        <span>Unidade</span>
+        <select
+          v-model="form.unidade"
+          :disabled="
+            !!itemExistente &&
+            (itemExistente.quantidadeAtual > 0 ||
+              !!itemExistente.ultimaMovimentacaoId)
+          "
+          required
+        >
+          <option value="kg">kg</option>
+          <option value="l">litro</option>
+          <option value="un">unidade</option>
+          <option value="cx">caixa</option>
+          <option value="pct">pacote</option>
+        </select>
+      </label>
 
-    <label v-if="!itemExistente" class="campo">
-      <span>Quantidade inicial</span>
-      <input
-        v-model.number="form.quantidadeAtual"
-        type="number"
-        min="0"
-        step="0.01"
-      />
-    </label>
+      <label v-if="!itemExistente" class="campo">
+        <span>Quantidade inicial</span>
+        <input
+          v-model.number="form.quantidadeAtual"
+          type="number"
+          min="0"
+          step="0.000001"
+        />
+      </label>
 
-    <label class="campo">
-      <span>Quantidade mínima (alerta)</span>
-      <input
-        v-model.number="form.quantidadeMinima"
-        type="number"
-        min="0"
-        step="0.01"
-        required
-      />
-    </label>
+      <label class="campo">
+        <span>Quantidade mínima (alerta)</span>
+        <input
+          v-model.number="form.quantidadeMinima"
+          type="number"
+          min="0"
+          step="0.000001"
+          required
+        />
+      </label>
 
-    <label class="campo">
-      <span>Validade</span>
-      <input v-model="form.validade" type="date" />
-    </label>
+      <label class="campo">
+        <span>Validade</span>
+        <input v-model="form.validade" type="date" />
+      </label>
 
-    <label class="campo">
-      <span>Preço unitário (R$)</span>
-      <input
-        v-model.number="form.precoUnitario"
-        type="number"
-        min="0"
-        step="0.01"
-      />
-    </label>
+      <label class="campo">
+        <span>Preço unitário (R$)</span>
+        <input
+          v-model.number="form.precoUnitario"
+          type="number"
+          min="0"
+          step="0.000001"
+        />
+      </label>
 
-    <label class="campo campo--largo">
-      <span>Local de armazenamento</span>
-      <input
-        v-model="form.localArmazenamento"
-        type="text"
-        placeholder="Ex.: Despensa 1, Prateleira B"
-      />
-    </label>
+      <label class="campo campo--largo">
+        <span>Local de armazenamento</span>
+        <input
+          v-model="form.localArmazenamento"
+          type="text"
+          maxlength="300"
+          placeholder="Ex.: Depósito central, corredor 1, prateleira B"
+        />
+      </label>
 
-    <p v-if="erro" class="campo--largo" role="alert" style="color: #b42318">
-      {{ erro }}
-    </p>
-    <p v-if="itemExistente" class="campo--largo">
-      Para alterar o saldo, registre uma entrada ou saída.
-    </p>
-    <div class="estoque-form__acoes">
-      <button
-        type="button"
-        class="btn-secundario"
-        :disabled="salvando"
-        @click="$emit('cancelar')"
-      >
-        Cancelar
-      </button>
-      <button type="submit" class="btn-primario" :disabled="salvando">
-        {{ salvando ? "Salvando..." : "Salvar item" }}
-      </button>
-    </div>
+      <p v-if="erro" class="campo--largo" role="alert" style="color: #b42318">
+        {{ erro }}
+      </p>
+      <p v-if="itemExistente" class="campo--largo">
+        Para alterar o saldo, use Entrada, Retirada, Perda ou Conferir saldo. A
+        unidade de medida fica protegida quando o item tem saldo ou
+        movimentações.
+      </p>
+      <p v-if="!itemExistente" class="campo--largo">
+        A quantidade inicial representa o saldo de implantação. Depois do
+        cadastro, use as movimentações para registrar recebimentos e retiradas.
+        Produtos com validades diferentes devem ter cadastros separados e nomes
+        que identifiquem o lote.
+      </p>
+      <div class="estoque-form__acoes">
+        <button
+          type="button"
+          class="btn-secundario"
+          :disabled="salvando"
+          @click="$emit('cancelar')"
+        >
+          Cancelar
+        </button>
+        <button type="submit" class="btn-primario" :disabled="salvando">
+          {{ salvando ? "Salvando..." : "Salvar item" }}
+        </button>
+      </div>
+    </fieldset>
   </form>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
-import { useParametros } from '../../composables/useParametros';
-import { useSaidaSegura } from '../../composables/useSaidaSegura';
+import { useParametros } from "../../composables/useParametros";
+import { useSaidaSegura } from "../../composables/useSaidaSegura";
 import { Timestamp } from "firebase/firestore";
 import { useEstoque } from "../../composables/useEstoque";
 
@@ -122,10 +147,15 @@ const form = ref(
 );
 const salvando = ref(false);
 const erro = ref("");
-const inicial=JSON.stringify(form.value),concluido=ref(false);
-useSaidaSegura(()=>!concluido.value && JSON.stringify(form.value)!==inicial);
-const {categorias}=useParametros();
-const categoriasDisponiveis=computed(()=>[...new Set([...categorias.value,form.value.categoria].filter(Boolean))]);
+const inicial = JSON.stringify(form.value),
+  concluido = ref(false);
+useSaidaSegura(
+  () => !concluido.value && JSON.stringify(form.value) !== inicial,
+);
+const { categorias } = useParametros();
+const categoriasDisponiveis = computed(() => [
+  ...new Set([...categorias.value, form.value.categoria].filter(Boolean)),
+]);
 
 const { cadastrarItem, editarItem } = useEstoque(props.escolaId);
 
@@ -154,7 +184,8 @@ async function salvar() {
       await cadastrarItem(payload);
     }
     emit("ocupado", false);
-    concluido.value=true;emit("salvo");
+    concluido.value = true;
+    emit("salvo");
   } catch (e) {
     erro.value = e.code
       ? "Não foi possível salvar o item. Verifique a conexão e as permissões."
@@ -168,12 +199,18 @@ async function salvar() {
 
 <style scoped>
 .estoque-form {
+  border: 0;
+  padding: 0;
+  min-width: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.85rem;
 }
 @media (max-width: 640px) {
   .estoque-form {
+    border: 0;
+    padding: 0;
+    min-width: 0;
     grid-template-columns: 1fr;
   }
 }

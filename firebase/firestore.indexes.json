@@ -1,10 +1,79 @@
 {
   "indexes": [
-    {"collectionGroup":"pendencias","queryScope":"COLLECTION","fields":[{"fieldPath":"destinatarioUid","order":"ASCENDING"},{"fieldPath":"criadoEm","order":"DESCENDING"}]},
-    {"collectionGroup":"notificacoes","queryScope":"COLLECTION","fields":[{"fieldPath":"escolaId","order":"ASCENDING"},{"fieldPath":"criadoEm","order":"DESCENDING"}]},
-    {"collectionGroup":"auditoriaRegistros","queryScope":"COLLECTION","fields":[{"fieldPath":"usuarioId","order":"ASCENDING"},{"fieldPath":"timestamp","order":"DESCENDING"}]},
-    {"collectionGroup":"auditoriaRegistros","queryScope":"COLLECTION","fields":[{"fieldPath":"colecao","order":"ASCENDING"},{"fieldPath":"timestamp","order":"DESCENDING"}]},
-    {"collectionGroup":"auditoriaRegistros","queryScope":"COLLECTION","fields":[{"fieldPath":"usuarioId","order":"ASCENDING"},{"fieldPath":"colecao","order":"ASCENDING"},{"fieldPath":"timestamp","order":"DESCENDING"}]},
+    {
+      "collectionGroup": "pendencias",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "destinatarioUid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "criadoEm",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "notificacoes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "escolaId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "criadoEm",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "auditoriaRegistros",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "usuarioId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "auditoriaRegistros",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "colecao",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "auditoriaRegistros",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "usuarioId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "colecao",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
     {
       "collectionGroup": "movimentacoes",
       "queryScope": "COLLECTION",
@@ -428,6 +497,38 @@
           "order": "ASCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "documentos",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "vinculo.tipo",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "vinculo.id",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "criadoEm",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "conteudos",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "tipo",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "escolaId",
+          "order": "ASCENDING"
+        }
+      ]
     }
   ],
   "fieldOverrides": [
@@ -439,6 +540,11 @@
     {
       "collectionGroup": "auditoriaRegistros",
       "fieldPath": "dadosDepois",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "documentos",
+      "fieldPath": "texto",
       "indexes": []
     }
   ]

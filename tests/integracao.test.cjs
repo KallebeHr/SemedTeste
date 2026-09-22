@@ -735,3 +735,205 @@ test("suspensão do perfil em tempo real remove o acesso antes de uma nova opera
   assert.equal(h.auth.useAuth().usuario.value, null);
   assert.throws(() => h.auth.useAuth().exigirUsuario(), /Entre na sua conta/);
 });
+
+test("depósito: ativação idempotente e visibilidade separada das escolas", async () => {
+  const h = await ambiente();
+  const { useEscolas } = await h.importar("useEscolas");
+  const api = useEscolas({ incluirDeposito: true });
+  const id = await api.ativarDeposito();
+  await api.ativarDeposito();
+  assert.equal(id, "deposito-municipal");
+  assert.equal(h.state.records.get("escolas/" + id).tipoUnidade, "deposito");
+  api.escutarEscolas();
+  await Promise.resolve();
+  assert.ok(api.escolas.value.some((e) => e.id === id));
+  api.parar();
+  const escolas = useEscolas();
+  escolas.escutarEscolas();
+  await Promise.resolve();
+  assert.ok(!escolas.escolas.value.some((e) => e.id === id));
+  escolas.parar();
+});
+test("conferência com saldo desatualizado não grava ajuste nem identificação", async () => {
+  const h = await ambiente();
+  const api = (await h.importar("useEstoque")).useEstoque("escola-a");
+  await assert.rejects(
+    api.registrarMovimentacao(
+      movimento("contagem", {
+        tipo: "saida",
+        quantidade: 2,
+        quantidadeAnteriorConfirmada: 9,
+      }),
+    ),
+    /saldo mudou/,
+  );
+  assert.equal(
+    h.state.records.get("escolas/escola-a/estoque/arroz").quantidadeAtual,
+    10,
+  );
+  assert.ok(!h.state.records.has("escolas/escola-a/movimentacoes/contagem"));
+});
+test("retirada total permite arquivar e reativar preservando movimento e unidade", async () => {
+  const h = await ambiente();
+  const api = (await h.importar("useEstoque")).useEstoque("escola-a");
+  await assert.rejects(api.inativarItem("arroz"), /saldo/);
+  await api.registrarMovimentacao(
+    movimento("zerar", { tipo: "saida", quantidade: 10 }),
+  );
+  await api.inativarItem("arroz");
+  assert.equal(
+    h.state.records.get("escolas/escola-a/estoque/arroz").ativo,
+    false,
+  );
+  await api.reativarItem("arroz");
+  assert.equal(
+    h.state.records.get("escolas/escola-a/estoque/arroz").ativo,
+    true,
+  );
+  const i = h.state.records.get("escolas/escola-a/estoque/arroz");
+  await assert.rejects(
+    api.editarItem("arroz", i, { ...i, unidade: "l" }),
+    /unidade/,
+  );
+  assert.ok(h.state.records.has("escolas/escola-a/movimentacoes/zerar"));
+});
+
+const catalogo = require("../src/data/catalogoEstoque.json");
+test("catálogo contém 1.000 opções únicas e válidas", () => {
+  assert.equal(catalogo.length, 1000);
+  assert.equal(new Set(catalogo.map((p) => p.id)).size, 1000);
+  for (const p of catalogo) {
+    assert.match(p.id, /^[a-f0-9]{16}$/);
+    assert.ok(p.nome.length <= 160);
+    assert.ok(p.categoria.length <= 100);
+    assert.ok(["kg", "l", "un", "cx", "pct"].includes(p.unidade));
+  }
+});
+test("catálogo importa em lote com saldo zero, auditoria e reenvio sem sobrescrever", async () => {
+  const h = await ambiente();
+  const api = (await h.importar("useCatalogoEstoque")).useCatalogoEstoque(
+    "escola-a",
+  );
+  const r = await api.adicionar(catalogo.slice(0, 3));
+  assert.equal(r.criados.length, 3);
+  assert.equal(r.pendentes.length, 0);
+  const p = "escolas/escola-a/estoque/cat-" + catalogo[0].id;
+  assert.equal(h.state.records.get(p).quantidadeAtual, 0);
+  assert.ok(h.state.records.get(p)._auditoria);
+  h.state.records.get(p).quantidadeAtual = 25;
+  const r2 = await api.adicionar(catalogo.slice(0, 3));
+  assert.equal(r2.criados.length, 0);
+  assert.equal(r2.existentes.length, 3);
+  assert.equal(h.state.records.get(p).quantidadeAtual, 25);
+});
+test("catálogo reconhece cadastro manual e não reativa arquivado", async () => {
+  const h = await ambiente();
+  const api = (await h.importar("useCatalogoEstoque")).useCatalogoEstoque(
+    "escola-a",
+  );
+  const r = await api.adicionar([catalogo[0]], {
+    itensExistentes: [{ ...catalogo[0], id: "manual", ativo: false }],
+  });
+  assert.equal(r.existentes.length, 1);
+  assert.equal(h.state.commits, 0);
+});
+test("catálogo recusa professor e dados inválidos antes de gravar", async () => {
+  const h = await ambiente("professor");
+  const api = (await h.importar("useCatalogoEstoque")).useCatalogoEstoque(
+    "escola-a",
+  );
+  await assert.rejects(api.adicionar([catalogo[0]]));
+  assert.equal(h.state.commits, 0);
+  const a = await ambiente();
+  const b = (await a.importar("useCatalogoEstoque")).useCatalogoEstoque(
+    "escola-a",
+  );
+  await assert.rejects(b.adicionar([catalogo[0], { id: "invalido" }]));
+  assert.equal(a.state.commits, 0);
+});
+test("catálogo informa pendentes após falha e permite tentar novamente", async () => {
+  const h = await ambiente();
+  const api = (await h.importar("useCatalogoEstoque")).useCatalogoEstoque(
+    "escola-a",
+  );
+  h.state.failNext = "transaction";
+  const r = await api.adicionar(catalogo.slice(0, 2));
+  assert.equal(r.pendentes.length, 2);
+  assert.equal(api.ocupado.value, false);
+  assert.ok(api.erro.value);
+  const r2 = await api.adicionar(catalogo.slice(0, 2));
+  assert.equal(r2.criados.length, 2);
+});
+test("periodicidades do depósito são recusadas nas escolas", async () => {
+  const h = await ambiente();
+  const api = (await h.importar("useVistorias")).useVistorias("escola-a");
+  for (const tipo of ["deposito_diaria", "deposito_semanal", "deposito_mensal"])
+    await assert.rejects(
+      api.registrarVistoria({ ...vistoriaDados("v1"), tipo }),
+      /exclusiva/,
+    );
+  assert.equal(h.state.commits, 0);
+});
+test("depósito registra três periodicidades com identificação e auditoria", async () => {
+  const h = await ambiente();
+  const { useVistorias, TEMPLATES_CHECKLIST } =
+    await h.importar("useVistorias");
+  const api = useVistorias("deposito-municipal");
+  for (const tipo of [
+    "deposito_diaria",
+    "deposito_semanal",
+    "deposito_mensal",
+  ]) {
+    const d = vistoriaDados(tipo);
+    d.tipo = tipo;
+    d.checklist = TEMPLATES_CHECKLIST[tipo].map((item) => ({
+      item,
+      status: "conforme",
+      observacao: "",
+    }));
+    d.assinaturas.forEach((a) => {
+      a.referencia.path = a.referencia.path.replace(
+        "escola-a",
+        "deposito-municipal",
+      );
+    });
+    await api.registrarVistoria(d);
+    const r = h.state.records.get(
+      "escolas/deposito-municipal/vistorias/" + tipo,
+    );
+    assert.equal(r.tipo, tipo);
+    assert.ok(r._auditoria);
+    assert.equal(r.notaGeral, 10);
+  }
+});
+test("catálogo interrompe após o item atual e preserva o que foi confirmado", async () => {
+  const h = await ambiente();
+  const api = (await h.importar("useCatalogoEstoque")).useCatalogoEstoque(
+    "escola-a",
+  );
+  const promessa = api.adicionar(catalogo.slice(0, 3));
+  api.pararAposAtual();
+  const r = await promessa;
+  assert.equal(r.criados.length, 1);
+  assert.equal(r.pendentes.length, 2);
+  assert.equal(r.interrompido, true);
+  assert.equal(api.ocupado.value, false);
+});
+test("catálogo reconhece commit com resposta perdida sem duplicar auditoria", async () => {
+  const h = await ambiente();
+  const api = (await h.importar("useCatalogoEstoque")).useCatalogoEstoque(
+    "escola-a",
+  );
+  h.state.failNext = "lost-response";
+  const r = await api.adicionar([catalogo[0]]);
+  assert.equal(r.pendentes.length, 1);
+  const commits = h.state.commits;
+  const r2 = await api.adicionar([catalogo[0]]);
+  assert.equal(r2.existentes.length, 1);
+  assert.equal(r2.criados.length, 0);
+  assert.equal(h.state.commits, commits + 1);
+  const eventos = [...h.state.records].filter(
+    ([k]) => k.startsWith("auditoriaRegistros/") && k,
+  );
+  assert.equal(eventos.length, 1);
+});
