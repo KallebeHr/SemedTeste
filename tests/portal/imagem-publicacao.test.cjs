@@ -103,3 +103,39 @@ test("GET público bloqueia rascunho e retirada, libera apenas imagem vinculada"
   assert.equal((await call()).code, 404);
   assert.equal(gets, 1);
 });
+test("POST usa snapshot Admin, grava versão B2 e não duplica reenvio", async () => {
+  const origin = "https://www.semedpii.com.br";
+  const id = "22222222-2222-4222-8222-222222222222";
+  const docs = new Map([["usuarios/editor", { papel: "master" }]]);
+  const snapshot = (ref) => ({ exists: docs.has(ref.path), data: () => docs.get(ref.path) });
+  const db = {
+    doc: (path) => ({ path, get: async () => snapshot({ path }) }),
+    runTransaction: async (fn) => fn({
+      get: async (ref) => snapshot(ref),
+      set: (ref, value) => docs.set(ref.path, value),
+      update: (ref, value) => docs.set(ref.path, { ...docs.get(ref.path), ...value }),
+      create: (ref, value) => docs.set(ref.path, value),
+    }),
+  };
+  let uploads = 0;
+  const handler = criarHandlerImagem({ db, auth: { verifyIdToken: async () => token },
+    b2: { put: async (key, bytes, mime) => {
+      uploads++;
+      assert.equal(mime, "image/jpeg");
+      assert.equal((await sharp(bytes).metadata()).format, "jpeg");
+      return "b2-version";
+    } }, origens: [origin], clienteId: "pedro-ii" });
+  const bytes = await sharp({ create: { width: 10, height: 10, channels: 3, background: "blue" } }).png().toBuffer();
+  const req = { method: "POST", headers: { origin, "content-type": "application/json", authorization: "Bearer test-token-12345" },
+    body: { acao: "enviar", id, conteudoId: "nova-noticia", tipo: "noticia", mime: "image/png", base64: bytes.toString("base64") } };
+  const call = async () => {
+    const res = { setHeader() {}, status(code) { this.code = code; return this; }, json(body) { this.body = body; } };
+    await handler(req, res); return res;
+  };
+  assert.equal((await call()).code, 200);
+  assert.equal(docs.get("midiasPublicacoes/" + id).version, "b2-version");
+  assert.equal((await call()).code, 200);
+  assert.equal(uploads, 1);
+  docs.set("conteudos/nova-noticia", { tipo: "evento" });
+  assert.equal((await call()).code, 409);
+});
