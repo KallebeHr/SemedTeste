@@ -85,8 +85,8 @@ service cloud.firestore {
 
 
     function itemEstoqueValido(d) {
-      return d.keys().hasOnly(['nome','ativo','categoria','unidade','quantidadeAtual','quantidadeMinima','precoUnitario','validade','localArmazenamento','atualizadoEm','atualizadoPor','ultimaMovimentacaoId','_auditoria','_registradoEm']) &&
-        textoValido(d.get('categoria',''),100) && d.get('unidade','kg') in ['kg','l','un','cx','pct'] &&
+      return d.keys().hasOnly(['nome','ativo','categoria','unidade','quantidadeAtual','quantidadeMinima','precoUnitario','validade','localArmazenamento','lote','atualizadoEm','atualizadoPor','ultimaMovimentacaoId','_auditoria','_registradoEm']) &&
+        textoValido(d.get('lote',''),100) && textoValido(d.get('categoria',''),100) && d.get('unidade','kg') in ['kg','l','un','cx','pct'] &&
         (d.get('validade',null) == null || d.validade is timestamp) && textoValido(d.get('localArmazenamento',''),300) &&
         d.nome is string && d.nome.size()>0 && d.nome.size()<=160 && d.ativo is bool && (d.ativo == true || d.quantidadeAtual == 0) &&
         d.quantidadeAtual is number && d.quantidadeAtual>=0 && d.quantidadeAtual<=1000000000 &&
@@ -225,7 +225,7 @@ service cloud.firestore {
         allow update: if (gestaoEstoque(escolaId) && itemEstoqueValido(request.resource.data) &&
           (request.resource.data.get('unidade','kg') == resource.data.get('unidade','kg') || (resource.data.quantidadeAtual == 0 && resource.data.get('ultimaMovimentacaoId',null) == null)) &&
           ((request.resource.data.quantidadeAtual == resource.data.quantidadeAtual &&
-            request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nome','categoria','unidade','quantidadeMinima','precoUnitario','validade','localArmazenamento','atualizadoEm','atualizadoPor','ativo','_auditoria','_registradoEm'])) ||
+            request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nome','categoria','unidade','quantidadeMinima','precoUnitario','validade','localArmazenamento','lote','atualizadoEm','atualizadoPor','ativo','_auditoria','_registradoEm'])) ||
            (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['quantidadeAtual','ultimaMovimentacaoId','atualizadoEm','atualizadoPor','_auditoria','_registradoEm']) &&
             request.resource.data.ultimaMovimentacaoId is string &&
             !exists(/databases/$(database)/documents/escolas/$(escolaId)/movimentacoes/$(request.resource.data.ultimaMovimentacaoId)) &&
@@ -245,6 +245,8 @@ service cloud.firestore {
         allow update, delete: if false;
       }
       // Gravações destas coleções são feitas exclusivamente pela API autenticada.
+      match /entregas/{id} { allow read: if alimentos(escolaId); allow write: if false; }
+      match /entregaIdentificacoes/{id} { allow read: if alimentos(escolaId) && (gestao() || resource.data.criadoPor == request.auth.uid); allow write: if false; }
       match /documentos/{id} { allow read: if alimentos(escolaId); allow write: if false; }
       match /visitasAF/{id} { allow read: if alimentos(escolaId); allow write: if false; }
       match /visitasAFIdentificacoes/{id} { allow read: if alimentos(escolaId) && (gestao() || resource.data.criadoPor == request.auth.uid); allow write: if false; }

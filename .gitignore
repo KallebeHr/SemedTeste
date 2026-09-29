@@ -24,3 +24,9 @@ pnpm-debug.log*
 .env.server
 public/ocr/
 backups-b2/
+
+# Credenciais nunca devem integrar o pacote ou Git
+.env
+.env.*
+!.env.example
+!.env.alimentacao.example

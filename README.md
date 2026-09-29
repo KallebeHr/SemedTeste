@@ -1,3 +1,5 @@
+> Atualização de Alimentação Escolar: consulte [GUIA-ALIMENTACAO-PRODUCAO.md](GUIA-ALIMENTACAO-PRODUCAO.md) antes de publicar.
+
 # SEDUC · Pedro II
 
 **Versão atual: 2.1.1.** As mudanças no botão flutuante, VLibras e menus mobile estão em `AJUSTES-INTERFACE-2.1.1.md`. Para instalar, siga `ATUALIZACAO-2.1.md`. O diagnóstico técnico e a validação da revisão anterior permanecem em `REVISAO-TECNICA.md` e `VALIDACAO.md`.

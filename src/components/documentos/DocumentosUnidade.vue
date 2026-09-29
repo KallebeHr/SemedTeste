@@ -67,7 +67,7 @@
         >
           {{ ocupado === d.id ? "Aguarde..." : "Baixar arquivo" }}</button
         ><button
-          v-if="!d.arquivado && podeOrganizar(d)"
+          v-if="!d.arquivado && !d.vinculo && podeOrganizar(d)"
           class="botao"
           :disabled="bloqueado || d.estado !== 'pronto'"
           @click="arquivar(d)"
