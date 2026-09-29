@@ -9,6 +9,10 @@
         + Cadastrar escola
       </button>
     </header>
+    <details class="p-card">
+      <summary>Importar escolas por planilha</summary>
+      <ImportarEscolas :escolas="consulta.dados.value" />
+    </details>
     <EstadoConsulta :consulta="consulta" />
     <p v-if="erro" role="alert" class="p-alert error">{{ erro }}</p>
     <p v-if="mensagem" role="status" class="p-alert success">{{ mensagem }}</p>
@@ -23,6 +27,27 @@
             maxlength="160"
         /></label>
         <div class="p-grid two">
+          <label
+            v-for="key in [
+              'inep',
+              'email',
+              'bairro',
+              'zona',
+              'alunos',
+              'funcionarios',
+            ]"
+            :key="key"
+            class="p-field"
+            >{{ CAMPOS_ESCOLA[key][0]
+            }}<input
+              v-model="form[key]"
+              :type="
+                ['alunos', 'funcionarios'].includes(key) ? 'number' : 'text'
+              "
+              min="0"
+              max="100000"
+              :maxlength="CAMPOS_ESCOLA[key][1] || undefined"
+          /></label>
           <label class="p-field"
             >Endereço público<input
               aria-label="Endereço público"
@@ -82,6 +107,10 @@
               >{{ e.ativo ? "Ativa" : "Inativa" }} ·
               {{ publicadas.has(e.id) ? "Publicada" : "Uso interno" }}</span
             >
+            <p class="p-small">
+              Alunos: {{ e.alunos ?? "Não informado" }} · Funcionários:
+              {{ e.funcionarios ?? "Não informado" }}
+            </p>
             <p class="p-small p-muted">Identificador: {{ e.id }}</p>
           </div>
           <button class="p-button" @click="editar(e)">Editar e publicar</button>
@@ -94,6 +123,11 @@
   </section>
 </template>
 <script setup>
+import ImportarEscolas from "../../components/admin/ImportarEscolas.vue";
+import {
+  CAMPOS_ESCOLA,
+  validarEscola,
+} from "../../../shared/importacao-escolas.mjs";
 import { ehDeposito } from "../../utils/estoque";
 import { transacaoConfirmada } from "../../portal/transacao";
 import { ref, reactive, computed } from "vue";
@@ -126,11 +160,16 @@ function editar(e = {}) {
     nome: e.nome || "",
     ativo: e.ativo !== false,
     versao: e.versao || 0,
-    endereco: p.endereco || "",
-    contato: p.contato || "",
-    etapas: p.etapas || "",
-    horario: p.horario || "",
-    sobre: p.sobre || "",
+    ...Object.fromEntries(
+      Object.keys(CAMPOS_ESCOLA)
+        .filter((k) => k !== "nome")
+        .map((k) => [k, e[k] ?? p[k] ?? ""]),
+    ),
+    endereco: e.endereco ?? p.endereco ?? "",
+    contato: e.contato ?? p.contato ?? "",
+    etapas: e.etapas ?? p.etapas ?? "",
+    horario: e.horario ?? p.horario ?? "",
+    sobre: e.sobre ?? p.sobre ?? "",
   });
   publicar.value = publicadas.value.has(e.id);
   aberto.value = true;
@@ -143,6 +182,7 @@ async function salvar() {
   erro.value = "";
   try {
     useAuth().exigirUsuario();
+    const dados = validarEscola(form);
     const r = form.id
       ? doc(db, "escolas", form.id)
       : doc(collection(db, "escolas"));
@@ -155,7 +195,7 @@ async function salvar() {
         );
       t.set(r, {
         ...(s.data() || {}),
-        nome: form.nome.trim(),
+        ...dados,
         ativo: form.ativo,
         versao: form.versao + 1,
         atualizadoEm: serverTimestamp(),

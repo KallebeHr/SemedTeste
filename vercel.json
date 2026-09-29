@@ -68,6 +68,10 @@
     "api/alimentacao/documentos.js": {
       "includeFiles": "{clientes/**,scripts/cliente.cjs,server/**,shared/**}",
       "maxDuration": 60
+    },
+    "api/publicacoes/imagem.js": {
+      "includeFiles": "{clientes/**,scripts/cliente.cjs,server/**,shared/**}",
+      "maxDuration": 60
     }
   }
 }
