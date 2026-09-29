@@ -20,7 +20,10 @@
     "predev": "node scripts/preparar-ocr.cjs",
     "api:alimentacao": "node --env-file-if-exists=.env.server scripts/alimentacao-local.cjs",
     "test:alimentacao": "firebase emulators:exec --only firestore --project demo-seduc \"node --test --test-concurrency=1 tests/alimentacao/*.test.cjs\"",
-    "backup:b2": "node --env-file-if-exists=.env.server scripts/backup-b2.cjs"
+    "backup:b2": "node --env-file-if-exists=.env.server scripts/backup-b2.cjs",
+    "test:entregas": "node --test tests/alimentacao/entregas.test.cjs",
+    "test:entregas:emulador": "firebase emulators:exec --only firestore --project demo-seduc \"node --test tests/alimentacao/entregas-emulador.test.cjs\"",
+    "test:entregas:interface": "node tests/alimentacao/interface.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1136.0",
