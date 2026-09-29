@@ -156,7 +156,7 @@ function criarHandlerImagem({ db, auth, b2, origens, clienteId }) {
           tx.get(ref),
           tx.get(db.doc("conteudos/" + conteudoId)),
         ]);
-        if (c.exists() && c.data().tipo !== tipo)
+        if (c.exists && c.data().tipo !== tipo)
           throw new Falha(409, "Tipo de conteúdo divergente.");
         const m = s.data();
         if (
