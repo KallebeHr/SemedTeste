@@ -12,6 +12,7 @@ const {
   limite,
   GESTAO,
 } = require("./seguranca.cjs");
+const { executarEntrega } = require("./entregas.cjs");
 const TIPOS = [
   "estoque",
   "movimentacoes",
@@ -70,14 +71,14 @@ async function arquivo(b) {
   } else {
     try {
       const m = await sharp(bytes, { limitInputPixels: 24000000 }).metadata();
-      if (!["jpeg", "png"].includes(m.format) || !m.width || !m.height)
+      if (!["jpeg", "png", "webp"].includes(m.format) || !m.width || !m.height)
         throw new Error();
-      mime = m.format === "jpeg" ? "image/jpeg" : "image/png";
-      ext = m.format === "jpeg" ? "jpg" : "png";
+      mime = "image/" + m.format;
+      ext = m.format === "jpeg" ? "jpg" : m.format;
     } catch {
       throw new Falha(
         400,
-        "Use uma imagem JPEG/PNG válida (até 24 megapixels) ou PDF.",
+        "Use uma imagem JPEG/PNG/WEBP válida (até 24 megapixels) ou PDF.",
       );
     }
   }
@@ -88,7 +89,9 @@ async function arquivo(b) {
         ? /\.jpe?g$/i
         : mime === "image/png"
           ? /\.png$/i
-          : /\.pdf$/i
+          : mime === "image/webp"
+            ? /\.webp$/i
+            : /\.pdf$/i
     ).test(b.nome || "")
   )
     throw new Falha(
@@ -136,10 +139,62 @@ function criarHandler({ db, auth, b2, origens, clienteId }) {
         db.doc(base).get(),
       ]);
       autorizar(token, perfil.data(), escolaId, escola.data());
-      if (b.acao === "status")
-        return res
-          .status(200)
-          .json({ documentos: !!b2, visitas: true, maxBytes: 2 * 1024 * 1024 });
+      if (
+        [
+          "enviarEntrega",
+          "receberEntrega",
+          "cancelarEntrega",
+          "resolverDivergencia",
+          "listarEntregas",
+          "detalharEntrega",
+          "resumoEntregas",
+        ].includes(b.acao)
+      ) {
+        if (
+          ["listarEntregas", "detalharEntrega", "resumoEntregas"].includes(
+            b.acao,
+          )
+        ) {
+          await db.runTransaction(async (tx) => {
+            await conferir(tx, db, token, escolaId);
+            const reg = await limite(tx, db, token);
+            reg();
+          });
+        }
+        const resultado = await executarEntrega({
+          db,
+          token,
+          b,
+          perfil: perfil.data(),
+        });
+        return res.status(200).json(resultado);
+      }
+      if (b.acao === "status") {
+        if (!GESTAO.includes(perfil.data().papel))
+          throw new Falha(403, "Diagnóstico restrito à gestão.");
+        if (!b2)
+          throw new Falha(503, "Configure o armazenamento B2 no servidor.");
+        await db.runTransaction(async (tx) => {
+          await conferir(tx, db, token, escolaId);
+          const reg = await limite(tx, db, token);
+          reg();
+        });
+        try {
+          await b2.check();
+        } catch {
+          throw new Falha(
+            502,
+            "A API está online, mas não conseguiu acessar o bucket privado. Confira região, nome e permissões da chave B2.",
+          );
+        }
+        return res.status(200).json({
+          api: "online",
+          documentos: true,
+          storage: "conectado",
+          verificadoEm: new Date().toISOString(),
+          maxBytes: 2 * 1024 * 1024,
+        });
+      }
       if (b.acao === "salvarVisita") {
         if (escolaId === "deposito-municipal")
           throw new Falha(
@@ -429,7 +484,7 @@ function criarHandler({ db, auth, b2, origens, clienteId }) {
         res.setHeader("Content-Type", d.mime);
         res.setHeader(
           "Content-Disposition",
-          `attachment; filename="documento.${d.mime === "application/pdf" ? "pdf" : d.mime === "image/png" ? "png" : "jpg"}"`,
+          `attachment; filename="documento.${d.mime === "application/pdf" ? "pdf" : d.mime === "image/png" ? "png" : d.mime === "image/webp" ? "webp" : "jpg"}"`,
         );
         return res.status(200).send(bytes);
       }
@@ -443,6 +498,11 @@ function criarHandler({ db, auth, b2, origens, clienteId }) {
             throw new Falha(
               403,
               "Apenas o autor ou a gestão podem organizar este arquivo.",
+            );
+          if (b.acao === "arquivar" && s.data().vinculo)
+            throw new Falha(
+              409,
+              "Comprovantes vinculados a registros oficiais devem ser preservados.",
             );
           const v =
             b.acao === "vincular" ? vinculo(b.vinculo) : s.data().vinculo;
@@ -476,6 +536,11 @@ function criarHandler({ db, auth, b2, origens, clienteId }) {
       }
       throw new Falha(400, "Ação desconhecida.");
     } catch (e) {
+      if (!(e instanceof Falha))
+        console.error("alimentacao.falha", {
+          tipo: e?.name,
+          codigo: e?.code || "interno",
+        });
       return res.status(e instanceof Falha ? e.status : 500).json({
         erro:
           e instanceof Falha
