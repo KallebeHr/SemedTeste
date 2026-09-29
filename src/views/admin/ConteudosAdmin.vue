@@ -36,7 +36,7 @@
         <button
           type="button"
           class="p-button"
-          :disabled="salvando"
+          :disabled="salvando || fotoOcupada"
           @click="editando = false"
         >
           Fechar editor
@@ -56,7 +56,12 @@
               aria-label="Destino"
               v-model="form.slug"
               required
-              :disabled="!!form.id"
+              :disabled="
+                !!form.id ||
+                fotoOcupada ||
+                fotoPendente ||
+                form.imagemUrl.includes('/api/publicacoes/imagem?')
+              "
             >
               <option value="">Selecione</option>
               <option v-for="p in PAGINAS" :key="p[0]" :value="p[0]">
@@ -71,7 +76,12 @@
               maxlength="80"
               pattern="[a-z0-9]+(-[a-z0-9]+)*"
               list="servicos-editar"
-              :disabled="!!form.id"
+              :disabled="
+                !!form.id ||
+                fotoOcupada ||
+                fotoPendente ||
+                form.imagemUrl.includes('/api/publicacoes/imagem?')
+              "
             />
             <datalist id="servicos-editar">
               <option v-for="s in SERVICOS" :key="s.id" :value="s.id">
@@ -226,12 +236,25 @@
           ></label
         >
         <details>
-          <summary>Imagem e destaque</summary>
+          <summary>Foto da publicação e destaque</summary>
+          <FotoPublicacao
+            :key="conteudoId"
+            v-model="form.imagemUrl"
+            :conteudo-id="conteudoId"
+            :tipo="tipo"
+            :alt="form.imagemAlt"
+            :disabled="
+              salvando || (['pagina', 'servico'].includes(tipo) && !form.slug)
+            "
+            @ocupado="fotoOcupada = $event"
+            @pendente="fotoPendente = $event"
+          />
           <div class="p-stack">
             <label class="p-field"
               >URL pública da imagem (HTTPS)<input
                 aria-label="URL pública da imagem (HTTPS)"
                 v-model="form.imagemUrl"
+                :disabled="fotoOcupada || fotoPendente"
                 type="url"
                 maxlength="2000" /></label
             ><label class="p-field"
@@ -316,6 +339,7 @@
   </section>
 </template>
 <script setup>
+import FotoPublicacao from "../../components/admin/FotoPublicacao.vue";
 import CardapioEditor from "../../components/cardapio/CardapioEditor.vue";
 import {
   novoCardapio,
@@ -355,6 +379,7 @@ const registros = useColecao(
   escolas = useColecao(() => collection(db, "escolasPublicas"));
 const inicial = () => ({
     tipo: tipo.value,
+    uploadId: crypto.randomUUID(),
     titulo: "",
     resumo: "",
     texto: "",
@@ -376,6 +401,15 @@ const inicial = () => ({
   }),
   form = reactive(inicial());
 const textoLegado = ref("");
+const fotoOcupada = ref(false),
+  fotoPendente = ref(false);
+const conteudoId = computed(
+  () =>
+    form.id ||
+    (["pagina", "servico"].includes(tipo.value)
+      ? tipo.value + "-" + form.slug
+      : form.uploadId),
+);
 const nomeEscola = computed(
   () => escolas.dados.value.find((e) => e.id === form.escolaId)?.nome || "",
 );
@@ -407,6 +441,8 @@ function reset(d) {
   });
   textoLegado.value = "";
   revisado.value = false;
+  fotoPendente.value = false;
+  fotoOcupada.value = false;
   erro.value = "";
   editando.value = true;
 }
@@ -417,7 +453,11 @@ function editar(c) {
   reset({ ...c });
 }
 async function salvar(publicar) {
-  if (salvando.value) return;
+  if (salvando.value || fotoOcupada.value) return;
+  if (fotoPendente.value) {
+    erro.value = "Envie ou remova a foto selecionada antes de salvar.";
+    return;
+  }
   if (publicar && !revisado.value) {
     erro.value = "Revise o conteúdo e marque a confirmação antes de publicar.";
     return;
@@ -426,6 +466,8 @@ async function salvar(publicar) {
   erro.value = "";
   mensagem.value = "";
   try {
+    if (!form.id && !["pagina", "servico"].includes(tipo.value))
+      form.id = form.uploadId;
     await salvarConteudo(form, publicar);
     editando.value = false;
     mensagem.value = publicar

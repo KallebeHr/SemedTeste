@@ -34,6 +34,7 @@
     "firebase-admin": "14.3.0",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.8",
+    "read-excel-file": "9.3.10",
     "sharp": "0.35.4",
     "tesseract.js": "7.0.0",
     "vue": "^3.4.0",
