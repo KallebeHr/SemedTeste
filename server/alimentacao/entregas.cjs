@@ -13,7 +13,6 @@ const {
   limite,
   GESTAO,
 } = require("./seguranca.cjs");
-const { cpfValido, nomeValido } = require("../../shared/protocolo-af.mjs");
 const DEPOSITO = "deposito-municipal";
 const MOTIVOS = [
   "quantidade diferente",
@@ -51,7 +50,8 @@ function saldo(a, delta) {
     true,
   );
 }
-function pessoa(d) {
+async function pessoa(d) {
+  const { cpfValido, nomeValido } = await import("../../shared/protocolo-af.mjs");
   const nome = texto(d?.nome, 160),
     cpf = String(d?.cpf || "").replace(/\D/g, "");
   if (!nomeValido(nome) || !cpfValido(cpf))
@@ -313,7 +313,7 @@ async function executarEntrega({ db, token, b, perfil }) {
       await conferir(tx, db, token, DEPOSITO);
       const itens = itensEnvio(b.itens),
         comprovantes = fotos(b.fotos),
-        responsavel = pessoa(b.responsavel),
+        responsavel = await pessoa(b.responsavel),
         observacao = texto(b.observacao);
       const hash = digest({ itens, comprovantes, responsavel, observacao });
       if (s.exists) {
@@ -411,7 +411,7 @@ async function executarEntrega({ db, token, b, perfil }) {
     }
     if (!s.exists) throw new Falha(404, "Entrega não encontrada.");
     if (b.acao === "receberEntrega") {
-      const responsavel = pessoa(b.responsavel),
+      const responsavel = await pessoa(b.responsavel),
         comprovantes = fotos(b.fotos),
         observacao = texto(b.observacao);
       if (!Array.isArray(b.itens) || b.itens.length !== antes.itens.length)

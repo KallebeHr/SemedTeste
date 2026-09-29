@@ -1,7 +1,6 @@
 const { createHash, randomUUID } = require("node:crypto");
 const { FieldValue } = require("firebase-admin/firestore");
 const sharp = require("sharp");
-const { validarVisita } = require("../../shared/protocolo-af.mjs");
 const {
   Falha,
   idValido,
@@ -204,6 +203,7 @@ function criarHandler({ db, auth, b2, origens, clienteId }) {
         const id = uuid(b.id);
         let dados;
         try {
+          const { validarVisita } = await import("../../shared/protocolo-af.mjs");
           dados = validarVisita(b.visita);
         } catch (e) {
           throw new Falha(400, e.message);
