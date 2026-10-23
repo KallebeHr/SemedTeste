@@ -8,6 +8,7 @@
     ><PortalFooter v-if="!administracao" />
     <SessaoSegura />
     <RecuperarPagina />
+    <AvisoPortalAtualizacao />
     <div v-if="offline" class="offline" role="status">
       Você está sem conexão. Operações só são concluídas após a confirmação do
       servidor.
@@ -22,6 +23,7 @@ import SubNavHeader from "./components/SubNavHeader.vue";
 import PortalFooter from "./components/portal/PortalFooter.vue";
 import SessaoSegura from './components/portal/SessaoSegura.vue';
 import RecuperarPagina from './components/portal/RecuperarPagina.vue';
+import AvisoPortalAtualizacao from './components/portal/AvisoPortalAtualizacao.vue';
 import { navegando } from './portal/navegacao';
 import { fornecerPortal } from "./composables/usePortal";
 import { aguardarAutenticacao } from "./composables/useAuth";
