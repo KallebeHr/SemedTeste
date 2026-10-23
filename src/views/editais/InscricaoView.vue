@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <main class="p-container p-page p-stack inscricao">
     <router-link class="voltar" :to="'/publicacao/' + id">
       <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
@@ -15,11 +16,17 @@
     </router-link>
 
     <header class="p-page-head cabecalho">
+=======
+  <main class="p-container p-page p-stack">
+    <router-link :to="'/publicacao/' + id">← Voltar ao edital</router-link>
+    <header class="p-page-head">
+>>>>>>> 7898e76e059a38dfdb68c32fc0108a24b8e907e3
       <img
         class="brasao"
         :src="brasao"
         alt="Brasão da Prefeitura Municipal de Pedro II"
       />
+<<<<<<< HEAD
       <div class="cabecalho-texto">
         <p class="p-eyebrow">PREFEITURA MUNICIPAL DE PEDRO II · SEMED</p>
         <h1>{{ config?.nome || "Inscrição online" }}</h1>
@@ -110,6 +117,41 @@
         Baixar ficha e comprovante em PDF / imprimir
       </button>
       <p class="nota destaque-aviso">
+=======
+      <p class="p-eyebrow">PREFEITURA MUNICIPAL DE PEDRO II · SEMED</p>
+      <h1>{{ config?.nome || "Inscrição online" }}</h1>
+      <p v-if="config?.modelo === 'anexo-ii-2026'">
+        Anexo II — Ficha de inscrição da boa prática
+      </p>
+    </header>
+    <p v-if="carregando" role="status">Carregando edital…</p>
+    <p v-if="erro" class="p-alert error" role="alert">{{ erro }}</p>
+    <section v-if="resultado" class="p-card p-stack" aria-labelledby="sucesso">
+      <h2 id="sucesso" tabindex="-1" ref="sucesso">
+        Inscrição recebida com sucesso!
+      </h2>
+      <p>
+        <strong>{{ resultado.protocolo }}</strong>
+      </p>
+      <p>{{ config.nome }}</p>
+      <p>{{ resultado.dados.responsavel }} · {{ resultado.dados.titulo }}</p>
+      <p>{{ dataHora(resultado.criadoEm) }}</p>
+      <p>
+        Situação:
+        {{
+          resultado.status === "confirmada"
+            ? "Confirmada"
+            : "Recebida — aguardando conferência"
+        }}
+      </p>
+      <p>
+        O recebimento não representa confirmação ou homologação administrativa.
+      </p>
+      <button class="p-button primary" @click="pdf(resultado)">
+        Baixar ficha e comprovante em PDF / imprimir
+      </button>
+      <p>
+>>>>>>> 7898e76e059a38dfdb68c32fc0108a24b8e907e3
         Guarde o comprovante antes de encerrar esta sessão, especialmente em
         computador compartilhado.
       </p>
@@ -117,6 +159,7 @@
         Encerrar sessão / nova inscrição
       </button>
     </section>
+<<<<<<< HEAD
 
     <p v-else-if="aviso" role="status" class="p-alert alerta-aviso">
       {{ aviso }}
@@ -187,6 +230,26 @@
         </span>
       </p>
 
+=======
+    <p v-else-if="aviso" role="status" class="p-alert">{{ aviso }}</p>
+    <form v-else-if="config" @submit.prevent="avancar" class="p-card p-stack">
+      <p role="status">
+        Etapa {{ etapa }} de 4 —
+        {{
+          [
+            "Identificação da prática",
+            "Síntese da experiência",
+            "Declaração e ciência",
+            "Revisão e envio",
+          ][etapa - 1]
+        }}
+      </p>
+      <progress :value="etapa" max="4" aria-label="Progresso do formulário" />
+      <p>
+        Os dados permanecem nesta tela ao avançar ou voltar. Evite fechar ou
+        recarregar durante o preenchimento.
+      </p>
+>>>>>>> 7898e76e059a38dfdb68c32fc0108a24b8e907e3
       <fieldset :disabled="ocupado">
         <legend>
           {{
@@ -198,6 +261,7 @@
             ][etapa - 1]
           }}
         </legend>
+<<<<<<< HEAD
 
         <p class="intro-etapa">
           {{
@@ -210,11 +274,14 @@
           }}
         </p>
 
+=======
+>>>>>>> 7898e76e059a38dfdb68c32fc0108a24b8e907e3
         <div v-if="etapa < 4" class="p-stack">
           <template
             v-for="f in campos(config).filter((f) => f.etapa === etapa)"
             :key="f.id"
           >
+<<<<<<< HEAD
             <label class="p-field campo"
               ><span class="campo-rotulo"
                 >{{ f.label }}
@@ -223,6 +290,10 @@
                 >
                 <em v-else class="opcional">(opcional)</em></span
               >
+=======
+            <label class="p-field"
+              >{{ f.label }}{{ f.obrigatorio ? " *" : " (opcional)" }}
+>>>>>>> 7898e76e059a38dfdb68c32fc0108a24b8e907e3
               <select
                 v-if="f.id === 'categoria' && config.categorias.length"
                 v-model="dados[f.id]"
@@ -261,6 +332,7 @@
                         ? 'name'
                         : 'off'
                 "
+<<<<<<< HEAD
                 :placeholder="
                   f.id === 'email'
                     ? 'nome@exemplo.com'
@@ -270,11 +342,16 @@
                 "
               />
               <small v-if="etapa === 2" class="contador"
+=======
+              />
+              <small v-if="etapa === 2"
+>>>>>>> 7898e76e059a38dfdb68c32fc0108a24b8e907e3
                 >{{ dados[f.id]?.length || 0 }} / {{ f.max }} caracteres (limite
                 técnico por campo).</small
               >
             </label>
           </template>
+<<<<<<< HEAD
 
           <template v-if="etapa === 3">
             <div class="bloco-leitura">
@@ -305,6 +382,20 @@
               ></label
             >
             <details class="privacidade">
+=======
+          <template v-if="etapa === 3">
+            <p class="p-prose">{{ config.instrucoes }}</p>
+            <p>
+              Esta inscrição é feita somente com os dados preenchidos. Não é
+              necessário enviar arquivos.
+            </p>
+            <p class="p-prose">{{ declaracao }}</p>
+            <label class="p-check"
+              ><input type="checkbox" v-model="dados.aceite" required />Li e
+              aceito expressamente a declaração acima.</label
+            >
+            <details>
+>>>>>>> 7898e76e059a38dfdb68c32fc0108a24b8e907e3
               <summary>Privacidade dos dados</summary>
               <p class="p-prose">{{ config.privacidade }}</p>
               <p>
@@ -314,6 +405,7 @@
             </details>
           </template>
         </div>
+<<<<<<< HEAD
 
         <div v-else class="p-stack">
           <dl class="revisao">
@@ -337,14 +429,35 @@
           <p class="nota">A inscrição será recebida para conferência pelo Master.</p>
         </div>
 
+=======
+        <div v-else class="p-stack">
+          <dl>
+            <template v-for="f in campos(config)" :key="f.id"
+              ><dt>
+                <strong>{{ f.label }}</strong>
+              </dt>
+              <dd class="p-prose">
+                {{ dados[f.id] || "Não informado" }}
+              </dd></template
+            >
+          </dl>
+          <p class="p-prose">{{ declaracao }}</p>
+          <p>Aceite: {{ dados.aceite ? "Sim" : "Não" }}</p>
+          <p>A inscrição será recebida para conferência pelo Master.</p>
+        </div>
+>>>>>>> 7898e76e059a38dfdb68c32fc0108a24b8e907e3
         <label class="armadilha" aria-hidden="true"
           >Não preencha<input
             v-model="website"
             tabindex="-1"
             autocomplete="off"
         /></label>
+<<<<<<< HEAD
 
         <div class="p-actions acoes">
+=======
+        <div class="p-actions">
+>>>>>>> 7898e76e059a38dfdb68c32fc0108a24b8e907e3
           <button
             v-if="etapa > 1"
             type="button"
@@ -363,10 +476,14 @@
           </button>
         </div>
       </fieldset>
+<<<<<<< HEAD
       <p v-if="ocupado" role="status" class="carregando">
         <span class="spinner" aria-hidden="true"></span>
         Aguarde a confirmação do servidor…
       </p>
+=======
+      <p v-if="ocupado" role="status">Aguarde a confirmação do servidor…</p>
+>>>>>>> 7898e76e059a38dfdb68c32fc0108a24b8e907e3
     </form>
   </main>
 </template>
@@ -495,6 +612,7 @@ async function avancar() {
 }
 </script>
 <style scoped>
+<<<<<<< HEAD
 /* ───────── Tokens (usam as variáveis do projeto, com fallback) ───────── */
 .inscricao {
   --c-teal: var(--p-teal, #0f766e);
@@ -1076,6 +1194,31 @@ textarea {
 }
 
 /* ───────── Armadilha anti-robô (mantida) ───────── */
+=======
+.brasao {
+  width: 62px;
+  height: auto;
+  float: left;
+  margin: 0 1.2rem 1rem 0;
+}
+fieldset {
+  min-width: 0;
+  border: 1px solid var(--p-border);
+  padding: 1rem;
+  border-radius: 0.8rem;
+}
+progress {
+  width: 100%;
+  accent-color: var(--p-teal);
+}
+dd {
+  margin: 0 0 1rem;
+  overflow-wrap: anywhere;
+}
+textarea {
+  resize: vertical;
+}
+>>>>>>> 7898e76e059a38dfdb68c32fc0108a24b8e907e3
 .armadilha {
   position: absolute;
   left: -10000px;
@@ -1083,6 +1226,7 @@ textarea {
   height: 1px;
   overflow: hidden;
 }
+<<<<<<< HEAD
 
 /* ───────── Responsivo ───────── */
 @media (min-width: 640px) {
@@ -1144,3 +1288,14 @@ textarea {
   }
 }
 </style>
+=======
+.p-actions {
+  margin-top: 1rem;
+}
+input,
+textarea,
+select {
+  max-width: 100%;
+}
+</style>
+>>>>>>> 7898e76e059a38dfdb68c32fc0108a24b8e907e3
