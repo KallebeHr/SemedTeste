@@ -42,10 +42,18 @@
     </button>
     <form v-if="editalId" @submit.prevent="reiniciar" class="p-actions">
       <label class="p-field"
-        >Buscar nome, escola, título ou protocolo<input
+        >Pesquisar por<select v-model="campoBusca">
+          <option value="dados.responsavel">Responsável</option>
+          <option value="dados.escola">Escola</option>
+          <option value="dados.titulo">Título</option>
+          <option value="protocolo">Protocolo completo</option>
+        </select></label
+      >
+      <label class="p-field"
+        >Texto da busca<input
           v-model="busca"
-          maxlength="64"
-          placeholder="Uma palavra ou início dela" /></label
+          maxlength="96"
+          placeholder="Início do texto, respeitando maiúsculas" /></label
       ><label class="p-field"
         >Situação<select v-model="status">
           <option value="">Todas</option>
@@ -140,14 +148,6 @@
         Aceite: {{ dataHora(selecionada.aceiteEm) }}. Não substitui assinatura
         ou ciência formal.
       </p>
-      <ul>
-        <li v-for="a in selecionada.arquivos" :key="a.id">
-          {{ TIPOS_ANEXO[a.tipo] }}: {{ a.nome }}
-          <button class="p-button" :disabled="ocupado" @click="baixarAnexo(a)">
-            Baixar anexo privado
-          </button>
-        </li>
-      </ul>
       <p>Situação: {{ selecionada.status }}</p>
       <p v-if="selecionada.confirmadoEm">
         Confirmada em {{ dataHora(selecionada.confirmadoEm) }} por
@@ -172,8 +172,8 @@
 </template>
 <script setup>
 import { ref, onMounted, nextTick } from "vue";
-import { editaisApi, salvarBlob } from "../../services/editaisApi";
-import { campos, TIPOS_ANEXO } from "../../../shared/editais.mjs";
+import { editaisApi } from "../../services/editaisApi";
+import { campos } from "../../../shared/editais.mjs";
 const editalId = ref(""),
   editais = ref([]),
   cursorEditais = ref(null),
@@ -182,6 +182,7 @@ const editalId = ref(""),
   erro = ref(""),
   ocupado = ref(false),
   busca = ref(""),
+  campoBusca = ref("dados.responsavel"),
   status = ref(""),
   linhas = ref([]),
   selecionada = ref(null),
@@ -218,6 +219,7 @@ async function catalogo() {
 async function listar() {
   const r = await api("listar", {
     busca: busca.value.trim(),
+    campoBusca: campoBusca.value,
     status: status.value,
     cursor: cursor.value,
   });
@@ -247,27 +249,10 @@ async function abrir(id) {
     tituloFicha.value?.focus();
   });
 }
-async function baixarAnexo(a) {
-  await executar(async () =>
-    salvarBlob(
-      await editaisApi(
-        {
-          acao: "anexoMaster",
-          editalId: editalId.value,
-          id: selecionada.value.id,
-          arquivoId: a.id,
-        },
-        true,
-        true,
-      ),
-      a.nome,
-    ),
-  );
-}
 async function confirmar() {
   if (
     !window.confirm(
-      "Confirma que conferiu a ficha, os anexos e as ciências exigidas? Esta ação será registrada na auditoria.",
+      "Confirma que conferiu os dados da ficha? Esta ação será registrada na auditoria.",
     )
   )
     return;

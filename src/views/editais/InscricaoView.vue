@@ -39,6 +39,13 @@
       <button class="p-button primary" @click="pdf(resultado)">
         Baixar ficha e comprovante em PDF / imprimir
       </button>
+      <p>
+        Guarde o comprovante antes de encerrar esta sessão, especialmente em
+        computador compartilhado.
+      </p>
+      <button class="p-button" @click="encerrar" :disabled="ocupado">
+        Encerrar sessão / nova inscrição
+      </button>
     </section>
     <p v-else-if="aviso" role="status" class="p-alert">{{ aviso }}</p>
     <form v-else-if="config" @submit.prevent="avancar" class="p-card p-stack">
@@ -48,7 +55,7 @@
           [
             "Identificação da prática",
             "Síntese da experiência",
-            "Declarações, documentos e ciências",
+            "Declaração e ciência",
             "Revisão e envio",
           ][etapa - 1]
         }}
@@ -64,7 +71,7 @@
             [
               "Identificação",
               "Síntese da experiência",
-              "Declarações e documentos",
+              "Declaração",
               "Revisão",
             ][etapa - 1]
           }}
@@ -124,66 +131,9 @@
           <template v-if="etapa === 3">
             <p class="p-prose">{{ config.instrucoes }}</p>
             <p>
-              O preenchimento digital e o aceite não substituem assinaturas ou
-              ciências exigidas. Baixe a ficha, providencie as assinaturas
-              conforme o regulamento e anexe o documento quando necessário.
+              Esta inscrição é feita somente com os dados preenchidos. Não é
+              necessário enviar arquivos.
             </p>
-            <button
-              type="button"
-              class="p-button"
-              @click="pdf({ config, dados, arquivos }, { rascunho: true })"
-            >
-              Baixar ficha para assinatura
-            </button>
-            <p>
-              Documentos obrigatórios:
-              {{
-                config.obrigatorios.map((t) => TIPOS_ANEXO[t]).join("; ") ||
-                "Consulte o regulamento e as orientações acima."
-              }}
-            </p>
-            <label class="p-field"
-              >Tipo de documento<select v-model="tipo">
-                <option v-for="(nome, k) in TIPOS_ANEXO" :key="k" :value="k">
-                  {{ nome }}
-                </option>
-              </select></label
-            >
-            <label class="p-field"
-              >Adicionar PDF ou imagem<input
-                type="file"
-                accept=".pdf,.jpg,.jpeg,.png,.webp"
-                multiple
-                @change="selecionar"
-              /><small
-                >Até {{ config.maxArquivos }} arquivos de {{ config.maxMB }} MB
-                cada.</small
-              ></label
-            >
-            <ul>
-              <li v-for="a in arquivos" :key="a.id">
-                {{ TIPOS_ANEXO[a.tipo] }} — {{ a.nome }} · Envio confirmado
-              </li>
-            </ul>
-            <ul>
-              <li v-for="a in pendentes" :key="a.id">
-                {{ a.file.name }} — {{ a.erro || "Aguardando envio" }}
-                <button
-                  type="button"
-                  class="p-button"
-                  @click="enviarArquivo(a)"
-                >
-                  Enviar / tentar novamente</button
-                ><button
-                  v-if="!a.tentado"
-                  type="button"
-                  class="p-button"
-                  @click="pendentes = pendentes.filter((p) => p.id !== a.id)"
-                >
-                  Remover seleção
-                </button>
-              </li>
-            </ul>
             <p class="p-prose">{{ declaracao }}</p>
             <label class="p-check"
               ><input type="checkbox" v-model="dados.aceite" required />Li e
@@ -193,8 +143,8 @@
               <summary>Privacidade dos dados</summary>
               <p class="p-prose">{{ config.privacidade }}</p>
               <p>
-                Os anexos não são públicos. O acesso é restrito ao Master e à
-                sessão que iniciou esta inscrição.
+                Os dados não são públicos. O acesso é restrito ao Master e à
+                sessão que enviou esta inscrição.
               </p>
             </details>
           </template>
@@ -210,12 +160,6 @@
               </dd></template
             >
           </dl>
-          <h2>Anexos</h2>
-          <ul>
-            <li v-for="a in arquivos" :key="a.id">
-              {{ TIPOS_ANEXO[a.tipo] }} — {{ a.nome }}
-            </li>
-          </ul>
           <p class="p-prose">{{ declaracao }}</p>
           <p>Aceite: {{ dados.aceite ? "Sim" : "Não" }}</p>
           <p>A inscrição será recebida para conferência pelo Master.</p>
@@ -234,7 +178,7 @@
             @click="etapa--"
           >
             Voltar e corrigir</button
-          ><button class="p-button primary" :disabled="pendentes.length > 0">
+          ><button class="p-button primary">
             {{
               ocupado
                 ? "Processando…"
@@ -255,14 +199,13 @@ import { useRoute } from "vue-router";
 import { useSaidaSegura } from "../../composables/useSaidaSegura";
 import {
   lerEdital,
-  editaisApi,
-  arquivoBase64,
+  enviarInscricao,
+  encerrarSessaoInscricao,
 } from "../../services/editaisApi";
 import {
   campos,
   validarFicha,
   DECLARACAO,
-  TIPOS_ANEXO,
   abertura,
 } from "../../../shared/editais.mjs";
 import brasao from "../../components/editais/brasao.mjs";
@@ -274,15 +217,10 @@ const id = useRoute().params.id,
   etapa = ref(1),
   ocupado = ref(false),
   resultado = ref(null),
-  arquivos = ref([]),
-  pendentes = ref([]),
-  tipo = ref("relato"),
   website = ref(""),
   sucesso = ref(null),
   dados = reactive({ aceite: false });
-let identificacao = null,
-  iniciado = false,
-  offset = 0;
+let offset = 0;
 const declaracao = computed(() =>
   config.value?.modelo === "anexo-ii-2026"
     ? DECLARACAO
@@ -296,23 +234,26 @@ useSaidaSegura(
         Object.values(dados).some((v) => typeof v === "string" && v.length)),
   ),
 );
-function chave() {
-  if (!identificacao)
-    identificacao = {
-      id: crypto.randomUUID(),
-      chave: Array.from(crypto.getRandomValues(new Uint8Array(32)), (b) =>
-        b.toString(16).padStart(2, "0"),
-      ).join(""),
-    };
-  return identificacao;
-}
-async function chamada(acao, extra = {}) {
-  return editaisApi({ acao, editalId: id, ...chave(), ...extra });
-}
-async function iniciar() {
-  if (!iniciado) {
-    await chamada("iniciar", { website: website.value });
-    iniciado = true;
+async function encerrar() {
+  if (
+    !window.confirm(
+      "Já guardou o comprovante? Esta ação encerra o acesso desta sessão à inscrição e permite iniciar outra.",
+    )
+  )
+    return;
+  ocupado.value = true;
+  try {
+    await encerrarSessaoInscricao();
+    resultado.value = null;
+    for (const key of Object.keys(dados)) delete dados[key];
+    dados.aceite = false;
+    for (const f of campos(config.value)) dados[f.id] = "";
+    etapa.value = 1;
+    erro.value = "";
+  } catch (e) {
+    erro.value = e.message;
+  } finally {
+    ocupado.value = false;
   }
 }
 function dataHora(v) {
@@ -348,52 +289,6 @@ const timer = setInterval(() => {
     aviso.value = abertura(config.value, Date.now() + offset);
 }, 1000);
 onUnmounted(() => clearInterval(timer));
-function selecionar(e) {
-  for (const file of e.target.files) {
-    if (
-      arquivos.value.length + pendentes.value.length >=
-      config.value.maxArquivos
-    ) {
-      erro.value = "Limite de arquivos atingido.";
-      break;
-    }
-    if (file.size > config.value.maxMB * 1024 * 1024) {
-      erro.value = file.name + " excede o limite.";
-      continue;
-    }
-    pendentes.value.push({
-      id: crypto.randomUUID(),
-      file,
-      tipo: tipo.value,
-      erro: "",
-      tentado: false,
-    });
-  }
-  e.target.value = "";
-}
-async function enviarArquivo(a) {
-  ocupado.value = true;
-  erro.value = "";
-  try {
-    await iniciar();
-    a.tentado = true;
-    const r = await chamada("upload", {
-      arquivoId: a.id,
-      tipo: a.tipo,
-      nome: a.file.name,
-      mime:
-        a.file.type || (/\.pdf$/i.test(a.file.name) ? "application/pdf" : ""),
-      base64: await arquivoBase64(a.file),
-    });
-    arquivos.value = r.arquivos;
-    pendentes.value = pendentes.value.filter((p) => p.id !== a.id);
-  } catch (e) {
-    a.erro = e.message;
-    erro.value = e.message;
-  } finally {
-    ocupado.value = false;
-  }
-}
 async function avancar() {
   erro.value = "";
   if (etapa.value < 3) {
@@ -401,19 +296,18 @@ async function avancar() {
     return;
   }
   try {
-    validarFicha(
-      dados,
-      config.value,
-      arquivos.value.map((a) => ({ ...a, estado: "pronto" })),
-    );
-    if (pendentes.value.length) throw Error("Conclua todos os anexos.");
+    validarFicha(dados, { ...config.value, obrigatorios: [] });
     if (etapa.value === 3) {
       etapa.value = 4;
       return;
     }
     ocupado.value = true;
-    await iniciar();
-    resultado.value = await chamada("enviar", { dados });
+    resultado.value = await enviarInscricao(
+      id,
+      dados,
+      config.value.versao,
+      website.value,
+    );
     await nextTick();
     sucesso.value?.focus();
   } catch (e) {

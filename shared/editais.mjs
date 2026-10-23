@@ -98,13 +98,13 @@ export function configuracao(d = {}) {
     throw Error("Documentos inválidos.");
   if (
     !Array.isArray(c.camposExtras) ||
-    c.camposExtras.length > 30 ||
+    c.camposExtras.length > 15 ||
     c.camposExtras.some(
       (v) => typeof v !== "string" || !v.trim() || v.length > 150,
     )
   )
     throw Error(
-      "Use até 30 campos adicionais com títulos de até 150 caracteres.",
+      "Use até 15 campos adicionais com títulos de até 150 caracteres.",
     );
   if (c.modelo === "personalizado" && !c.camposExtras.length)
     throw Error("Defina os campos do formulário personalizado.");
@@ -136,7 +136,7 @@ export function campos(c) {
           label,
           etapa: 2,
           obrigatorio: true,
-          max: 20000,
+          max: 2000,
         })),
       ]
     : CAMPOS;

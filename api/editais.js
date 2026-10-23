@@ -6,6 +6,14 @@ const { criarB2 } = require("../server/alimentacao/b2.cjs");
 const { criarHandlerEditais } = require("../server/editais/handler.cjs");
 let handler;
 module.exports = async (req, res) => {
+  if (!(
+    (req.method === "GET" && req.query?.acao === "pdf") ||
+    (req.method === "POST" && req.body?.acao === "pdf")
+  )) {
+    return res
+      .status(410)
+      .json({ erro: "As inscrições são enviadas diretamente pelo Firebase." });
+  }
   if (!handler) {
     try {
       const c = carregarCliente(process.env.SEDUC_CLIENTE),

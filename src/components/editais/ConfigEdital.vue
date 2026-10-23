@@ -26,7 +26,7 @@
             v-model="extras"
             rows="5"
           /><small
-            >Nome e e-mail já estão incluídos. Até 30 campos; títulos de até 150
+            >Nome e e-mail já estão incluídos. Até 15 campos; títulos de até 150
             caracteres.</small
           ></label
         >
@@ -52,7 +52,7 @@
         </div>
         <p>Datas opcionais. Use somente os prazos do regulamento completo.</p>
         <label class="p-field"
-          >Orientações sobre anexos, assinaturas e ciências<textarea
+          >Orientações para o preenchimento<textarea
             v-model="form.instrucoes"
             maxlength="5000"
             rows="4"
@@ -67,39 +67,6 @@
             >Informe finalidade, acesso aos dados, retenção e canal
             institucional para dúvidas.</small
           ></label
-        >
-        <fieldset>
-          <legend>Documentos obrigatórios, conforme regulamento</legend>
-          <label
-            v-for="(label, tipo) in TIPOS_ANEXO"
-            :key="tipo"
-            class="p-check"
-            ><input
-              type="checkbox"
-              :value="tipo"
-              v-model="form.obrigatorios"
-            />{{ label }}</label
-          >
-        </fieldset>
-        <div class="p-grid two">
-          <label class="p-field"
-            >Máximo de arquivos<input
-              type="number"
-              min="1"
-              max="20"
-              v-model.number="form.maxArquivos" /></label
-          ><label class="p-field"
-            >MB por arquivo<input
-              type="number"
-              min="0.1"
-              max="2"
-              step="0.1"
-              v-model.number="form.maxMB"
-          /></label>
-        </div>
-        <small
-          >Até 2 MB por arquivo por limite técnico do envio. PDF, JPEG, PNG e
-          WEBP.</small
         >
         <label class="p-check"
           ><input type="checkbox" v-model="form.validado" />Conferi as regras do
@@ -129,7 +96,7 @@
 </template>
 <script setup>
 import { ref, reactive, watch } from "vue";
-import { configuracao, TIPOS_ANEXO } from "../../../shared/editais.mjs";
+import { configuracao } from "../../../shared/editais.mjs";
 import { editaisApi, arquivoBase64 } from "../../services/editaisApi";
 const props = defineProps({ editalId: String, salvo: Boolean }),
   emit = defineEmits(["busy"]);
@@ -196,6 +163,7 @@ async function salvar() {
   await operar(async () => {
     const config = configuracao({
       ...form,
+      obrigatorios: [],
       categorias: categorias.value
         .split("\n")
         .map((s) => s.trim())
@@ -225,17 +193,25 @@ async function upload(e) {
   if (!f) return;
   await operar(async () => {
     if (f.size > 2 * 1024 * 1024) throw Error("PDF deve ter até 2 MB.");
-    await editaisApi(
-      {
-        acao: "pdf",
-        editalId: props.editalId,
-        versao: versao.value,
-        nome: f.name,
-        mime: "application/pdf",
-        base64: await arquivoBase64(f),
-      },
-      true,
-    );
+    try {
+      await editaisApi(
+        {
+          acao: "pdf",
+          editalId: props.editalId,
+          versao: versao.value,
+          nome: f.name,
+          mime: "application/pdf",
+          base64: await arquivoBase64(f),
+        },
+        true,
+      );
+    } catch (e) {
+      throw Error(
+        "PDF oficial não enviado: " +
+          e.message +
+          " As inscrições de texto usam o Firebase e não dependem deste upload.",
+      );
+    }
   });
   e.target.value = "";
 }

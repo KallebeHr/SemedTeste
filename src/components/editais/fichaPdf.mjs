@@ -1,12 +1,7 @@
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import brasao from "./brasao.mjs";
-import {
-  campos,
-  DECLARACAO,
-  SEMINARIO,
-  TIPOS_ANEXO,
-} from "../../../shared/editais.mjs";
+import { campos, DECLARACAO, SEMINARIO } from "../../../shared/editais.mjs";
 export function gerarFicha(registro, { rascunho = false } = {}) {
   const pdf = new jsPDF(),
     c = registro.config,
@@ -28,12 +23,6 @@ export function gerarFicha(registro, { rascunho = false } = {}) {
         }) +
         " (horário de Brasília). Não substitui assinatura ou ciência exigida."
       : "Ainda não registrado.",
-  ]);
-  body.push([
-    "Documentos anexos",
-    (registro.arquivos || [])
-      .map((a) => (TIPOS_ANEXO[a.tipo] || a.tipo) + ": " + a.nome)
-      .join("\n") || "Nenhum anexo enviado.",
   ]);
   if (anexo) {
     body.push(
