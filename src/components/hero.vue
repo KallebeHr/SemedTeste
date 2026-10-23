@@ -2,13 +2,13 @@
   <section class="hero-main">
     <div class="p-container hero-grid">
       <div>
-        <p class="hero-eyebrow">EDUCAÇÃO QUE CONECTA</p>
         <h1>
           {{
             configuracao.heroTitulo ||
-            "Informação e serviços para toda a nossa comunidade."
+            "Educação que conecta conhecimentos e transforma realidades."
           }}
         </h1>
+        <!-- <p class="hero-eyebrow">Informação e serviços para toda a nossa comunidade.</p> -->
         <p class="hero-text">
           {{
             configuracao.heroTexto ||
