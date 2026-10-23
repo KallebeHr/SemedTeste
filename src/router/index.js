@@ -4,6 +4,7 @@ import { destinoAdministrativo } from "../portal/permissoes";
 import { navegando, falhaNavegacao, registrarFalha } from '../portal/navegacao';
 const lista = () => import("../views/portal/ListaPublica.vue");
 const rotas = [
+  {path:"/inscricao/:id",component:()=>import("../views/editais/InscricaoView.vue"),meta:{titulo:"Inscrição online"}},
   {
     path: "/",
     component: () => import("../pages/index.vue"),
@@ -131,6 +132,7 @@ const rotas = [
     component: () => import("../views/admin/AdminLayout.vue"),
     meta: { requerAuth: true },
     children: [
+      {path:"inscricoes",component:()=>import("../views/admin/EditaisInscricoesAdmin.vue"),meta:{titulo:"Editais e Inscrições",permissao:"inscricoes"}},
       {path:'parametros',component:()=>import('../views/admin/ParametrosAdmin.vue'),meta:{titulo:'Parâmetros',permissao:'parametros'}},
       { path:'relatorios',component:()=>import('../views/admin/RelatoriosAdmin.vue'),meta:{titulo:'Indicadores e relatórios',permissao:'merenda'} },
       { path:'notificacoes',component:()=>import('../views/admin/NotificacoesView.vue'),meta:{titulo:'Notificações e pendências'} },
