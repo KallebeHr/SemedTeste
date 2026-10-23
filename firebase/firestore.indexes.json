@@ -565,6 +565,78 @@
           "order": "DESCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "inscricoes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "enviada",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "__name__",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "inscricoes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "enviada",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "busca",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "__name__",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "inscricoes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "enviada",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "__name__",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "inscricoes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "enviada",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "busca",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "__name__",
+          "order": "DESCENDING"
+        }
+      ]
     }
   ],
   "fieldOverrides": [
@@ -636,6 +708,31 @@
           "queryScope": "COLLECTION"
         }
       ]
+    },
+    {
+      "collectionGroup": "inscricoes",
+      "fieldPath": "dados",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "inscricoes",
+      "fieldPath": "config",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "inscricoes",
+      "fieldPath": "arquivos",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "inscricoes",
+      "fieldPath": "chaveHash",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "inscricoes",
+      "fieldPath": "dadosHash",
+      "indexes": []
     }
   ]
 }

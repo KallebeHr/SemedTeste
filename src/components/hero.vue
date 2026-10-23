@@ -66,7 +66,7 @@ import { computed } from "vue";
 import { usePortal } from "../composables/usePortal";
 const { configuracao, conteudos } = usePortal();
 const destaque = computed(() =>
-  conteudos.value.find((c) => c.tipo === "noticia" && c.destaque),
+  conteudos.value.find((c) => ["noticia", "edital"].includes(c.tipo) && c.destaque),
 );
 </script>
 <style scoped>

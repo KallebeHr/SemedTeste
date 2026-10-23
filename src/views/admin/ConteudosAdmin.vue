@@ -36,7 +36,7 @@
         <button
           type="button"
           class="p-button"
-          :disabled="salvando || fotoOcupada"
+          :disabled="salvando || fotoOcupada || editalOcupado"
           @click="editando = false"
         >
           Fechar editor
@@ -263,8 +263,7 @@
                 v-model="form.imagemAlt"
                 maxlength="200" /></label
             ><label class="p-check"
-              ><input v-model="form.destaque" type="checkbox" /> Destacar na
-              página inicial (notícias)</label
+              ><input v-model="form.destaque" type="checkbox" /> {{ tipo === 'edital' ? 'Destacar este edital no Hero da página inicial' : 'Destacar na página inicial (notícias)' }}</label
             ><label class="p-field"
               >Ordem de exibição<input
                 aria-label="Ordem de exibição"
@@ -275,6 +274,7 @@
             /></label>
           </div>
         </details>
+        <ConfigEdital v-if="tipo === 'edital' && pode('inscricoes')" :edital-id="conteudoId" :salvo="!!form.versao" @busy="editalOcupado = $event" />
         <details v-if="!form.gradeCardapio">
           <summary>Prévia do texto público</summary>
           <article class="p-card">
@@ -339,6 +339,7 @@
   </section>
 </template>
 <script setup>
+import ConfigEdital from "../../components/editais/ConfigEdital.vue";
 import FotoPublicacao from "../../components/admin/FotoPublicacao.vue";
 import CardapioEditor from "../../components/cardapio/CardapioEditor.vue";
 import {
@@ -401,6 +402,7 @@ const inicial = () => ({
   }),
   form = reactive(inicial());
 const textoLegado = ref("");
+const editalOcupado = ref(false);
 const fotoOcupada = ref(false),
   fotoPendente = ref(false);
 const conteudoId = computed(
@@ -453,7 +455,7 @@ function editar(c) {
   reset({ ...c });
 }
 async function salvar(publicar) {
-  if (salvando.value || fotoOcupada.value) return;
+  if (salvando.value || fotoOcupada.value || editalOcupado.value) return;
   if (fotoPendente.value) {
     erro.value = "Envie ou remova a foto selecionada antes de salvar.";
     return;

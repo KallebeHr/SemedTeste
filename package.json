@@ -23,7 +23,10 @@
     "backup:b2": "node --env-file-if-exists=.env.server scripts/backup-b2.cjs",
     "test:entregas": "node --test tests/alimentacao/entregas.test.cjs",
     "test:entregas:emulador": "firebase emulators:exec --only firestore --project demo-seduc \"node --test tests/alimentacao/entregas-emulador.test.cjs\"",
-    "test:entregas:interface": "node tests/alimentacao/interface.mjs"
+    "test:entregas:interface": "node tests/alimentacao/interface.mjs",
+    "api:editais": "node --env-file-if-exists=.env.server scripts/editais-local.cjs",
+    "test:editais": "node --test tests/editais/unidade.test.mjs",
+    "test:editais:emulador": "firebase emulators:exec --only firestore --project demo-seduc-editais \"node --test tests/editais/emulador.test.cjs\""
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1136.0",
@@ -34,6 +37,7 @@
     "firebase-admin": "14.3.0",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.8",
+    "pdf-lib": "1.17.1",
     "read-excel-file": "9.3.10",
     "sharp": "0.35.4",
     "tesseract.js": "7.0.0",

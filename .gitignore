@@ -30,3 +30,6 @@ backups-b2/
 .env.*
 !.env.example
 !.env.alimentacao.example
+
+.editais-emulador/
+*-debug.log
