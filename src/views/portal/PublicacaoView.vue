@@ -39,6 +39,7 @@
       />
       <div v-else class="p-card p-prose">{{ item.texto }}</div>
       <p v-if="erro" class="p-alert error" role="alert">{{ erro }}</p>
+      <BotoesEdital v-if="item.tipo === 'edital'" :edital-id="item.id" />
       <div class="p-actions">
         <a
           v-if="urlSegura(item.url)"
@@ -73,6 +74,7 @@
   </article>
 </template>
 <script setup>
+import BotoesEdital from "../../components/editais/BotoesEdital.vue";
 import CardapioFolha from "../../components/cardapio/CardapioFolha.vue";
 import { gradeValida } from "../../portal/cardapioMensal";
 

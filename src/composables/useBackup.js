@@ -18,6 +18,8 @@ const SUBCOLECOES = [
   "cardapios",
   "fornecedores",
   "documentos",
+  "entregas",
+  "entregaIdentificacoes",
   "visitasAF",
   "visitasAFIdentificacoes",
 ];

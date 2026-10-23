@@ -20,9 +20,11 @@ export async function alimentacaoApi(body, arquivo = false) {
   }
   if (!r.ok) {
     const d = await r.json().catch(() => ({}));
-    throw new Error(
+    const erro = new Error(
       d.erro || "Serviço indisponível. Confira a configuração do servidor.",
     );
+    erro.status = r.status;
+    throw erro;
   }
   return arquivo ? r.blob() : r.json();
 }

@@ -54,6 +54,7 @@ function criarB2(env, transporte) {
     if (!aclPrivada(acl)) throw new Error("O bucket B2 deve ser privado.");
   }
   return {
+    check: conferirPrivacidade,
     async put(key, buffer, mime) {
       await conferirPrivacidade();
       const r = await s3.send(

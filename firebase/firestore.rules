@@ -85,8 +85,8 @@ service cloud.firestore {
 
 
     function itemEstoqueValido(d) {
-      return d.keys().hasOnly(['nome','ativo','categoria','unidade','quantidadeAtual','quantidadeMinima','precoUnitario','validade','localArmazenamento','atualizadoEm','atualizadoPor','ultimaMovimentacaoId','_auditoria','_registradoEm']) &&
-        textoValido(d.get('categoria',''),100) && d.get('unidade','kg') in ['kg','l','un','cx','pct'] &&
+      return d.keys().hasOnly(['nome','ativo','categoria','unidade','quantidadeAtual','quantidadeMinima','precoUnitario','validade','localArmazenamento','lote','atualizadoEm','atualizadoPor','ultimaMovimentacaoId','_auditoria','_registradoEm']) &&
+        textoValido(d.get('lote',''),100) && textoValido(d.get('categoria',''),100) && d.get('unidade','kg') in ['kg','l','un','cx','pct'] &&
         (d.get('validade',null) == null || d.validade is timestamp) && textoValido(d.get('localArmazenamento',''),300) &&
         d.nome is string && d.nome.size()>0 && d.nome.size()<=160 && d.ativo is bool && (d.ativo == true || d.quantidadeAtual == 0) &&
         d.quantidadeAtual is number && d.quantidadeAtual>=0 && d.quantidadeAtual<=1000000000 &&
@@ -225,7 +225,7 @@ service cloud.firestore {
         allow update: if (gestaoEstoque(escolaId) && itemEstoqueValido(request.resource.data) &&
           (request.resource.data.get('unidade','kg') == resource.data.get('unidade','kg') || (resource.data.quantidadeAtual == 0 && resource.data.get('ultimaMovimentacaoId',null) == null)) &&
           ((request.resource.data.quantidadeAtual == resource.data.quantidadeAtual &&
-            request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nome','categoria','unidade','quantidadeMinima','precoUnitario','validade','localArmazenamento','atualizadoEm','atualizadoPor','ativo','_auditoria','_registradoEm'])) ||
+            request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nome','categoria','unidade','quantidadeMinima','precoUnitario','validade','localArmazenamento','lote','atualizadoEm','atualizadoPor','ativo','_auditoria','_registradoEm'])) ||
            (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['quantidadeAtual','ultimaMovimentacaoId','atualizadoEm','atualizadoPor','_auditoria','_registradoEm']) &&
             request.resource.data.ultimaMovimentacaoId is string &&
             !exists(/databases/$(database)/documents/escolas/$(escolaId)/movimentacoes/$(request.resource.data.ultimaMovimentacaoId)) &&
@@ -245,6 +245,8 @@ service cloud.firestore {
         allow update, delete: if false;
       }
       // Gravações destas coleções são feitas exclusivamente pela API autenticada.
+      match /entregas/{id} { allow read: if alimentos(escolaId); allow write: if false; }
+      match /entregaIdentificacoes/{id} { allow read: if alimentos(escolaId) && (gestao() || resource.data.criadoPor == request.auth.uid); allow write: if false; }
       match /documentos/{id} { allow read: if alimentos(escolaId); allow write: if false; }
       match /visitasAF/{id} { allow read: if alimentos(escolaId); allow write: if false; }
       match /visitasAFIdentificacoes/{id} { allow read: if alimentos(escolaId) && (gestao() || resource.data.criadoPor == request.auth.uid); allow write: if false; }
@@ -521,6 +523,93 @@ service cloud.firestore {
         allow delete: if false;
       }
     }
+
+    // Inscrições de texto: participante autenticado anonimamente; nenhuma leitura pública de fichas.
+    function editalPublicado(id) {
+      return exists(/databases/$(database)/documents/publicacoes/$(id)) &&
+        get(/databases/$(database)/documents/publicacoes/$(id)).data.tipo == 'edital';
+    }
+    function textoFicha(v, max) { return v is string && v.size() <= max && v.trim().size() > 0; }
+    function extrasValidos(d,n) {
+      return (n <= 0 || textoFicha(d.extra0,2000)) && (n <= 1 || textoFicha(d.extra1,2000)) && (n <= 2 || textoFicha(d.extra2,2000)) && (n <= 3 || textoFicha(d.extra3,2000)) && (n <= 4 || textoFicha(d.extra4,2000)) && (n <= 5 || textoFicha(d.extra5,2000)) && (n <= 6 || textoFicha(d.extra6,2000)) && (n <= 7 || textoFicha(d.extra7,2000)) && (n <= 8 || textoFicha(d.extra8,2000)) && (n <= 9 || textoFicha(d.extra9,2000)) && (n <= 10 || textoFicha(d.extra10,2000)) && (n <= 11 || textoFicha(d.extra11,2000)) && (n <= 12 || textoFicha(d.extra12,2000)) && (n <= 13 || textoFicha(d.extra13,2000)) && (n <= 14 || textoFicha(d.extra14,2000));
+    }
+    function dadosFicha(d,c) {
+      return d is map && d.aceite == true &&
+        textoFicha(d.responsavel,2000) && textoFicha(d.email,2000) &&
+        d.email.matches('^[^ @]+@[^ @]+[.][^ @]+$') &&
+        (c.modelo == 'anexo-ii-2026' ?
+          (d.keys().hasOnly(['escola','titulo','categoria','responsavel','funcao','telefone','email','coautores','periodo','diagnostico','acoes','resultados','aplicacao','premio','aceite']) &&
+           textoFicha(d.escola,2000) && textoFicha(d.titulo,2000) && textoFicha(d.categoria,2000) &&
+           textoFicha(d.funcao,2000) && textoFicha(d.telefone,2000) &&
+           d.telefone.matches('^[+() 0-9.-]{10,30}$') &&
+           d.coautores is string && d.coautores.size() <= 2000 &&
+           textoFicha(d.periodo,2000) && textoFicha(d.diagnostico,20000) &&
+           textoFicha(d.acoes,20000) && textoFicha(d.resultados,20000) &&
+           textoFicha(d.aplicacao,20000) && textoFicha(d.premio,2000) &&
+           (c.categorias.size() == 0 || d.categoria in c.categorias))
+          : (d.keys().hasOnly(["responsavel", "email", "aceite", "extra0", "extra1", "extra2", "extra3", "extra4", "extra5", "extra6", "extra7", "extra8", "extra9", "extra10", "extra11", "extra12", "extra13", "extra14", "extra15", "extra16", "extra17", "extra18", "extra19", "extra20", "extra21", "extra22", "extra23", "extra24", "extra25", "extra26", "extra27", "extra28", "extra29"]) &&
+             d.size() == c.camposExtras.size() + 3 && extrasValidos(d,c.camposExtras.size())));
+    }
+    function configTexto(d) {
+      return d.keys().hasOnly(['ativo','validado','modelo','nome','inicio','fim','categorias','obrigatorios','maxArquivos','maxMB','privacidade','instrucoes','camposExtras','modo','pdf','versao','inicioEm','fimEm','_auditoria','_registradoEm']) &&
+        d.modo == 'texto' && d.ativo is bool && d.validado is bool &&
+        d.modelo in ['anexo-ii-2026','personalizado'] && textoFicha(d.nome,5000) &&
+        d.privacidade is string && d.privacidade.size() <= 5000 &&
+        (!d.ativo || (d.validado && d.privacidade.trim().size() > 0)) &&
+        d.instrucoes is string && d.instrucoes.size() <= 5000 &&
+        d.categorias is list && d.categorias.size() <= 100 &&
+        d.camposExtras is list && d.camposExtras.size() <= 15 &&
+        (d.modelo != 'personalizado' || d.camposExtras.size() > 0) &&
+        d.obrigatorios == [] &&
+        d.inicio is string && d.fim is string &&
+        (d.inicioEm == null || d.inicioEm is timestamp) &&
+        (d.fimEm == null || d.fimEm is timestamp) &&
+        (d.inicioEm == null || d.fimEm == null || d.inicioEm < d.fimEm) &&
+        d.versao is int && d.versao > 0;
+    }
+    match /editaisConfiguracao/{id} {
+      allow get: if admin() || editalPublicado(id);
+      allow list: if admin();
+      allow create: if admin() && escritaLiberada() &&
+        get(/databases/$(database)/documents/conteudos/$(id)).data.tipo == 'edital' &&
+        configTexto(request.resource.data) && request.resource.data.pdf == null &&
+        request.resource.data.versao == 1 && auditarEscrita();
+      allow update: if admin() && escritaLiberada() && configTexto(request.resource.data) &&
+        request.resource.data.pdf == resource.data.get('pdf',null) &&
+        request.resource.data.versao == resource.data.versao + 1 && auditarEscrita();
+      allow delete: if false;
+    }
+    function novaFichaTexto(id,uid,d) {
+      let c = get(/databases/$(database)/documents/editaisConfiguracao/$(id)).data;
+      return logado() && request.auth.uid == uid && editalPublicado(id) && escritaLiberada() &&
+        c.get('modo','') == 'texto' && c.ativo && c.validado &&
+        (c.inicioEm == null || request.time >= c.inicioEm) &&
+        (c.fimEm == null || request.time < c.fimEm) &&
+        d.keys().hasOnly(['uid','editalId','protocolo','dados','config','versaoConfig','declaracao','status','criadoEm','aceiteEm']) &&
+        d.uid == uid && d.editalId == id &&
+        d.protocolo == 'SEMED-' + hashing.sha256(id+':'+uid).toHexString().lower() &&
+        d.status == 'recebida' && d.criadoEm == request.time && d.aceiteEm == request.time &&
+        d.versaoConfig == c.versao &&
+        d.config == {'modelo':c.modelo,'nome':c.nome,'camposExtras':c.camposExtras} &&
+        d.declaracao == (c.modelo == 'anexo-ii-2026' ? "Declaro que as informações são verdadeiras, que a prática foi efetivamente realizada e que conheço as regras do regulamento. Responsabilizo-me pela autoria e pela regularidade dos materiais apresentados, inclusive quanto à proteção da imagem e dos dados das crianças." : "Declaro que as informações prestadas são verdadeiras e que li o regulamento e o aviso de privacidade.") &&
+        dadosFicha(d.dados,c);
+    }
+    match /editaisRespostas/{editalId}/inscricoesTexto/{uid} {
+      allow get: if logado() && (request.auth.uid == uid || admin());
+      allow list: if admin();
+      allow create: if novaFichaTexto(editalId,uid,request.resource.data);
+      allow update: if admin() && escritaLiberada() && resource.data.status == 'recebida' &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','confirmadoPor','confirmadoEm','_auditoria','_registradoEm']) &&
+        request.resource.data.status == 'confirmada' &&
+        request.resource.data.confirmadoPor == request.auth.uid &&
+        request.resource.data.confirmadoEm == request.time && auditarEscrita();
+      allow delete: if false;
+    }
+    // Permite agregações e listagens globais somente ao Master.
+    match /{path=**}/inscricoesTexto/{uid} { allow list: if admin(); }
+    // Registros do fluxo anterior permanecem fechados ao cliente.
+    match /editaisInscricoes/{id}/{rest=**} { allow read, write: if false; }
+    match /limitesEditais/{id} { allow read, write: if false; }
     match /auditoriaPortal/{id} {
       allow read: if admin();
       allow create: if false;

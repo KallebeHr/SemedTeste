@@ -21,7 +21,7 @@ const handler = criarHandler({
   auth: getAuth(app),
   b2: process.env.B2_BUCKET ? criarB2(process.env) : null,
   clienteId: c.id,
-  origens: ["http://localhost:3000", "http://127.0.0.1:3000"],
+  origens: [...new Set(["http://localhost:3000", "http://127.0.0.1:3000", ...(process.env.SEDUC_LOCAL_ORIGINS || "").split(",").map(v => v.trim()).filter(Boolean)])],
 });
 http
   .createServer(async (req, res) => {

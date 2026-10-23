@@ -17,6 +17,23 @@
           </button>
         </div>
       </header>
+      <div class="acoes-principais-alimentacao">
+        <button
+          class="botao botao-primario"
+          :disabled="ocupado"
+          @click="abrirEntregas('recebida')"
+        >
+          Alimentação Recebida
+        </button>
+        <button
+          v-if="ehGestao"
+          class="botao botao-primario"
+          :disabled="ocupado"
+          @click="abrirEntregas('enviada')"
+        >
+          Alimentação Enviada
+        </button>
+      </div>
       <div class="barra-escolas">
         <fieldset :disabled="ocupado || carregandoEscolas" class="seletor">
           <EscolaSelector
@@ -68,7 +85,7 @@
           <p>
             {{
               ehDeposito(escolaId)
-                ? "Estoque central da Educação. As retiradas e os recebimentos nas escolas são registrados separadamente."
+                ? "Estoque central da Educação. Envie pela ação Alimentação Enviada e acompanhe a confirmação das escolas."
                 : "O saldo e o histórico desta unidade são independentes do depósito municipal."
             }}
           </p>
@@ -93,6 +110,16 @@
           <p v-if="carregandoEstoque" class="estado" role="status">
             Carregando estoque...
           </p>
+          <EntregasPainel
+            v-if="abaAtiva === 'entregas'"
+            :key="escolaId + modoEntrega + entregaKey"
+            :escola-id="escolaId"
+            :escolas="escolas"
+            :gestao="ehGestao"
+            :modo="modoEntrega"
+            @ocupado="ocupado = $event"
+            @entrada-local="trocarAba('movimentacao')"
+          />
           <DashboardGeral
             v-if="
               abaAtiva === 'dashboard' && !carregandoEstoque && !erroEstoque
@@ -287,6 +314,7 @@
 </template>
 <script setup>
 import "../styles/documentos-alimentacao.css";
+import EntregasPainel from "../components/alimentacao/EntregasPainel.vue";
 import VisitasAgricultura from "../components/visitas/VisitasAgricultura.vue";
 import DocumentosUnidade from "../components/documentos/DocumentosUnidade.vue";
 import CatalogoEstoque from "../components/estoque/CatalogoEstoque.vue";
@@ -321,6 +349,25 @@ const {
   parar: pararEscolas,
 } = useEscolas({ incluirDeposito: true });
 const escolaId = ref("");
+const modoEntrega = ref("historico"),
+  entregaKey = ref(0);
+function abrirEntregas(modo) {
+  if (ocupado.value || !confirmarAlteracoes()) return;
+  if (!escolaId.value)
+    escolaId.value =
+      escolas.value.find((e) =>
+        modo === "enviada" ? ehDeposito(e.id) : !ehDeposito(e.id),
+      )?.id ||
+      escolas.value[0]?.id ||
+      "";
+  if (!escolaId.value) {
+    erroAcao.value = "Cadastre ou selecione uma unidade primeiro.";
+    return;
+  }
+  modoEntrega.value = modo;
+  entregaKey.value++;
+  abaAtiva.value = "entregas";
+}
 const operacaoInicial = ref(null),
   formMovKey = ref(0),
   filtroItemHistorico = ref("");
@@ -330,6 +377,7 @@ function trocarEscola(id) {
 }
 function trocarAba(id) {
   if (id === abaAtiva.value || confirmarAlteracoes()) {
+    if (id === "entregas") modoEntrega.value = "historico";
     if (id === "movimentacao") {
       operacaoInicial.value = null;
       formMovKey.value++;
@@ -370,6 +418,7 @@ const escolaAtual = computed(
 const abas = computed(() => [
   { id: "dashboard", rotulo: "Painel geral" },
   { id: "estoque", rotulo: "Estoque" },
+  { id: "entregas", rotulo: "Entregas e recebimentos" },
   { id: "movimentacao", rotulo: "Entrada / Saída" },
   { id: "historico", rotulo: "Histórico" },
   { id: "vistoria", rotulo: "Vistorias" },
@@ -624,5 +673,19 @@ async function cadastrarEscola() {
   .dialogo {
     padding: 20px;
   }
+}
+</style>
+
+<style scoped>
+.acoes-principais-alimentacao {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.acoes-principais-alimentacao button {
+  min-height: 72px;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 </style>
