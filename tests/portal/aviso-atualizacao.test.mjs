@@ -19,7 +19,7 @@ const server = await createServer({
       },
       load(id) {
         if (id === "\0qa-portal")
-          return `import {ref} from 'vue';const conteudos=ref([]);window.__conteudos=conteudos;export function usePortal(){return {conteudos}}`;
+          return `import {ref} from 'vue';const conteudos=ref([]),dados=ref([]);window.__conteudos=conteudos;window.__configAviso=dados;export function usePortal(){return {conteudos,publicacoes:{dados}}}`;
       },
       configureServer(s) {
         s.middlewares.use(async (req, res, next) => {
@@ -69,6 +69,22 @@ try {
     );
   };
   await page.goto("http://127.0.0.1:4199/qa-aviso");
+  await page.waitForFunction(() => window.__configAviso);
+  await expect(modal).not.toBeVisible();
+  await page.evaluate(
+    () =>
+      (window.__configAviso.value = [
+        { id: "config-aviso-portal", avisoAtualizacaoAtivo: true },
+      ]),
+  );
+  await expect(modal).toBeVisible();
+  await page.evaluate(
+    () => (window.__configAviso.value[0].avisoAtualizacaoAtivo = false),
+  );
+  await expect(modal).not.toBeVisible();
+  await page.evaluate(
+    () => (window.__configAviso.value[0].avisoAtualizacaoAtivo = true),
+  );
   await expect(modal).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Fechar aviso de atualização do portal" }),
@@ -151,6 +167,12 @@ try {
     () => window.__router?.isReady && window.__conteudos,
   );
   await page.evaluate(() => window.__router.isReady());
+  await page.evaluate(
+    () =>
+      (window.__configAviso.value = [
+        { id: "config-aviso-portal", avisoAtualizacaoAtivo: true },
+      ]),
+  );
   await expect(modal).not.toBeVisible();
   await page.evaluate(
     () => (window.__conteudos.value = [{ id: "e1", tipo: "edital" }]),

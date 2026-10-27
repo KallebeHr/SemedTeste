@@ -35,11 +35,12 @@
           referrerpolicy="no-referrer" />
         <div>
           <span class="p-badge">{{ destaque.categoria || "Em destaque" }}</span>
-          <h2>{{ destaque.titulo }}</h2>
-          <p>{{ destaque.resumo }}</p>
+          <h2>{{ limitar(destaque.titulo, 100) }}</h2>
+          <p v-if="destaque.resumo || destaque.texto">
+            {{ limitar(destaque.resumo || destaque.texto, 180) }}
+          </p>
           <span class="hero-read"
-            >Ler publicação
-            <i class="mdi mdi-arrow-up-right" aria-hidden="true"
+            >Ver mais… <i class="mdi mdi-arrow-up-right" aria-hidden="true"
           /></span></div
       ></router-link>
       <div v-else class="hero-guide">
@@ -65,8 +66,22 @@
 import { computed } from "vue";
 import { usePortal } from "../composables/usePortal";
 const { configuracao, conteudos } = usePortal();
+function limitar(valor, maximo) {
+  const texto = String(valor || "")
+    .replace(/\s+/g, " ")
+    .trim();
+  const caracteres = Array.from(texto);
+  return caracteres.length > maximo
+    ? caracteres
+        .slice(0, maximo - 1)
+        .join("")
+        .trimEnd() + "…"
+    : texto;
+}
 const destaque = computed(() =>
-  conteudos.value.find((c) => ["noticia", "edital"].includes(c.tipo) && c.destaque),
+  conteudos.value.find(
+    (c) => ["noticia", "edital"].includes(c.tipo) && c.destaque,
+  ),
 );
 </script>
 <style scoped>
@@ -130,10 +145,20 @@ const destaque = computed(() =>
   padding: 1.5rem;
 }
 .hero-news h2 {
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   font-size: 1.5rem;
   margin: 0.8rem 0;
 }
 .hero-news p {
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   font-size: 0.9rem;
   color: var(--p-muted);
 }

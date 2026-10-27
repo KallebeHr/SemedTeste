@@ -7,6 +7,7 @@
         Conteúdos.
       </p>
     </header>
+    <ControleAvisoPortal />
     <EstadoConsulta :consulta="consulta" />
     <p v-if="mensagem" class="p-alert success" role="status">{{ mensagem }}</p>
     <p v-if="erro" class="p-alert error" role="alert">{{ erro }}</p>
@@ -61,6 +62,7 @@
   </section>
 </template>
 <script setup>
+import ControleAvisoPortal from "../../components/admin/ControleAvisoPortal.vue";
 import { transacaoConfirmada } from "../../portal/transacao";
 import { reactive, ref, watch } from "vue";
 import { doc, serverTimestamp } from "firebase/firestore";

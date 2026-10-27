@@ -93,6 +93,10 @@
     "api/cardapios.js": {
       "includeFiles": "{clientes/**,scripts/cliente.cjs,server/**,shared/**,src/portal/cardapioMensal.js}",
       "maxDuration": 60
+    },
+    "api/aviso-portal.js": {
+      "includeFiles": "{clientes/**,scripts/cliente.cjs,server/portal/**}",
+      "maxDuration": 30
     }
   }
 }

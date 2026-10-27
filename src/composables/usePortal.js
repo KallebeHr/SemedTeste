@@ -10,11 +10,13 @@ export function fornecerPortal() {
   const config = useColecao(() => doc(db, "portalPublico", "configuracao"));
   const configuracao = computed(() => config.dados.value[0] || {});
   const conteudos = computed(() =>
-    [...publicacoes.dados.value].sort(
-      (a, b) =>
-        a.ordem - b.ordem ||
-        String(b.dataInicio).localeCompare(String(a.dataInicio)),
-    ),
+    [...publicacoes.dados.value]
+      .filter((c) => c.id !== "config-aviso-portal")
+      .sort(
+        (a, b) =>
+          a.ordem - b.ordem ||
+          String(b.dataInicio).localeCompare(String(a.dataInicio)),
+      ),
   );
   const servicos = computed(() => {
     const publicados = conteudos.value.filter((c) => c.tipo === "servico");

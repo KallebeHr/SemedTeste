@@ -89,7 +89,13 @@ import { usePortal } from "../../composables/usePortal";
 
 const route = useRoute(),
   router = useRouter();
-const { conteudos } = usePortal();
+const { conteudos, publicacoes } = usePortal();
+// Ausência de configuração significa comunicado desligado, inclusive durante o carregamento.
+const ativo = computed(
+  () =>
+    publicacoes.dados.value.find((c) => c.id === "config-aviso-portal")
+      ?.avisoAtualizacaoAtivo === true,
+);
 const dialogo = ref(null),
   botaoFechar = ref(null);
 let montado = false,
@@ -98,6 +104,7 @@ let montado = false,
   avisadoNestaVisita = false,
   geracao = 0;
 const permitido = computed(() => {
+  if (!ativo.value) return false;
   // A rota precisa estar resolvida para evitar um aviso na abertura direta de um edital.
   if (
     !route.matched.length ||
@@ -149,6 +156,14 @@ async function sincronizar() {
   if (!dialogo.value.open) dialogo.value.showModal();
   botaoFechar.value?.focus({ preventScroll: true });
 }
+watch(
+  ativo,
+  () => {
+    avisadoNestaVisita = false;
+    sincronizar();
+  },
+  { flush: "post" },
+);
 // Uma exibição a cada entrada em uma seção. Alterar filtros ou rolar a página não reabre o aviso.
 watch([() => route.path, permitido], sincronizar, { flush: "post" });
 onMounted(async () => {
