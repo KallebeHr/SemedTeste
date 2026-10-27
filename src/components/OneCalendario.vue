@@ -4,6 +4,11 @@
       <p class="p-eyebrow">REDE MUNICIPAL</p>
       <h1>Calendário escolar</h1>
       <p>Consulte as datas e os eventos publicados pela Secretaria.</p>
+      <div class="p-actions">
+        <button type="button" class="p-button primary" @click="$emit('anual')">
+          Ver calendário anual <span aria-hidden="true">↗</span>
+        </button>
+      </div>
     </header>
     <div class="calendar-controls">
       <button class="p-button" aria-label="Mês anterior" @click="mudar(-1)">
@@ -39,11 +44,12 @@
           'day',
           { hoje: dia === dataHoje(), escolhido: selecionado === dia },
         ]"
+        :style="estiloDia(dia)"
         :aria-label="dataTexto(dia) + ', ' + noDia(dia).length + ' evento(s)'"
         :aria-pressed="selecionado === dia"
         @click="selecionado = selecionado === dia ? '' : dia"
       >
-        <span>{{ Number(dia.slice(-2)) }}</span
+        <strong>{{ Number(dia.slice(-2)) }}</strong
         ><span v-if="noDia(dia).length" class="day-count"
           >{{ noDia(dia).length }}
           <span class="desktop-only">evento(s)</span></span
@@ -61,8 +67,9 @@
       </button>
     </div>
     <div class="p-stack">
-      <router-link
-        v-for="e in agenda"
+      <component
+        :is="e.escolar ? 'article' : 'router-link'"
+        v-for="e in agendaVisivel"
         :key="e.id"
         :to="'/publicacao/' + e.id"
         class="p-card p-card-link"
@@ -74,16 +81,39 @@
         >
         <h3>{{ e.titulo }}</h3>
         <p>{{ e.resumo }}</p>
-        <p v-if="e.local">{{ e.local }}</p></router-link
+        <p v-if="e.local">{{ e.local }}</p></component
       >
     </div>
+    <button
+      v-if="agenda.length > 4"
+      class="p-button agenda-expandir"
+      @click="expandido = !expandido"
+    >
+      {{
+        expandido
+          ? "Recolher eventos"
+          : "Ver mais " + (agenda.length - 4) + " eventos deste período"
+      }}
+    </button>
     <p v-if="!agenda.length && !publicacoes.carregando.value" class="p-empty">
       Nenhum evento publicado para este período e filtro.
     </p>
     <div class="p-actions">
       <button class="p-button" :disabled="!eventosMes.length" @click="exportar">
         Baixar agenda do mês (.ics)</button
-      ><button class="p-button" @click="imprimir">Imprimir calendário</button>
+      ><button
+        class="p-button"
+        :disabled="!calendario || !mes.startsWith(String(calendario.ano))"
+        @click="$emit('pdf', mes)"
+      >
+        Baixar mês em PDF</button
+      ><button
+        class="p-button"
+        :disabled="!calendario || !mes.startsWith(String(calendario.ano))"
+        @click="$emit('imprimir', mes)"
+      >
+        Imprimir mês
+      </button>
     </div>
   </div>
 </template>
@@ -93,8 +123,15 @@ import { usePortal } from "../composables/usePortal";
 import { dataHoje, dataTexto, normalizarBusca } from "../portal/validacao";
 import { baixarTexto, calendarioIcs } from "../portal/downloads";
 import EstadoConsulta from "./portal/EstadoConsulta.vue";
+const props = defineProps({ calendario: { type: Object, default: null } });
+defineEmits(["anual", "pdf", "imprimir"]);
+const expandido = ref(false);
 const { conteudos, publicacoes } = usePortal(),
-  mes = ref(dataHoje().slice(0, 7)),
+  mes = ref(
+    props.calendario
+      ? String(props.calendario.ano) + dataHoje().slice(4, 7)
+      : dataHoje().slice(0, 7),
+  ),
   busca = ref(""),
   selecionado = ref("");
 const dataMes = computed(
@@ -124,7 +161,15 @@ const dataMes = computed(
     ),
   ),
   eventosMes = computed(() =>
-    conteudos.value
+    [
+      ...conteudos.value,
+      ...(props.calendario?.eventos || []).map((e) => ({
+        ...e,
+        tipo: "evento",
+        resumo: e.observacao,
+        escolar: true,
+      })),
+    ]
       .filter(
         (c) =>
           c.tipo === "evento" &&
@@ -156,9 +201,14 @@ function exportar() {
     "text/calendar;charset=utf-8",
   );
 }
-function imprimir() {
-  window.print();
+const agendaVisivel = computed(() =>
+  expandido.value ? agenda.value : agenda.value.slice(0, 4),
+);
+function estiloDia(data) {
+  const d = props.calendario?.dias.find((d) => d.data === data);
+  return d ? { "border-bottom": "4px solid " + d.cor } : {};
 }
+watch([mes, busca, selecionado], () => (expandido.value = false));
 watch(mes, () => (selecionado.value = ""));
 </script>
 <style scoped>
@@ -183,11 +233,15 @@ watch(mes, () => (selecionado.value = ""));
 }
 .weekday {
   background: var(--p-soft);
-  padding: 0.65rem;
+  padding: 0.65rem 0.1rem;
+  white-space: nowrap;
   text-align: center;
   font-size: 0.8rem;
 }
 .day {
+  border: 0;
+  background: var(--p-surface);
+  color: var(--p-ink);
   min-height: 80px;
   padding: 0.65rem;
   text-align: left;

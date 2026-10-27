@@ -30,3 +30,9 @@ A base 2026 incluída é fallback somente quando não é possível consultar uma
 node --test tests/calendario/modelo.test.mjs
 npm run build -- --cliente pedro-ii
 ```
+
+## Consulta mensal e PDFs
+
+A página pública abre o calendário mensal original, com navegação por mês, pesquisa e eventos do calendário escolar e das publicações. A agenda limita a exibição inicial a quatro itens e permite expandir. O botão **Ver calendário anual** abre os 12 meses. A lista completa de eventos fica recolhida.
+
+No anual, selecione **Ano inteiro** ou um mês e use **Baixar PDF** ou **Imprimir**. O PDF anual possui duas páginas A4 com seis meses por página, brasão e legenda. O mensal contém a grade e os eventos daquele mês, com continuação em outra página quando necessária. PDFs usam o calendário escolar integral, independentemente dos filtros visuais. Eventos adicionais das publicações continuam disponíveis na agenda e no arquivo ICS. A impressão abre o mesmo PDF numa nova aba, com solicitação de impressão quando suportada pelo navegador; o botão do visualizador permite imprimir manualmente.

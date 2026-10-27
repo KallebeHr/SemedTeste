@@ -93,7 +93,8 @@
         <small>Fonte: {{ e.fonte || calendario.fonte }}</small>
       </article>
     </section>
-    <section>
+    <details class="cal-lista-opcional">
+      <summary>Consultar lista de eventos ({{ eventos.length }})</summary>
       <h2>Eventos {{ busca || categoria ? "filtrados" : "" }}</h2>
       <p v-if="!eventos.length">Nenhum evento corresponde aos filtros.</p>
       <details v-for="e in eventos" :key="e.id" class="cal-evento">
@@ -107,7 +108,7 @@
         <p>{{ e.observacao }}</p>
         <small>{{ e.fonte }}</small>
       </details>
-    </section>
+    </details>
     <p v-if="calendario.totalDiasLetivos !== undefined" class="p-alert">
       Total oficial: {{ calendario.totalDiasLetivos }} dias letivos. Esse total
       é o informado no documento, não uma contagem automática das cores.
