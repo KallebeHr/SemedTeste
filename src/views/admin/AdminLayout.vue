@@ -70,6 +70,7 @@ const manutencao = useColecao(
   () => usuario.value?.uid,
 );
 const links = [
+  ["calendarios", "Calendários escolares", "calendarios"],
   ["inscricoes", "Editais e Inscrições", "inscricoes"],
   ['parametros','Parâmetros do sistema','parametros'],
   ['merenda', 'Indicadores e relatórios', 'relatorios'],

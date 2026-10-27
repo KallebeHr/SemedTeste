@@ -12,6 +12,7 @@ export function cargoAtual(papel) {
 }
 const permissoes = {
   master: [
+    "calendarios",
     "inscricoes",
     "conteudo",
     "configuracao",

@@ -61,7 +61,7 @@ const rotas = [
   },
   {
     path: "/calendario",
-    component: () => import("../components/OneCalendario.vue"),
+    component: () => import("../views/portal/CalendarioEscolarView.vue"),
     meta: { titulo: "Calendário escolar" },
   },
   {
@@ -132,6 +132,7 @@ const rotas = [
     component: () => import("../views/admin/AdminLayout.vue"),
     meta: { requerAuth: true },
     children: [
+      {path:"calendarios",component:()=>import("../views/admin/CalendariosAdmin.vue"),meta:{titulo:"Calendários escolares",permissao:"calendarios"}},
       {path:"inscricoes",component:()=>import("../views/admin/EditaisInscricoesAdmin.vue"),meta:{titulo:"Editais e Inscrições",permissao:"inscricoes"}},
       {path:'parametros',component:()=>import('../views/admin/ParametrosAdmin.vue'),meta:{titulo:'Parâmetros',permissao:'parametros'}},
       { path:'relatorios',component:()=>import('../views/admin/RelatoriosAdmin.vue'),meta:{titulo:'Indicadores e relatórios',permissao:'merenda'} },

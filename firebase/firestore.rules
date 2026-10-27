@@ -1,6 +1,25 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function calendarioValido(d, ano) {
+      return d.keys().hasOnly(['ano','dadosJson','versao','atualizadoEm','publicadoEm','_auditoria','_registradoEm']) &&
+        d.ano is int && d.ano >= 2000 && d.ano <= 2100 && ano == string(d.ano) &&
+        d.dadosJson is string && d.dadosJson.size() < 300000 &&
+        d.versao is int && d.versao > 0;
+    }
+    match /calendariosEscolares/{ano} {
+      allow read: if admin();
+      allow create, update: if admin() && escritaLiberada() && calendarioValido(request.resource.data,ano) &&
+        request.resource.data.atualizadoEm == request.time &&
+        request.resource.data.versao == (request.method == 'create' ? 1 : resource.data.versao + 1) && auditarEscrita();
+    }
+    match /calendariosPublicos/{ano} {
+      allow read: if true;
+      allow create, update: if admin() && escritaLiberada() && calendarioValido(request.resource.data,ano) &&
+        request.resource.data.publicadoEm == request.time &&
+        request.resource.data.dadosJson == get(/databases/$(database)/documents/calendariosEscolares/$(ano)).data.dadosJson &&
+        request.resource.data.versao == get(/databases/$(database)/documents/calendariosEscolares/$(ano)).data.versao && auditarEscrita();
+    }
     function logado() { return request.auth != null; }
     function perfil() { return get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data; }
     function sessaoEquipeValida() {

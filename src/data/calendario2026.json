@@ -1,0 +1,4138 @@
+{
+  "secretaria": "Secretaria Municipal de Educação - Pedro II / PI",
+  "ano": 2026,
+  "referenciaDocumento": "CALENDÁRIO - 05.01.2026.pdf",
+  "fonte": "Calendário Escolar SEMED Pedro II - 2026 (páginas 1 e 2)",
+  "diasLetivosPorMes": {
+    "01": 0,
+    "02": 14,
+    "03": 22,
+    "04": 20,
+    "05": 20,
+    "06": 20,
+    "07": 13,
+    "08": 20,
+    "09": 21,
+    "10": 18,
+    "11": 19,
+    "12": 15
+  },
+  "bimestres": [
+    {
+      "numero": 1,
+      "meses": [
+        2,
+        3,
+        4
+      ],
+      "diasLetivos": 56
+    },
+    {
+      "numero": 2,
+      "meses": [
+        5,
+        6,
+        7
+      ],
+      "diasLetivos": 53
+    },
+    {
+      "numero": 3,
+      "meses": [
+        8,
+        9
+      ],
+      "diasLetivos": 41
+    },
+    {
+      "numero": 4,
+      "meses": [
+        10,
+        11,
+        12
+      ],
+      "diasLetivos": 52
+    }
+  ],
+  "semestres": [
+    {
+      "numero": 1,
+      "diasLetivos": 109
+    },
+    {
+      "numero": 2,
+      "diasLetivos": 93
+    }
+  ],
+  "totalDiasLetivos": 202,
+  "categorias": {
+    "feriado": {
+      "rotulo": "Feriado",
+      "cor": "#FF0000"
+    },
+    "semana_pedagogica": {
+      "rotulo": "Semana Pedagógica",
+      "cor": "#FFFF00"
+    },
+    "aula_avaliacoes": {
+      "rotulo": "Aula e Avaliações",
+      "cor": "#66FFFF"
+    },
+    "aula_recuperacoes": {
+      "rotulo": "Aula e Recuperações",
+      "cor": "#B5F0D0",
+      "padrao": "listrado"
+    },
+    "aula_avaliacao_complementar": {
+      "rotulo": "Aula e Avaliação Complementar",
+      "cor": "#FF9900"
+    },
+    "ultimo_dia_letivo": {
+      "rotulo": "Último dia letivo",
+      "cor": "#FFFFFF",
+      "padrao": "borda_preta"
+    },
+    "sabado_reposicao": {
+      "rotulo": "Sábado de Reposição",
+      "cor": "#70AD47"
+    },
+    "ferias": {
+      "rotulo": "Férias",
+      "cor": "#DEBDFF"
+    }
+  },
+  "eventos": [
+    {
+      "id": "semed-pedroii-ferias-2026-01-01",
+      "ano": 2026,
+      "dataInicio": "2026-01-01",
+      "dataFim": "2026-01-31",
+      "titulo": "Férias escolares",
+      "tipo": "ferias",
+      "cor": "#DEBDFF",
+      "observacao": "Janeiro consta como FÉRIAS nas anotações do documento.",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-01-01",
+      "ano": 2026,
+      "dataInicio": "2026-01-01",
+      "dataFim": "2026-01-01",
+      "titulo": "Feriado em 1º de janeiro",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "Dia marcado em vermelho na página 1; as anotações de janeiro apenas indicam FÉRIAS.",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-semana_pedagogica-2026-02-02",
+      "ano": 2026,
+      "dataInicio": "2026-02-02",
+      "dataFim": "2026-02-04",
+      "titulo": "Semana Pedagógica",
+      "tipo": "semana_pedagogica",
+      "cor": "#FFFF00",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-02-16",
+      "ano": 2026,
+      "dataInicio": "2026-02-16",
+      "dataFim": "2026-02-18",
+      "titulo": "Carnaval",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_avaliacoes-2026-03-11",
+      "ano": 2026,
+      "dataInicio": "2026-03-11",
+      "dataFim": "2026-03-13",
+      "titulo": "Aula e Avaliações",
+      "tipo": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-sabado_reposicao-2026-03-28",
+      "ano": 2026,
+      "dataInicio": "2026-03-28",
+      "dataFim": "2026-03-28",
+      "titulo": "Sábado de Reposição",
+      "tipo": "sabado_reposicao",
+      "cor": "#70AD47",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-04-03",
+      "ano": 2026,
+      "dataInicio": "2026-04-03",
+      "dataFim": "2026-04-03",
+      "titulo": "Paixão de Cristo",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_avaliacoes-2026-04-15",
+      "ano": 2026,
+      "dataInicio": "2026-04-15",
+      "dataFim": "2026-04-17",
+      "titulo": "Aula e Avaliações",
+      "tipo": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-04-21",
+      "ano": 2026,
+      "dataInicio": "2026-04-21",
+      "dataFim": "2026-04-21",
+      "titulo": "Tiradentes",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-sabado_reposicao-2026-04-25",
+      "ano": 2026,
+      "dataInicio": "2026-04-25",
+      "dataFim": "2026-04-25",
+      "titulo": "Sábado de Reposição",
+      "tipo": "sabado_reposicao",
+      "cor": "#70AD47",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-05-01",
+      "ano": 2026,
+      "dataInicio": "2026-05-01",
+      "dataFim": "2026-05-01",
+      "titulo": "Dia do Trabalhador",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_avaliacoes-2026-05-25",
+      "ano": 2026,
+      "dataInicio": "2026-05-25",
+      "dataFim": "2026-05-27",
+      "titulo": "Aula e Avaliações",
+      "tipo": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-sabado_reposicao-2026-05-30",
+      "ano": 2026,
+      "dataInicio": "2026-05-30",
+      "dataFim": "2026-05-30",
+      "titulo": "Sábado de Reposição",
+      "tipo": "sabado_reposicao",
+      "cor": "#70AD47",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-06-04",
+      "ano": 2026,
+      "dataInicio": "2026-06-04",
+      "dataFim": "2026-06-04",
+      "titulo": "Corpus Christi",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-06-05",
+      "ano": 2026,
+      "dataInicio": "2026-06-05",
+      "dataFim": "2026-06-05",
+      "titulo": "Festival de Inverno",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-sabado_reposicao-2026-06-27",
+      "ano": 2026,
+      "dataInicio": "2026-06-27",
+      "dataFim": "2026-06-27",
+      "titulo": "Sábado de Reposição",
+      "tipo": "sabado_reposicao",
+      "cor": "#70AD47",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_avaliacoes-2026-07-01",
+      "ano": 2026,
+      "dataInicio": "2026-07-01",
+      "dataFim": "2026-07-03",
+      "titulo": "Aula e Avaliações",
+      "tipo": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_recuperacoes-2026-07-14",
+      "ano": 2026,
+      "dataInicio": "2026-07-14",
+      "dataFim": "2026-07-17",
+      "titulo": "Recuperação Semestral",
+      "tipo": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-ferias-2026-07-20",
+      "ano": 2026,
+      "dataInicio": "2026-07-20",
+      "dataFim": "2026-07-31",
+      "titulo": "Férias escolares",
+      "tipo": "ferias",
+      "cor": "#DEBDFF",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-08-11",
+      "ano": 2026,
+      "dataInicio": "2026-08-11",
+      "dataFim": "2026-08-11",
+      "titulo": "Aniversário de Pedro II",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_avaliacoes-2026-08-27",
+      "ano": 2026,
+      "dataInicio": "2026-08-27",
+      "dataFim": "2026-08-28",
+      "titulo": "Aula e Avaliações",
+      "tipo": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-sabado_reposicao-2026-08-29",
+      "ano": 2026,
+      "dataInicio": "2026-08-29",
+      "dataFim": "2026-08-29",
+      "titulo": "Sábado de Reposição",
+      "tipo": "sabado_reposicao",
+      "cor": "#70AD47",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_avaliacoes-2026-08-31",
+      "ano": 2026,
+      "dataInicio": "2026-08-31",
+      "dataFim": "2026-08-31",
+      "titulo": "Aula e Avaliações",
+      "tipo": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-09-07",
+      "ano": 2026,
+      "dataInicio": "2026-09-07",
+      "dataFim": "2026-09-07",
+      "titulo": "Independência do Brasil",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-sabado_reposicao-2026-09-26",
+      "ano": 2026,
+      "dataInicio": "2026-09-26",
+      "dataFim": "2026-09-26",
+      "titulo": "Sábado de Reposição",
+      "tipo": "sabado_reposicao",
+      "cor": "#70AD47",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_avaliacoes-2026-09-28",
+      "ano": 2026,
+      "dataInicio": "2026-09-28",
+      "dataFim": "2026-09-30",
+      "titulo": "Aula e Avaliações",
+      "tipo": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-10-12",
+      "ano": 2026,
+      "dataInicio": "2026-10-12",
+      "dataFim": "2026-10-12",
+      "titulo": "Nossa Senhora Aparecida",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-10-15",
+      "ano": 2026,
+      "dataInicio": "2026-10-15",
+      "dataFim": "2026-10-15",
+      "titulo": "Dia do Professor",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-10-19",
+      "ano": 2026,
+      "dataInicio": "2026-10-19",
+      "dataFim": "2026-10-19",
+      "titulo": "Aniversário do Piauí",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-10-28",
+      "ano": 2026,
+      "dataInicio": "2026-10-28",
+      "dataFim": "2026-10-28",
+      "titulo": "Dia do Servidor Público",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-sabado_reposicao-2026-10-31",
+      "ano": 2026,
+      "dataInicio": "2026-10-31",
+      "dataFim": "2026-10-31",
+      "titulo": "Sábado de Reposição",
+      "tipo": "sabado_reposicao",
+      "cor": "#70AD47",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-11-02",
+      "ano": 2026,
+      "dataInicio": "2026-11-02",
+      "dataFim": "2026-11-02",
+      "titulo": "Finados",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_avaliacoes-2026-11-03",
+      "ano": 2026,
+      "dataInicio": "2026-11-03",
+      "dataFim": "2026-11-05",
+      "titulo": "Aula e Avaliações",
+      "tipo": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-11-15",
+      "ano": 2026,
+      "dataInicio": "2026-11-15",
+      "dataFim": "2026-11-15",
+      "titulo": "Proclamação da República",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-11-20",
+      "ano": 2026,
+      "dataInicio": "2026-11-20",
+      "dataFim": "2026-11-20",
+      "titulo": "Dia da Consciência Negra",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-sabado_reposicao-2026-11-21",
+      "ano": 2026,
+      "dataInicio": "2026-11-21",
+      "dataFim": "2026-11-21",
+      "titulo": "Sábado de Reposição",
+      "tipo": "sabado_reposicao",
+      "cor": "#70AD47",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-11-28",
+      "ano": 2026,
+      "dataInicio": "2026-11-28",
+      "dataFim": "2026-11-28",
+      "titulo": "Início dos Festejos",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_avaliacoes-2026-12-01",
+      "ano": 2026,
+      "dataInicio": "2026-12-01",
+      "dataFim": "2026-12-03",
+      "titulo": "Aula e Avaliações",
+      "tipo": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-feriado-2026-12-08",
+      "ano": 2026,
+      "dataInicio": "2026-12-08",
+      "dataFim": "2026-12-08",
+      "titulo": "Nossa Senhora da Conceição",
+      "tipo": "feriado",
+      "cor": "#FF0000",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_recuperacoes-2026-12-09",
+      "ano": 2026,
+      "dataInicio": "2026-12-09",
+      "dataFim": "2026-12-11",
+      "titulo": "Recuperação Semestral",
+      "tipo": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_recuperacoes-2026-12-14",
+      "ano": 2026,
+      "dataInicio": "2026-12-14",
+      "dataFim": "2026-12-17",
+      "titulo": "Recuperação Semestral",
+      "tipo": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_avaliacao_complementar-2026-12-18",
+      "ano": 2026,
+      "dataInicio": "2026-12-18",
+      "dataFim": "2026-12-18",
+      "titulo": "Aula e Avaliação Complementar",
+      "tipo": "aula_avaliacao_complementar",
+      "cor": "#FF9900",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-aula_avaliacao_complementar-2026-12-21",
+      "ano": 2026,
+      "dataInicio": "2026-12-21",
+      "dataFim": "2026-12-21",
+      "titulo": "Aula e Avaliação Complementar",
+      "tipo": "aula_avaliacao_complementar",
+      "cor": "#FF9900",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-ultimo_dia_letivo-2026-12-22",
+      "ano": 2026,
+      "dataInicio": "2026-12-22",
+      "dataFim": "2026-12-22",
+      "titulo": "Último dia letivo",
+      "tipo": "ultimo_dia_letivo",
+      "cor": "#FFFFFF",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    },
+    {
+      "id": "semed-pedroii-ferias-2026-12-23",
+      "ano": 2026,
+      "dataInicio": "2026-12-23",
+      "dataFim": "2026-12-31",
+      "titulo": "Férias escolares",
+      "tipo": "ferias",
+      "cor": "#DEBDFF",
+      "observacao": "",
+      "fonte": "Calendário Escolar SEMED Pedro II 2026, página 2"
+    }
+  ],
+  "observacoesImportacao": [
+    "Os totais de dias letivos são os números publicados no PDF, e não foram recalculados.",
+    "Eventos incluem períodos de múltiplos dias; o calendário do site deve expandir as datas inclusivamente na renderização.",
+    "Férias de janeiro e feriado de 1º de janeiro coexistem: usar prioridade de categorias para renderização.",
+    "A imagem do PDF usa cores de indisponível e dias letivos sem descrições individuais; estes estados não foram inferidos e não devem ser gerados automaticamente como registros oficiais.",
+    "Revisar a prévia com a equipe antes de publicar; manter o PDF original para auditoria.",
+    "O array dias registra a cor de cada célula do quadro da página 1, extraída diretamente do PDF; recuperações listradas e último dia com contorno foram completados pelas anotações da página 2.",
+    "As contagens de 202 dias letivos são as publicadas no documento, e podem divergir da contagem de todas as células coloridas (inclusive sábados de reposição)."
+  ],
+  "dias": [
+    {
+      "data": "2026-01-01",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 1,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01",
+        "semed-pedroii-feriado-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-02",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 2,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-03",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 3,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-04",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 4,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-05",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 5,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-06",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 6,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-07",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 7,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-08",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 8,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-09",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 9,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-10",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 10,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-11",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 11,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-12",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 12,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-13",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 13,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-14",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 14,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-15",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 15,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-16",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 16,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-17",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 17,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-18",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 18,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-19",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 19,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-20",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 20,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-21",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 21,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-22",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 22,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-23",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 23,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-24",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 24,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-25",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 25,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-26",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 26,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-27",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 27,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-28",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 28,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-29",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 29,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-30",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 30,
+      "tipoVisual": "indisponivel",
+      "cor": "#D9D9D9",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-01-31",
+      "ano": 2026,
+      "mes": 1,
+      "dia": 31,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-01-01"
+      ]
+    },
+    {
+      "data": "2026-02-01",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 1,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-02",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 2,
+      "tipoVisual": "semana_pedagogica",
+      "cor": "#FFFF00",
+      "eventoIds": [
+        "semed-pedroii-semana_pedagogica-2026-02-02"
+      ]
+    },
+    {
+      "data": "2026-02-03",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 3,
+      "tipoVisual": "semana_pedagogica",
+      "cor": "#FFFF00",
+      "eventoIds": [
+        "semed-pedroii-semana_pedagogica-2026-02-02"
+      ]
+    },
+    {
+      "data": "2026-02-04",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 4,
+      "tipoVisual": "semana_pedagogica",
+      "cor": "#FFFF00",
+      "eventoIds": [
+        "semed-pedroii-semana_pedagogica-2026-02-02"
+      ]
+    },
+    {
+      "data": "2026-02-05",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 5,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-06",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 6,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-07",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 7,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-08",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 8,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-09",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 9,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-10",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 10,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-11",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 11,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-12",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 12,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-13",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 13,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-14",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 14,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-15",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 15,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-16",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 16,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-02-16"
+      ]
+    },
+    {
+      "data": "2026-02-17",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 17,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-02-16"
+      ]
+    },
+    {
+      "data": "2026-02-18",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 18,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-02-16"
+      ]
+    },
+    {
+      "data": "2026-02-19",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 19,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-20",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 20,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-21",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 21,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-22",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 22,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-23",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 23,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-24",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 24,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-25",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 25,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-26",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 26,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-27",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 27,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-02-28",
+      "ano": 2026,
+      "mes": 2,
+      "dia": 28,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-01",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 1,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-02",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 2,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-03",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 3,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-04",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 4,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-05",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 5,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-06",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 6,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-07",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 7,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-08",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 8,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-09",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 9,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-10",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 10,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-11",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 11,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-03-11"
+      ]
+    },
+    {
+      "data": "2026-03-12",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 12,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-03-11"
+      ]
+    },
+    {
+      "data": "2026-03-13",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 13,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-03-11"
+      ]
+    },
+    {
+      "data": "2026-03-14",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 14,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-15",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 15,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-16",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 16,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-17",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 17,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-18",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 18,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-19",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 19,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-20",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 20,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-21",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 21,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-22",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 22,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-23",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 23,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-24",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 24,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-25",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 25,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-26",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 26,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-27",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 27,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-28",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 28,
+      "tipoVisual": "sabado_reposicao",
+      "cor": "#70AD47",
+      "eventoIds": [
+        "semed-pedroii-sabado_reposicao-2026-03-28"
+      ]
+    },
+    {
+      "data": "2026-03-29",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 29,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-30",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 30,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-03-31",
+      "ano": 2026,
+      "mes": 3,
+      "dia": 31,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-01",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 1,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-02",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 2,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-03",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 3,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-04-03"
+      ]
+    },
+    {
+      "data": "2026-04-04",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 4,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-05",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 5,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-06",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 6,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-07",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 7,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-08",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 8,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-09",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 9,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-10",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 10,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-11",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 11,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-12",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 12,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-13",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 13,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-14",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 14,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-15",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 15,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-04-15"
+      ]
+    },
+    {
+      "data": "2026-04-16",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 16,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-04-15"
+      ]
+    },
+    {
+      "data": "2026-04-17",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 17,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-04-15"
+      ]
+    },
+    {
+      "data": "2026-04-18",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 18,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-19",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 19,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-20",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 20,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-21",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 21,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-04-21"
+      ]
+    },
+    {
+      "data": "2026-04-22",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 22,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-23",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 23,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-24",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 24,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-25",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 25,
+      "tipoVisual": "sabado_reposicao",
+      "cor": "#70AD47",
+      "eventoIds": [
+        "semed-pedroii-sabado_reposicao-2026-04-25"
+      ]
+    },
+    {
+      "data": "2026-04-26",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 26,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-27",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 27,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-28",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 28,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-29",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 29,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-04-30",
+      "ano": 2026,
+      "mes": 4,
+      "dia": 30,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-01",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 1,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-05-01"
+      ]
+    },
+    {
+      "data": "2026-05-02",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 2,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-03",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 3,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-04",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 4,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-05",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 5,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-06",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 6,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-07",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 7,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-08",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 8,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-09",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 9,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-10",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 10,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-11",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 11,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-12",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 12,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-13",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 13,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-14",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 14,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-15",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 15,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-16",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 16,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-17",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 17,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-18",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 18,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-19",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 19,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-20",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 20,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-21",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 21,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-22",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 22,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-23",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 23,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-24",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 24,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-25",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 25,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-05-25"
+      ]
+    },
+    {
+      "data": "2026-05-26",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 26,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-05-25"
+      ]
+    },
+    {
+      "data": "2026-05-27",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 27,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-05-25"
+      ]
+    },
+    {
+      "data": "2026-05-28",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 28,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-29",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 29,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-05-30",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 30,
+      "tipoVisual": "sabado_reposicao",
+      "cor": "#70AD47",
+      "eventoIds": [
+        "semed-pedroii-sabado_reposicao-2026-05-30"
+      ]
+    },
+    {
+      "data": "2026-05-31",
+      "ano": 2026,
+      "mes": 5,
+      "dia": 31,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-01",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 1,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-02",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 2,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-03",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 3,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-04",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 4,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-06-04"
+      ]
+    },
+    {
+      "data": "2026-06-05",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 5,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-06-05"
+      ]
+    },
+    {
+      "data": "2026-06-06",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 6,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-07",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 7,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-08",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 8,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-09",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 9,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-10",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 10,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-11",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 11,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-12",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 12,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-13",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 13,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-14",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 14,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-15",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 15,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-16",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 16,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-17",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 17,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-18",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 18,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-19",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 19,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-20",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 20,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-21",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 21,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-22",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 22,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-23",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 23,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-24",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 24,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-25",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 25,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-26",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 26,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-27",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 27,
+      "tipoVisual": "sabado_reposicao",
+      "cor": "#70AD47",
+      "eventoIds": [
+        "semed-pedroii-sabado_reposicao-2026-06-27"
+      ]
+    },
+    {
+      "data": "2026-06-28",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 28,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-29",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 29,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-06-30",
+      "ano": 2026,
+      "mes": 6,
+      "dia": 30,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-07-01",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 1,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-07-01"
+      ]
+    },
+    {
+      "data": "2026-07-02",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 2,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-07-01"
+      ]
+    },
+    {
+      "data": "2026-07-03",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 3,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-07-01"
+      ]
+    },
+    {
+      "data": "2026-07-04",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 4,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-07-05",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 5,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-07-06",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 6,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-07-07",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 7,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-07-08",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 8,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-07-09",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 9,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-07-10",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 10,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-07-11",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 11,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-07-12",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 12,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-07-13",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 13,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-07-14",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 14,
+      "tipoVisual": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "eventoIds": [
+        "semed-pedroii-aula_recuperacoes-2026-07-14"
+      ]
+    },
+    {
+      "data": "2026-07-15",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 15,
+      "tipoVisual": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "eventoIds": [
+        "semed-pedroii-aula_recuperacoes-2026-07-14"
+      ]
+    },
+    {
+      "data": "2026-07-16",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 16,
+      "tipoVisual": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "eventoIds": [
+        "semed-pedroii-aula_recuperacoes-2026-07-14"
+      ]
+    },
+    {
+      "data": "2026-07-17",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 17,
+      "tipoVisual": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "eventoIds": [
+        "semed-pedroii-aula_recuperacoes-2026-07-14"
+      ]
+    },
+    {
+      "data": "2026-07-18",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 18,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-07-19",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 19,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-07-20",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 20,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-07-20"
+      ]
+    },
+    {
+      "data": "2026-07-21",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 21,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-07-20"
+      ]
+    },
+    {
+      "data": "2026-07-22",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 22,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-07-20"
+      ]
+    },
+    {
+      "data": "2026-07-23",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 23,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-07-20"
+      ]
+    },
+    {
+      "data": "2026-07-24",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 24,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-07-20"
+      ]
+    },
+    {
+      "data": "2026-07-25",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 25,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-07-20"
+      ]
+    },
+    {
+      "data": "2026-07-26",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 26,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-07-20"
+      ]
+    },
+    {
+      "data": "2026-07-27",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 27,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-07-20"
+      ]
+    },
+    {
+      "data": "2026-07-28",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 28,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-07-20"
+      ]
+    },
+    {
+      "data": "2026-07-29",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 29,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-07-20"
+      ]
+    },
+    {
+      "data": "2026-07-30",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 30,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-07-20"
+      ]
+    },
+    {
+      "data": "2026-07-31",
+      "ano": 2026,
+      "mes": 7,
+      "dia": 31,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-07-20"
+      ]
+    },
+    {
+      "data": "2026-08-01",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 1,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-02",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 2,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-03",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 3,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-04",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 4,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-05",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 5,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-06",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 6,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-07",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 7,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-08",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 8,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-09",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 9,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-10",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 10,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-11",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 11,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-08-11"
+      ]
+    },
+    {
+      "data": "2026-08-12",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 12,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-13",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 13,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-14",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 14,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-15",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 15,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-16",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 16,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-17",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 17,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-18",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 18,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-19",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 19,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-20",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 20,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-21",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 21,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-22",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 22,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-23",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 23,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-24",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 24,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-25",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 25,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-26",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 26,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-27",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 27,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-08-27"
+      ]
+    },
+    {
+      "data": "2026-08-28",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 28,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-08-27"
+      ]
+    },
+    {
+      "data": "2026-08-29",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 29,
+      "tipoVisual": "sabado_reposicao",
+      "cor": "#70AD47",
+      "eventoIds": [
+        "semed-pedroii-sabado_reposicao-2026-08-29"
+      ]
+    },
+    {
+      "data": "2026-08-30",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 30,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-08-31",
+      "ano": 2026,
+      "mes": 8,
+      "dia": 31,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-08-31"
+      ]
+    },
+    {
+      "data": "2026-09-01",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 1,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-02",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 2,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-03",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 3,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-04",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 4,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-05",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 5,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-06",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 6,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-07",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 7,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-09-07"
+      ]
+    },
+    {
+      "data": "2026-09-08",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 8,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-09",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 9,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-10",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 10,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-11",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 11,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-12",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 12,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-13",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 13,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-14",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 14,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-15",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 15,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-16",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 16,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-17",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 17,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-18",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 18,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-19",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 19,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-20",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 20,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-21",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 21,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-22",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 22,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-23",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 23,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-24",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 24,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-25",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 25,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-26",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 26,
+      "tipoVisual": "sabado_reposicao",
+      "cor": "#70AD47",
+      "eventoIds": [
+        "semed-pedroii-sabado_reposicao-2026-09-26"
+      ]
+    },
+    {
+      "data": "2026-09-27",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 27,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-09-28",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 28,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-09-28"
+      ]
+    },
+    {
+      "data": "2026-09-29",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 29,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-09-28"
+      ]
+    },
+    {
+      "data": "2026-09-30",
+      "ano": 2026,
+      "mes": 9,
+      "dia": 30,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-09-28"
+      ]
+    },
+    {
+      "data": "2026-10-01",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 1,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-02",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 2,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-03",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 3,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-04",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 4,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-05",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 5,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-06",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 6,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-07",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 7,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-08",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 8,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-09",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 9,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-10",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 10,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-11",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 11,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-12",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 12,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-10-12"
+      ]
+    },
+    {
+      "data": "2026-10-13",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 13,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-14",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 14,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-15",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 15,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-10-15"
+      ]
+    },
+    {
+      "data": "2026-10-16",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 16,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-17",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 17,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-18",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 18,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-19",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 19,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-10-19"
+      ]
+    },
+    {
+      "data": "2026-10-20",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 20,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-21",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 21,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-22",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 22,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-23",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 23,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-24",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 24,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-25",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 25,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-26",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 26,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-27",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 27,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-28",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 28,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-10-28"
+      ]
+    },
+    {
+      "data": "2026-10-29",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 29,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-30",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 30,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-10-31",
+      "ano": 2026,
+      "mes": 10,
+      "dia": 31,
+      "tipoVisual": "sabado_reposicao",
+      "cor": "#70AD47",
+      "eventoIds": [
+        "semed-pedroii-sabado_reposicao-2026-10-31"
+      ]
+    },
+    {
+      "data": "2026-11-01",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 1,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-02",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 2,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-11-02"
+      ]
+    },
+    {
+      "data": "2026-11-03",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 3,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-11-03"
+      ]
+    },
+    {
+      "data": "2026-11-04",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 4,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-11-03"
+      ]
+    },
+    {
+      "data": "2026-11-05",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 5,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-11-03"
+      ]
+    },
+    {
+      "data": "2026-11-06",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 6,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-07",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 7,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-08",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 8,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-09",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 9,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-10",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 10,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-11",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 11,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-12",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 12,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-13",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 13,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-14",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 14,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-15",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 15,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-11-15"
+      ]
+    },
+    {
+      "data": "2026-11-16",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 16,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-17",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 17,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-18",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 18,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-19",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 19,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-20",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 20,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-11-20"
+      ]
+    },
+    {
+      "data": "2026-11-21",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 21,
+      "tipoVisual": "sabado_reposicao",
+      "cor": "#70AD47",
+      "eventoIds": [
+        "semed-pedroii-sabado_reposicao-2026-11-21"
+      ]
+    },
+    {
+      "data": "2026-11-22",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 22,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-23",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 23,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-24",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 24,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-25",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 25,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-26",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 26,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-27",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 27,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-28",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 28,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-11-28"
+      ]
+    },
+    {
+      "data": "2026-11-29",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 29,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-11-30",
+      "ano": 2026,
+      "mes": 11,
+      "dia": 30,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-12-01",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 1,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-12-01"
+      ]
+    },
+    {
+      "data": "2026-12-02",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 2,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-12-01"
+      ]
+    },
+    {
+      "data": "2026-12-03",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 3,
+      "tipoVisual": "aula_avaliacoes",
+      "cor": "#66FFFF",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacoes-2026-12-01"
+      ]
+    },
+    {
+      "data": "2026-12-04",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 4,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-12-05",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 5,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-12-06",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 6,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-12-07",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 7,
+      "tipoVisual": "dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-12-08",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 8,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-feriado-2026-12-08"
+      ]
+    },
+    {
+      "data": "2026-12-09",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 9,
+      "tipoVisual": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "eventoIds": [
+        "semed-pedroii-aula_recuperacoes-2026-12-09"
+      ]
+    },
+    {
+      "data": "2026-12-10",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 10,
+      "tipoVisual": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "eventoIds": [
+        "semed-pedroii-aula_recuperacoes-2026-12-09"
+      ]
+    },
+    {
+      "data": "2026-12-11",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 11,
+      "tipoVisual": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "eventoIds": [
+        "semed-pedroii-aula_recuperacoes-2026-12-09"
+      ]
+    },
+    {
+      "data": "2026-12-12",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 12,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-12-13",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 13,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-12-14",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 14,
+      "tipoVisual": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "eventoIds": [
+        "semed-pedroii-aula_recuperacoes-2026-12-14"
+      ]
+    },
+    {
+      "data": "2026-12-15",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 15,
+      "tipoVisual": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "eventoIds": [
+        "semed-pedroii-aula_recuperacoes-2026-12-14"
+      ]
+    },
+    {
+      "data": "2026-12-16",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 16,
+      "tipoVisual": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "eventoIds": [
+        "semed-pedroii-aula_recuperacoes-2026-12-14"
+      ]
+    },
+    {
+      "data": "2026-12-17",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 17,
+      "tipoVisual": "aula_recuperacoes",
+      "cor": "#B5F0D0",
+      "eventoIds": [
+        "semed-pedroii-aula_recuperacoes-2026-12-14"
+      ]
+    },
+    {
+      "data": "2026-12-18",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 18,
+      "tipoVisual": "aula_avaliacao_complementar",
+      "cor": "#FF9900",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacao_complementar-2026-12-18"
+      ]
+    },
+    {
+      "data": "2026-12-19",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 19,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-12-20",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 20,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": []
+    },
+    {
+      "data": "2026-12-21",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 21,
+      "tipoVisual": "aula_avaliacao_complementar",
+      "cor": "#FF9900",
+      "eventoIds": [
+        "semed-pedroii-aula_avaliacao_complementar-2026-12-21"
+      ]
+    },
+    {
+      "data": "2026-12-22",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 22,
+      "tipoVisual": "ultimo_dia_letivo",
+      "cor": "#FFFFFF",
+      "eventoIds": [
+        "semed-pedroii-ultimo_dia_letivo-2026-12-22"
+      ]
+    },
+    {
+      "data": "2026-12-23",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 23,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-12-23"
+      ]
+    },
+    {
+      "data": "2026-12-24",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 24,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-12-23"
+      ]
+    },
+    {
+      "data": "2026-12-25",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 25,
+      "tipoVisual": "feriado",
+      "cor": "#FF0000",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-12-23"
+      ]
+    },
+    {
+      "data": "2026-12-26",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 26,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-12-23"
+      ]
+    },
+    {
+      "data": "2026-12-27",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 27,
+      "tipoVisual": "fim_de_semana",
+      "cor": "#FFF2CC",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-12-23"
+      ]
+    },
+    {
+      "data": "2026-12-28",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 28,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-12-23"
+      ]
+    },
+    {
+      "data": "2026-12-29",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 29,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-12-23"
+      ]
+    },
+    {
+      "data": "2026-12-30",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 30,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-12-23"
+      ]
+    },
+    {
+      "data": "2026-12-31",
+      "ano": 2026,
+      "mes": 12,
+      "dia": 31,
+      "tipoVisual": "ferias",
+      "cor": "#DEBDFF",
+      "eventoIds": [
+        "semed-pedroii-ferias-2026-12-23"
+      ]
+    }
+  ]
+}
