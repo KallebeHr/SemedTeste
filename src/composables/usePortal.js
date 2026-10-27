@@ -19,14 +19,16 @@ export function fornecerPortal() {
       ),
   );
   const servicos = computed(() => {
-    const publicados = conteudos.value.filter((c) => c.tipo === "servico");
+    const publicados = conteudos.value.filter(
+      (c) => c.tipo === "servico" && c.categoria !== "vida-escolar",
+    );
     const fixos = SERVICOS.map((s) => {
       const c = publicados.find((c) => c.slug === s.id);
       return c
         ? {
             ...s,
-            titulo: c.titulo,
-            resumo: c.resumo || s.resumo,
+            titulo: s.id === "boletim" ? s.titulo : c.titulo,
+            resumo: s.id === "boletim" ? s.resumo : c.resumo || s.resumo,
             texto: c.texto,
             url: c.url,
           }

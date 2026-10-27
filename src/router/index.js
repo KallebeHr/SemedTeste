@@ -95,7 +95,13 @@ const rotas = [
     meta: { titulo: "Atendimento" },
   },
   {
-    path: "/boletim",
+    path: "/vida-escolar",
+    alias: ["/boletim", "/servico/boletim"],
+    component: () => import("../views/portal/VidaEscolarView.vue"),
+    meta: { titulo: "Vida Escolar" },
+  },
+  {
+    path: "/vida-escolar/boletim",
     component: () => import("../views/portal/BoletimView.vue"),
     meta: { titulo: "Boletim escolar" },
   },
@@ -141,6 +147,11 @@ const rotas = [
         path: "",
         component: () => import("../views/admin/DashboardAdmin.vue"),
         meta: { titulo: "Administração" },
+      },
+      {
+        path: "vida-escolar",
+        component: () => import("../views/admin/VidaEscolarAdmin.vue"),
+        meta: { titulo: "Vida Escolar", permissao: "conteudo" },
       },
       {
         path: "conteudos",

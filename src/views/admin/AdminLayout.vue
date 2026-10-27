@@ -75,6 +75,7 @@ const links = [
   ['parametros','Parâmetros do sistema','parametros'],
   ['merenda', 'Indicadores e relatórios', 'relatorios'],
   ["conteudo", "Conteúdos e serviços", "conteudos"],
+  ["conteudo", "Vida Escolar", "vida-escolar"],
   ["configuracao", "Página inicial e contatos", "configuracao"],
   ["gerenciarEscolas", "Escolas da Rede Municipal", "escolas"],
   ["merenda", "Alimentação escolar", "merenda"],

@@ -25,9 +25,9 @@ export const SERVICOS = [
   },
   {
     id: "boletim",
-    titulo: "Boletim e notas",
-    resumo: "Consulta reservada às famílias e aos profissionais autorizados.",
-    caminho: "/boletim",
+    titulo: "Vida Escolar",
+    resumo: "Serviços, informações e recursos para acompanhar a vida escolar.",
+    caminho: "/vida-escolar",
     icone: "chart-line",
     grupo: "Alunos e famílias",
   },
