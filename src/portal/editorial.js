@@ -6,6 +6,19 @@ import { pode } from "./permissoes";
 import { conteudoPublico } from "./validacao";
 
 export async function salvarConteudo(form, publicar = false) {
+  if (form.tipo === "cardapio") {
+    const { cardapiosApi } = await import("../services/cardapiosApi");
+    const id = form.id || crypto.randomUUID();
+    form.id = id;
+    await cardapiosApi({
+      acao: "salvar",
+      id,
+      versao: form.versao,
+      form,
+      publicar,
+    });
+    return id;
+  }
   const u = useAuth().exigirUsuario();
   if (form.tipo === "cardapio" ? !pode(u, "nutricao") : !pode(u, "conteudo"))
     throw new Error("Você não pode editar este conteúdo.");
@@ -38,6 +51,14 @@ export async function salvarConteudo(form, publicar = false) {
   return referencia.id;
 }
 export async function retirarPublicacao(registro) {
+  if (registro.tipo === "cardapio") {
+    const { cardapiosApi } = await import("../services/cardapiosApi");
+    return cardapiosApi({
+      acao: "retirar",
+      id: registro.id,
+      versao: registro.versao,
+    });
+  }
   const u = useAuth().exigirUsuario();
   if (
     registro.tipo === "cardapio" ? !pode(u, "nutricao") : !pode(u, "conteudo")

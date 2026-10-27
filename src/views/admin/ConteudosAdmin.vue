@@ -11,7 +11,7 @@
           versão que já está no portal.
         </p>
       </div>
-      <button class="p-button primary" @click="novo">+ Novo conteúdo</button>
+      <button v-if="tipo !== 'cardapio'" class="p-button primary" @click="novo">+ Novo conteúdo</button>
     </header>
     <label class="p-field"
       >Tipo de conteúdo<select
@@ -26,8 +26,9 @@
     ><EstadoConsulta :consulta="registros" />
     <p v-if="mensagem" role="status" class="p-alert success">{{ mensagem }}</p>
     <p v-if="erro" role="alert" class="p-alert error">{{ erro }}</p>
+    <CardapiosAdmin v-if="tipo === 'cardapio'" />
     <form
-      v-if="editando"
+      v-else-if="editando"
       class="p-card p-stack"
       @submit.prevent="salvar(false)"
     >
@@ -339,6 +340,7 @@
   </section>
 </template>
 <script setup>
+import CardapiosAdmin from "./CardapiosAdmin.vue";
 import ConfigEdital from "../../components/editais/ConfigEdital.vue";
 import FotoPublicacao from "../../components/admin/FotoPublicacao.vue";
 import CardapioEditor from "../../components/cardapio/CardapioEditor.vue";

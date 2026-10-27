@@ -149,7 +149,7 @@ const rotas = [
       },
       {
         path: "cardapios",
-        component: () => import("../views/admin/ConteudosAdmin.vue"),
+        component: () => import("../views/admin/CardapiosAdmin.vue"),
         meta: { titulo: "Cardápios", permissao: "nutricao" },
       },
       {

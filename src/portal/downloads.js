@@ -10,6 +10,19 @@ export function baixarTexto(texto, nome, tipo = "text/plain;charset=utf-8") {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 export async function baixarPublicacao(p, escola = "") {
+  if (p.tipo === "cardapio" && p.arquivoId) {
+    const r = await fetch(
+      `/api/cardapios?acao=pdf&id=${encodeURIComponent(p.id)}&arquivo=${encodeURIComponent(p.arquivoId)}&baixar=1`,
+    );
+    if (!r.ok) throw Error("O PDF oficial não está disponível.");
+    const url = URL.createObjectURL(await r.blob()),
+      a = document.createElement("a");
+    a.href = url;
+    a.download = `cardapio-${p.numero}.pdf`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 30000);
+    return;
+  }
   if (p.tipo === "cardapio" && gradeValida(p.gradeCardapio, p.numero)) {
     const { baixarCardapioPdf } = await import("./cardapioPdf");
     return baixarCardapioPdf(p, escola);

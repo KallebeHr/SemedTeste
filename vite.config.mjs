@@ -42,7 +42,7 @@ export default defineConfig(({ command }) => {
       host: "0.0.0.0",
       allowedHosts: ["terminal.local"],
       port: 3000,
-      proxy: { "/api/editais": {target:"http://127.0.0.1:3002"}, "/api/alimentacao": {target:"http://127.0.0.1:3001"} },
+      proxy: { "/api/cardapios": {target:"http://127.0.0.1:3003"}, "/api/editais": {target:"http://127.0.0.1:3002"}, "/api/alimentacao": {target:"http://127.0.0.1:3001"} },
     },
   };
 });

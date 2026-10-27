@@ -27,7 +27,10 @@
     "api:editais": "node --env-file-if-exists=.env.server scripts/editais-local.cjs",
     "test:editais": "node --test tests/editais/unidade.test.mjs",
     "test:editais:emulador": "firebase emulators:exec --only firestore --project demo-seduc-editais \"node --test tests/editais/emulador.test.cjs\"",
-    "test:editais:direto": "firebase emulators:exec --only firestore --project demo-seduc-direto \"node --test tests/editais/firestore-direto.test.mjs\""
+    "test:editais:direto": "firebase emulators:exec --only firestore --project demo-seduc-direto \"node --test tests/editais/firestore-direto.test.mjs\"",
+    "api:cardapios": "node --env-file-if-exists=.env.server scripts/cardapios-local.cjs",
+    "test:cardapios": "node --test tests/cardapios/modelo.test.mjs tests/cardapio.test.cjs",
+    "test:cardapios:emulador": "firebase emulators:exec --only firestore --project demo-cardapios-pdf \"node --test tests/cardapios/servidor.test.cjs\""
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1136.0",

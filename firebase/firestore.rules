@@ -401,10 +401,14 @@ service cloud.firestore {
         (!('gradeCardapio' in d) || (d.tipo == 'cardapio' && gradeCardapioValida(d.gradeCardapio,d.numero))) &&
         (d.tipo != 'cardapio' || (d.escolaId != '' && d.numero.matches('^[0-9]{4}-[0-9]{2}$') && d.texto.size() > 0));
     }
-    function podeEditarTipo(tipo) { return tipo == 'cardapio' ? gestao() : editorial(); }
+    // Cardápios são escritos pela API autorizada: transação serializada evita conflitos entre escolas.
+    // Mantém leitura e IDs dos formatos anteriores. Admin SDK não usa estas permissões de cliente.
+    function podeEditarTipo(tipo) { return tipo != 'cardapio' && editorial(); }
     function mesmaPublicacao(p,d) {
       return p.diff(d).affectedKeys().hasOnly(['publicadoEm','atualizadoPor','atualizadoEm','versao','publicado','_auditoria','_registradoEm']);
     }
+    match /cardapiosArquivos/{id} { allow read, write: if false; }
+    match /cardapiosControle/{id} { allow read, write: if false; }
     match /conteudos/{id} {
       allow get: if editorial() || (gestao() && (!exists(/databases/$(database)/documents/conteudos/$(id)) || resource.data.tipo == 'cardapio'));
       allow list: if editorial() || (gestao() && resource.data.tipo == 'cardapio');

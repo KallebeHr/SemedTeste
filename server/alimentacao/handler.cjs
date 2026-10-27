@@ -44,7 +44,9 @@ async function destinoValido(tx, db, base, v) {
     r.exists &&
     (v.tipo !== "conteudos" ||
       (r.data().tipo === "cardapio" &&
-        r.data().escolaId === base.split("/")[1]))
+        (r.data().escolaIds || [r.data().escolaId]).includes(
+          base.split("/")[1],
+        )))
   );
 }
 async function arquivo(b) {
@@ -203,7 +205,8 @@ function criarHandler({ db, auth, b2, origens, clienteId }) {
         const id = uuid(b.id);
         let dados;
         try {
-          const { validarVisita } = await import("../../shared/protocolo-af.mjs");
+          const { validarVisita } =
+            await import("../../shared/protocolo-af.mjs");
           dados = validarVisita(b.visita);
         } catch (e) {
           throw new Falha(400, e.message);

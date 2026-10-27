@@ -765,6 +765,20 @@
           "order": "ASCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "auditoriaRegistros",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "caminho",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "DESCENDING"
+        }
+      ]
     }
   ],
   "fieldOverrides": [

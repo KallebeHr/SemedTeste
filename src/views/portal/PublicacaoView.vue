@@ -39,6 +39,22 @@
       />
       <div v-else class="p-card p-prose">{{ item.texto }}</div>
       <p v-if="erro" class="p-alert error" role="alert">{{ erro }}</p>
+      <p v-if="item.tipo === 'cardapio' && item.observacoes" class="p-prose">
+        {{ item.observacoes }}
+      </p>
+      <div
+        v-if="item.tipo === 'cardapio' && item.arquivoId"
+        class="p-card p-stack"
+      >
+        <h2>PDF oficial do cardápio</h2>
+        <iframe
+          :src="`/api/cardapios?acao=pdf&id=${item.id}&arquivo=${item.arquivoId}`"
+          title="PDF oficial do cardápio"
+          style="width: 100%; height: 65vh; border: 0"
+        /><router-link to="/merenda-escolar"
+          >Consultar por escola e mês</router-link
+        >
+      </div>
       <BotoesEdital v-if="item.tipo === 'edital'" :edital-id="item.id" />
       <div class="p-actions">
         <a
@@ -74,6 +90,7 @@
   </article>
 </template>
 <script setup>
+import { idsEscolas } from "../../../shared/cardapios.mjs";
 import BotoesEdital from "../../components/editais/BotoesEdital.vue";
 import CardapioFolha from "../../components/cardapio/CardapioFolha.vue";
 import { gradeValida } from "../../portal/cardapioMensal";
@@ -87,7 +104,16 @@ import { baixarPublicacao } from "../../portal/downloads";
 import EstadoConsulta from "../../components/portal/EstadoConsulta.vue";
 const route = useRoute(),
   { conteudos, publicacoes, escolas } = usePortal(),
-  item = computed(() => conteudos.value.find((c) => c.id === route.params.id)),
+  item = computed(() =>
+    conteudos.value.find(
+      (c) =>
+        c.id === route.params.id &&
+        (c.tipo !== "cardapio" ||
+          idsEscolas(c).some((id) =>
+            escolas.dados.value.some((e) => e.id === id && e.ativo !== false),
+          )),
+    ),
+  ),
   baixando = ref(false),
   erro = ref(""),
   mensagem = ref(""),

@@ -78,7 +78,7 @@ const links = [
   ["configuracao", "Página inicial e contatos", "configuracao"],
   ["gerenciarEscolas", "Escolas da Rede Municipal", "escolas"],
   ["merenda", "Alimentação escolar", "merenda"],
-  ["nutricao", "Cardápios mensais", "cardapios"],
+  ["nutricao", "Gerenciar cardápios", "cardapios"],
   ["nutricao", "Publicar vistorias", "vistorias"],
   ["atendimentos", "Solicitações", "solicitacoes"],
   ["alunos", "Alunos e vínculos", "alunos"],
@@ -89,7 +89,7 @@ const links = [
 ];
 const menu = computed(() =>
   links
-    .filter((n) => pode(n[0]) && !(n[2] === "cardapios" && pode("conteudo")))
+    .filter((n) => pode(n[0]))
     .map((n) => ({ nome: n[1], path: "/administracao/" + n[2] })),
 );
 async function sair() {
