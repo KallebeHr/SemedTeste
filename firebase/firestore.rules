@@ -232,10 +232,24 @@ service cloud.firestore {
         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['ultimoAcesso']) &&
         request.resource.data.ultimoAcesso == request.time)) && (auditarEscrita() || (request.auth.uid == uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['ultimoAcesso']) && escritaLiberada()));
     }
+    function quantiaEscola(n) { return n == null || (n is int && n >= 0 && n <= 100000); }
+    function cadastroEscolaValido(d) {
+      return d.get('arquivada',false) is bool && quantiaEscola(d.get('alunos', null)) && quantiaEscola(d.get('funcionarios', null)) &&
+        (!('totalPessoasEscola' in d) || d.totalPessoasEscola ==
+          (d.get('alunos',null) != null && d.get('funcionarios',null) != null ? d.alunos+d.funcionarios : null)) &&
+        (d.get('latitude',null) == null || (d.latitude is number && d.latitude >= -90 && d.latitude <= 90)) &&
+        (d.get('longitude',null) == null || (d.longitude is number && d.longitude >= -180 && d.longitude <= 180)) &&
+        (d.get('arquivada',false) == false || d.ativo == false);
+    }
+    function camposMasterEscola() {
+      let campos = ['alunos','funcionarios','totalPessoasEscola','responsavel','observacoes','latitude','longitude','inep','email','bairro','zona','etapas','turnos','endereco','contato','horario','sobre','arquivada','arquivadoEm'];
+      return admin() || (request.method == 'create' ? !request.resource.data.keys().hasAny(campos) :
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny(campos));
+    }
     match /escolas/{escolaId} {
       allow read: if acesso(escolaId);
       allow create, update: if ((gestao() || editorial()) && (escolaId != 'deposito-municipal' || (gestao() && request.resource.data.tipoUnidade == 'deposito')) && request.resource.data.nome is string &&
-        request.resource.data.nome.size() > 0 && request.resource.data.nome.size() <= 160 && request.resource.data.ativo is bool) && auditarEscrita();
+        request.resource.data.nome.size() > 0 && request.resource.data.nome.size() <= 160 && request.resource.data.ativo is bool && cadastroEscolaValido(request.resource.data) && camposMasterEscola()) && auditarEscrita();
       allow delete: if false;
       match /estoque/{itemId} {
         allow get: if alimentos(escolaId);
@@ -428,12 +442,17 @@ service cloud.firestore {
     }
     match /escolasPublicas/{escolaId} {
       allow read: if true;
-      allow create, update: if (escolaId != 'deposito-municipal' && editorial() && request.resource.data.keys().hasOnly(['nome','endereco','contato','etapas','horario','sobre','publicadoEm','_auditoria','_registradoEm']) &&
+      allow create, update: if (escolaId != 'deposito-municipal' && editorial() && request.resource.data.keys().hasOnly(['nome','endereco','contato','etapas','horario','sobre','bairro','zona','email','latitude','longitude','publicadoEm','_auditoria','_registradoEm']) &&
         request.resource.data.nome == getAfter(/databases/$(database)/documents/escolas/$(escolaId)).data.nome &&
         getAfter(/databases/$(database)/documents/escolas/$(escolaId)).data.ativo == true &&
         textoValido(request.resource.data.endereco,300) && textoValido(request.resource.data.contato,200) &&
         textoValido(request.resource.data.etapas,300) && textoValido(request.resource.data.horario,200) &&
-        textoValido(request.resource.data.sobre,3000) && request.resource.data.publicadoEm == request.time) && auditarEscrita();
+        textoValido(request.resource.data.sobre,3000) &&
+        textoValido(request.resource.data.get('bairro',''),200) && textoValido(request.resource.data.get('zona',''),20) && textoValido(request.resource.data.get('email',''),200) &&
+        ((request.resource.data.get('latitude',null) == null && request.resource.data.get('longitude',null) == null) ||
+         (request.resource.data.latitude is number && request.resource.data.latitude >= -90 && request.resource.data.latitude <= 90 &&
+          request.resource.data.longitude is number && request.resource.data.longitude >= -180 && request.resource.data.longitude <= 180)) &&
+        request.resource.data.publicadoEm == request.time) && auditarEscrita();
       allow delete: if (editorial()) && auditarExclusao('escolasPublicas/' + escolaId + '');
       match /vistorias/{id} {
         allow get: if gestao() || exists(/databases/$(database)/documents/escolasPublicas/$(escolaId));

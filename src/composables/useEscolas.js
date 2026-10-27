@@ -2,8 +2,10 @@ import { DEPOSITO_ID, DEPOSITO_NOME, ehDeposito } from "../utils/estoque";
 import { runTransactionAuditada } from "../portal/auditoria";
 import { writeBatchAuditado as writeBatch } from "../portal/auditoria";
 import { ref } from "vue";
+import { normalizar, idPorNome } from "../../shared/importacao-escolas.mjs";
 import {
   collection,
+  getDocsFromServer,
   doc,
   onSnapshot,
   query,
@@ -144,16 +146,33 @@ export function useEscolas({ incluirDeposito = false } = {}) {
   async function criarEscola(dados) {
     exigirUsuario(null, true);
     if (!dados.nome?.trim()) throw new Error("Informe o nome da escola.");
-    const refDoc = doc(collection(db, "escolas"));
-    const payload = {
-      nome: dados.nome.trim(),
-      ativo: true,
-      criadoEm: serverTimestamp(),
-    };
-    const batch = writeBatch(db);
-    batch.set(refDoc, payload);
-
-    await batch.commit();
+    const lista = await getDocsFromServer(collection(db, "escolas"));
+    const iguais = lista.docs.filter(
+      (s) => normalizar(s.data().nome) === normalizar(dados.nome),
+    );
+    if (iguais.length > 1)
+      throw Error(
+        "Mais de um cadastro corresponde a este nome. Solicite conferência ao Master.",
+      );
+    if (iguais.length) {
+      if (iguais[0].data().ativo === false || iguais[0].data().arquivada)
+        throw Error(
+          "A escola já existe e está inativa. Solicite reativação ao Master.",
+        );
+      return iguais[0].id;
+    }
+    const refDoc = doc(db, "escolas", await idPorNome(dados.nome));
+    await runTransactionAuditada(db, async (tx) => {
+      const atual = await tx.get(refDoc);
+      if (!atual.exists())
+        tx.set(refDoc, {
+          nome: dados.nome.trim(),
+          ativo: true,
+          versao: 1,
+          criadoEm: serverTimestamp(),
+          atualizadoEm: serverTimestamp(),
+        });
+    });
     return refDoc.id;
   }
 

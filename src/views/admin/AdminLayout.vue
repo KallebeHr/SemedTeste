@@ -76,7 +76,7 @@ const links = [
   ['merenda', 'Indicadores e relatórios', 'relatorios'],
   ["conteudo", "Conteúdos e serviços", "conteudos"],
   ["configuracao", "Página inicial e contatos", "configuracao"],
-  ["escolas", "Escolas e publicação", "escolas"],
+  ["gerenciarEscolas", "Escolas da Rede Municipal", "escolas"],
   ["merenda", "Alimentação escolar", "merenda"],
   ["nutricao", "Cardápios mensais", "cardapios"],
   ["nutricao", "Publicar vistorias", "vistorias"],

@@ -35,6 +35,27 @@
             <dd>{{ e.horario }}</dd></template
           >
         </dl>
+        <p v-if="e.bairro || e.zona">
+          {{ e.bairro }}<span v-if="e.bairro && e.zona"> · </span>{{ e.zona }}
+        </p>
+        <p v-if="e.email">
+          <a :href="'mailto:' + e.email">{{ e.email }}</a>
+        </p>
+        <a
+          v-if="
+            typeof e.latitude === 'number' && typeof e.longitude === 'number'
+          "
+          class="p-button"
+          :href="
+            'https://www.google.com/maps/search/?api=1&query=' +
+            e.latitude +
+            ',' +
+            e.longitude
+          "
+          target="_blank"
+          rel="noopener noreferrer"
+          >Ver localização no mapa ↗</a
+        >
         <router-link class="p-button" :to="'/merenda-escolar?escola=' + e.id"
           >Cardápios e vistorias</router-link
         >

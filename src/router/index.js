@@ -160,7 +160,7 @@ const rotas = [
       {
         path: "escolas",
         component: () => import("../views/admin/EscolasAdmin.vue"),
-        meta: { titulo: "Escolas", permissao: "escolas" },
+        meta: { titulo: "Escolas", permissao: "gerenciarEscolas" },
       },
       {
         path: "merenda",

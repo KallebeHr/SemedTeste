@@ -6,6 +6,18 @@
       deve conter os nomes das colunas. Os dados serão cadastrados para uso
       interno; a publicação da ficha continua no editor de cada escola.
     </p>
+    <button
+      type="button"
+      class="p-button primary"
+      :disabled="ocupado"
+      @click="listaInicial"
+    >
+      Conferir lista inicial das {{ ESCOLAS_REDE.length }} escolas
+    </button>
+    <p class="p-small">
+      Nomes originais preservados. “E. M. Olho d água dos”, “Outra escola” e
+      grafias duvidosas precisam de conferência administrativa.
+    </p>
     <button type="button" class="p-button" :disabled="ocupado" @click="modelo">
       Baixar modelo CSV
     </button>
@@ -33,8 +45,16 @@
       <label class="p-check"
         ><input type="checkbox" v-model="atualizar" :disabled="ocupado" />
         Atualizar escolas correspondentes por INEP ou nome. Somente colunas
-        associadas serão substituídas; células vazias nessas colunas limparão o
-        campo.</label
+        associadas e preenchidas serão atualizadas. Células vazias preservam os
+        dados existentes.</label
+      >
+      <label class="p-check"
+        ><input
+          type="checkbox"
+          v-model="publicarNomes"
+          :disabled="ocupado"
+        />Autorizar a publicação somente dos nomes das novas escolas, sem os
+        dados internos.</label
       >
       <p v-if="mapa.nome < 0" role="alert">
         Associe a coluna Nome da escola para visualizar os registros.
@@ -132,6 +152,7 @@ import {
   mapearCabecalhos,
   prepararLinhas,
 } from "../../../shared/importacao-escolas.mjs";
+import { ESCOLAS_REDE } from "../../data/escolasRede.mjs";
 import { importarEscolas } from "../../services/importacaoEscolas";
 import { useSaidaSegura } from "../../composables/useSaidaSegura";
 const props = defineProps({ escolas: { type: Array, default: () => [] } });
@@ -141,6 +162,7 @@ const headers = ref([]),
   erro = ref(""),
   ocupado = ref(false),
   atualizar = ref(false),
+  publicarNomes = ref(false),
   resultado = ref(null);
 const previa = computed(() => {
   try {
@@ -206,12 +228,23 @@ async function confirmar() {
       mapa.value,
       atualizar.value,
       (r) => (resultado.value = r),
+      publicarNomes.value,
     );
   } catch (e) {
     erro.value = e.message;
   } finally {
     ocupado.value = false;
   }
+}
+function listaInicial() {
+  if (ocupado.value) return;
+  headers.value = ["Nome da escola"];
+  rows.value = ESCOLAS_REDE.map((nome) => [nome]);
+  mapa.value = mapearCabecalhos(headers.value);
+  atualizar.value = false;
+  publicarNomes.value = false;
+  resultado.value = null;
+  erro.value = "";
 }
 function modelo() {
   const text =

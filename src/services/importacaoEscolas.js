@@ -7,9 +7,19 @@ import {
 import { db } from "../firebase";
 import { useAuth } from "../composables/useAuth";
 import { transacaoConfirmada } from "../portal/transacao";
-import { prepararLinhas } from "../../shared/importacao-escolas.mjs";
-export async function importarEscolas(rows, mapa, atualizar, progresso) {
-  if (!useAuth().pode("escolas"))
+import {
+  prepararLinhas,
+  mesclarImportacao,
+  idPorNome,
+} from "../../shared/importacao-escolas.mjs";
+export async function importarEscolas(
+  rows,
+  mapa,
+  atualizar,
+  progresso,
+  publicarNomes = false,
+) {
+  if (!useAuth().pode("gerenciarEscolas"))
     throw new Error("Seu cargo não permite importar escolas.");
   const snap = await getDocsFromServer(collection(db, "escolas"));
   const linhas = prepararLinhas(
@@ -29,26 +39,7 @@ export async function importarEscolas(rows, mapa, atualizar, progresso) {
       continue;
     }
     try {
-      const bytes = await crypto.subtle.digest(
-        "SHA-256",
-        new TextEncoder().encode(
-          l.dados.inep
-            ? "inep:" + l.dados.inep
-            : "nome:" +
-                l.dados.nome
-                  .normalize("NFD")
-                  .replace(/[\u0300-\u036f]/g, "")
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, " ")
-                  .trim(),
-        ),
-      );
-      const id =
-        l.existente?.id ||
-        "import-" +
-          Array.from(new Uint8Array(bytes), (b) =>
-            b.toString(16).padStart(2, "0"),
-          ).join("");
+      const id = l.existente?.id || (await idPorNome(l.dados.nome));
       const r = doc(db, "escolas", id);
       let acao;
       await transacaoConfirmada(async (t) => {
@@ -66,13 +57,22 @@ export async function importarEscolas(rows, mapa, atualizar, progresso) {
             "Cadastro alterado durante a importação. Revise e tente novamente.",
           );
         t.set(r, {
-          ...(antes || {}),
-          ...l.dados,
+          ...mesclarImportacao(antes || {}, l.dados),
           ativo: antes?.ativo !== false,
           versao: (antes?.versao || 0) + 1,
           atualizadoEm: serverTimestamp(),
           ...(s.exists() ? {} : { criadoEm: serverTimestamp() }),
         });
+        if (!s.exists() && publicarNomes)
+          t.set(doc(db, "escolasPublicas", id), {
+            nome: l.dados.nome,
+            endereco: "",
+            contato: "",
+            etapas: "",
+            horario: "",
+            sobre: "",
+            publicadoEm: serverTimestamp(),
+          });
         acao = s.exists() ? "atualizadas" : "criadas";
       });
       resultado[acao]++;

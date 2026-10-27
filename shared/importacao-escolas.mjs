@@ -4,6 +4,15 @@ export const CAMPOS_ESCOLA = {
     160,
     ["nome", "escola", "unidade", "nome da escola"],
   ],
+  responsavel: [
+    "Diretor ou responsável (interno)",
+    200,
+    ["diretor", "responsavel", "nome do diretor"],
+  ],
+  turnos: ["Turnos de funcionamento", 200, ["turnos", "turno"]],
+  observacoes: ["Observações internas", 3000, ["observacoes"]],
+  latitude: ["Latitude", 0, ["latitude", "lat"]],
+  longitude: ["Longitude", 0, ["longitude", "lng", "lon"]],
   inep: ["INEP", 8, ["inep", "codigo inep", "cod inep"]],
   endereco: ["Endereço", 300, ["endereco", "endereco publico"]],
   contato: ["Contato", 200, ["contato", "telefone", "contato publico"]],
@@ -101,6 +110,17 @@ export function validarEscola(entrada, parcial = false) {
   for (const [k, [label, max]] of Object.entries(CAMPOS_ESCOLA)) {
     if (parcial && !(k in entrada)) continue;
     const v = entrada[k];
+    if (k === "latitude" || k === "longitude") {
+      if (v == null || String(v).trim() === "") {
+        d[k] = null;
+        continue;
+      }
+      const n = Number(String(v).replace(",", "."));
+      if (!Number.isFinite(n) || Math.abs(n) > (k === "latitude" ? 90 : 180))
+        throw Error(label + ": coordenada inválida.");
+      d[k] = n;
+      continue;
+    }
     if (k === "alunos" || k === "funcionarios") {
       if (v == null || String(v).trim() === "") {
         d[k] = null;
@@ -127,6 +147,7 @@ export function validarEscola(entrada, parcial = false) {
     if (!["urbana", "rural"].includes(d.zona))
       throw new Error("Zona: use urbana ou rural.");
   }
+  if (!parcial) d.totalPessoasEscola = totalPessoas(d);
   return d;
 }
 export function prepararLinhas(rows, mapa, existentes = []) {
@@ -170,4 +191,45 @@ export function prepararLinhas(rows, mapa, existentes = []) {
       };
     }
   });
+}
+
+export function totalPessoas(d) {
+  return Number.isInteger(d.alunos) && Number.isInteger(d.funcionarios)
+    ? d.alunos + d.funcionarios
+    : null;
+}
+export function mesclarImportacao(antes, dados) {
+  const presentes = Object.fromEntries(
+    Object.entries(dados).filter(
+      ([, v]) => v !== null && v !== undefined && v !== "",
+    ),
+  );
+  const depois = { ...antes, ...presentes };
+  depois.totalPessoasEscola = totalPessoas(depois);
+  return depois;
+}
+export function alertasEscola(e) {
+  const avisos = [];
+  if (["e m olho d agua dos", "outra escola"].includes(normalizar(e.nome)))
+    avisos.push("Nome incompleto ou genérico: conferir com a administração.");
+  if (/infatil/i.test(e.nome || ""))
+    avisos.push("Possível grafia a conferir; nome original preservado.");
+  if ([e.alunos, e.funcionarios].some((v) => v == null))
+    avisos.push("Quantidades ainda não informadas.");
+  if (!e.inep || !e.endereco)
+    avisos.push("Cadastro com informações pendentes.");
+  return avisos;
+}
+
+export async function idPorNome(nome) {
+  const bytes = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode("nome:" + normalizar(nome)),
+  );
+  return (
+    "import-" +
+    Array.from(new Uint8Array(bytes), (b) =>
+      b.toString(16).padStart(2, "0"),
+    ).join("")
+  );
 }

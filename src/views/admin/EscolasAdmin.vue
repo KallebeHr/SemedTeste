@@ -6,9 +6,40 @@
         <p>O cadastro interno é separado da ficha pública da escola.</p>
       </div>
       <button class="p-button primary" @click="editar()">
-        + Cadastrar escola
+        + Adicionar escola
       </button>
     </header>
+    <div class="p-grid indicadores">
+      <div class="p-card">
+        Cadastradas <strong>{{ todas.length }}</strong>
+      </div>
+      <div class="p-card">
+        Ativas
+        <strong>{{
+          todas.filter((e) => e.ativo !== false && !e.arquivada).length
+        }}</strong>
+      </div>
+      <div class="p-card">
+        Inativas
+        <strong>{{ todas.filter((e) => e.ativo === false).length }}</strong>
+      </div>
+    </div>
+    <div class="filtros">
+      <label class="p-field"
+        >Pesquisar escola<input
+          v-model="busca"
+          type="search"
+          placeholder="Nome da escola" /></label
+      ><label class="p-field"
+        >Situação<select v-model="situacao">
+          <option value="">Todas</option>
+          <option value="ativas">Ativas</option>
+          <option value="inativas">Inativas</option>
+          <option value="arquivadas">Arquivadas</option>
+          <option value="pendentes">Informações incompletas</option>
+        </select></label
+      >
+    </div>
     <details class="p-card">
       <summary>Importar escolas por planilha</summary>
       <ImportarEscolas :escolas="consulta.dados.value" />
@@ -26,51 +57,56 @@
             required
             maxlength="160"
         /></label>
-        <div class="p-grid two">
-          <label
-            v-for="key in [
-              'inep',
-              'email',
-              'bairro',
-              'zona',
-              'alunos',
-              'funcionarios',
-            ]"
-            :key="key"
-            class="p-field"
-            >{{ CAMPOS_ESCOLA[key][0]
-            }}<input
-              v-model="form[key]"
-              :type="
-                ['alunos', 'funcionarios'].includes(key) ? 'number' : 'text'
-              "
-              min="0"
-              max="100000"
-              :maxlength="CAMPOS_ESCOLA[key][1] || undefined"
-          /></label>
-          <label class="p-field"
-            >Endereço público<input
-              aria-label="Endereço público"
-              v-model="form.endereco"
-              maxlength="300" /></label
-          ><label class="p-field"
-            >Contato público<input
-              aria-label="Contato público"
-              v-model="form.contato"
-              maxlength="200" /></label
-          ><label class="p-field"
-            >Etapas de ensino<input
-              aria-label="Etapas de ensino"
-              v-model="form.etapas"
-              maxlength="300"
-              placeholder="Ex.: Educação infantil e ensino fundamental" /></label
-          ><label class="p-field"
-            >Horário de atendimento<input
-              aria-label="Horário de atendimento"
-              v-model="form.horario"
-              maxlength="200"
-          /></label>
-        </div>
+        <section v-for="grupo in grupos" :key="grupo.titulo" class="form-grupo">
+          <h3>{{ grupo.titulo }}</h3>
+          <div class="p-grid two">
+            <label v-for="key in grupo.campos" :key="key" class="p-field"
+              >{{ CAMPOS_ESCOLA[key][0] }}
+              <textarea
+                v-if="key === 'observacoes'"
+                v-model="form[key]"
+                maxlength="3000"
+              />
+              <select
+                v-else-if="key === 'zona'"
+                v-model="form[key]"
+                aria-label="Zona urbana ou rural"
+              >
+                <option value="">Não informada</option>
+                <option value="urbana">Urbana</option>
+                <option value="rural">Rural</option>
+              </select>
+              <input
+                v-else
+                v-model="form[key]"
+                :type="
+                  ['alunos', 'funcionarios'].includes(key)
+                    ? 'number'
+                    : key === 'email'
+                      ? 'email'
+                      : key === 'contato'
+                        ? 'tel'
+                        : 'text'
+                "
+                :min="['alunos', 'funcionarios'].includes(key) ? 0 : undefined"
+                :max="
+                  ['alunos', 'funcionarios'].includes(key) ? 100000 : undefined
+                "
+                :step="['alunos', 'funcionarios'].includes(key) ? 1 : undefined"
+                :maxlength="CAMPOS_ESCOLA[key][1] || undefined"
+              />
+            </label>
+          </div>
+        </section>
+        <p class="p-small">
+          Total de pessoas:
+          <strong>{{
+            totalPessoas(validarContagens) ??
+            "Não informado — preencha alunos e funcionários"
+          }}</strong
+          >. Zero só deve ser informado quando a quantidade real for zero.
+        </p>
+        <h3>Publicação autorizada</h3>
         <label class="p-field"
           >Apresentação pública<textarea
             aria-label="Apresentação pública"
@@ -78,12 +114,29 @@
             maxlength="3000"
           /></label
         ><label class="p-check"
-          ><input v-model="form.ativo" type="checkbox" /> Escola ativa no
-          sistema</label
+          ><input
+            v-model="form.ativo"
+            type="checkbox"
+            :disabled="form.arquivada"
+          />
+          Escola ativa no sistema</label
         ><label class="p-check"
           ><input v-model="publicar" type="checkbox" :disabled="!form.ativo" />
           Exibir a ficha no portal público</label
         >
+        <fieldset v-if="publicar" class="publicacao-campos">
+          <legend>Autorizar dados públicos</legend>
+          <p>
+            O nome será exibido. Marque somente os outros dados que podem ser
+            divulgados. Diretor, observações internas e quantidades não são
+            publicados.
+          </p>
+          <label v-for="key in PUBLICAVEIS" :key="key" class="p-check"
+            ><input type="checkbox" v-model="autorizados" :value="key" />{{
+              CAMPOS_ESCOLA[key]?.[0] || key
+            }}</label
+          >
+        </fieldset>
         <p class="p-small">
           Confirme que o contato e o texto podem ser divulgados. Desmarcar a
           publicação também retira os resumos públicos das vistorias da
@@ -104,17 +157,63 @@
           <div>
             <h2>{{ e.nome }}</h2>
             <span class="p-badge"
-              >{{ e.ativo ? "Ativa" : "Inativa" }} ·
-              {{ publicadas.has(e.id) ? "Publicada" : "Uso interno" }}</span
+              >{{
+                e.arquivada
+                  ? "Arquivada"
+                  : e.ativo !== false
+                    ? "Ativa"
+                    : "Inativa"
+              }}
+              · {{ publicadas.has(e.id) ? "Publicada" : "Uso interno" }}</span
             >
             <p class="p-small">
               Alunos: {{ e.alunos ?? "Não informado" }} · Funcionários:
               {{ e.funcionarios ?? "Não informado" }}
             </p>
+            <p class="p-small">
+              Total de pessoas: {{ totalPessoas(e) ?? "Não informado" }}
+            </p>
+            <p v-for="a in alertasEscola(e)" :key="a" class="p-small pendencia">
+              {{ a }}
+            </p>
             <p class="p-small p-muted">Identificador: {{ e.id }}</p>
           </div>
-          <button class="p-button" @click="editar(e)">Editar e publicar</button>
+          <div class="p-actions">
+            <button class="p-button" :disabled="ocupado" @click="editar(e)">
+              Editar informações</button
+            ><button
+              v-if="e.ativo === false || e.arquivada"
+              class="p-button"
+              :disabled="ocupado"
+              @click="situar(e, 'reativar')"
+            >
+              Reativar</button
+            ><button
+              v-else
+              class="p-button"
+              :disabled="ocupado"
+              @click="situar(e, 'desativar')"
+            >
+              Desativar</button
+            ><button
+              v-if="!e.arquivada"
+              class="p-button danger"
+              :disabled="ocupado"
+              @click="situar(e, 'arquivar')"
+            >
+              Remover / arquivar
+            </button>
+          </div>
         </div>
+        <details>
+          <summary>Ver informações da escola</summary>
+          <dl class="detalhes">
+            <div v-for="(campo, key) in CAMPOS_ESCOLA" :key="key">
+              <dt>{{ campo[0] }}</dt>
+              <dd>{{ e[key] === 0 ? 0 : e[key] || "Não informado" }}</dd>
+            </div>
+          </dl>
+        </details>
       </article>
       <p v-if="!ordenadas.length && !consulta.carregando.value" class="p-empty">
         Nenhuma escola cadastrada.
@@ -126,25 +225,61 @@
 import ImportarEscolas from "../../components/admin/ImportarEscolas.vue";
 import {
   CAMPOS_ESCOLA,
-  validarEscola,
+  totalPessoas,
+  alertasEscola,
+  normalizar,
 } from "../../../shared/importacao-escolas.mjs";
 import { ehDeposito } from "../../utils/estoque";
-import { transacaoConfirmada } from "../../portal/transacao";
+import {
+  salvarFichaEscola,
+  alterarSituacaoEscola,
+  PUBLICAVEIS,
+} from "../../services/escolasCadastro";
+import { useSaidaSegura } from "../../composables/useSaidaSegura";
 import { ref, reactive, computed } from "vue";
-import { collection, doc, serverTimestamp } from "firebase/firestore";
+import { collection } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useColecao } from "../../composables/useColecao";
 import { usePortal } from "../../composables/usePortal";
-import { useAuth } from "../../composables/useAuth";
+
 import { mensagemErro } from "../../portal/validacao";
 import EstadoConsulta from "../../components/portal/EstadoConsulta.vue";
+const grupos = [
+  { titulo: "Identificação e gestão", campos: ["inep", "responsavel"] },
+  { titulo: "Pessoas na escola", campos: ["alunos", "funcionarios"] },
+  {
+    titulo: "Endereço e localização",
+    campos: ["endereco", "bairro", "zona", "latitude", "longitude"],
+  },
+  {
+    titulo: "Contato e funcionamento",
+    campos: ["contato", "email", "etapas", "turnos", "horario"],
+  },
+  { titulo: "Anotações internas", campos: ["observacoes"] },
+];
 const consulta = useColecao(() => collection(db, "escolas")),
   { escolas } = usePortal(),
   publicadas = computed(() => new Set(escolas.dados.value.map((e) => e.id))),
+  todas = computed(() => consulta.dados.value.filter((e) => !ehDeposito(e.id))),
+  busca = ref(""),
+  situacao = ref(""),
+  autorizados = ref([]),
   ordenadas = computed(() =>
-    consulta.dados.value
-      .filter((e) => !ehDeposito(e.id))
-      .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR")),
+    todas.value
+      .filter(
+        (e) =>
+          normalizar(e.nome).includes(normalizar(busca.value)) &&
+          (!situacao.value ||
+            (situacao.value === "ativas" &&
+              e.ativo !== false &&
+              !e.arquivada) ||
+            (situacao.value === "inativas" && e.ativo === false) ||
+            (situacao.value === "arquivadas" && e.arquivada) ||
+            (situacao.value === "pendentes" && alertasEscola(e).length)),
+      )
+      .sort((a, b) =>
+        String(a.nome || "").localeCompare(String(b.nome || ""), "pt-BR"),
+      ),
   ),
   aberto = ref(false),
   ocupado = ref(false),
@@ -152,13 +287,28 @@ const consulta = useColecao(() => collection(db, "escolas")),
   erro = ref(""),
   mensagem = ref(""),
   form = reactive({});
+useSaidaSegura(() => aberto.value);
+const validarContagens = computed(() => ({
+  alunos:
+    form.alunos === "" || form.alunos == null ? null : Number(form.alunos),
+  funcionarios:
+    form.funcionarios === "" || form.funcionarios == null
+      ? null
+      : Number(form.funcionarios),
+}));
 function editar(e = {}) {
+  if (
+    aberto.value &&
+    !window.confirm("Descartar os dados do formulário aberto?")
+  )
+    return;
   const p = escolas.dados.value.find((p) => p.id === e.id) || {};
   Object.keys(form).forEach((k) => delete form[k]);
   Object.assign(form, {
     id: e.id || "",
     nome: e.nome || "",
     ativo: e.ativo !== false,
+    arquivada: e.arquivada === true,
     versao: e.versao || 0,
     ...Object.fromEntries(
       Object.keys(CAMPOS_ESCOLA)
@@ -172,6 +322,9 @@ function editar(e = {}) {
     sobre: e.sobre ?? p.sobre ?? "",
   });
   publicar.value = publicadas.value.has(e.id);
+  autorizados.value = PUBLICAVEIS.filter(
+    (k) => p[k] !== undefined && p[k] !== "",
+  );
   aberto.value = true;
   erro.value = "";
   window.scrollTo({ top: 0 });
@@ -181,39 +334,7 @@ async function salvar() {
   ocupado.value = true;
   erro.value = "";
   try {
-    useAuth().exigirUsuario();
-    const dados = validarEscola(form);
-    const r = form.id
-      ? doc(db, "escolas", form.id)
-      : doc(collection(db, "escolas"));
-    form.id = r.id;
-    await transacaoConfirmada(async (t) => {
-      const s = await t.get(r);
-      if (s.exists() && (s.data().versao || 0) !== form.versao)
-        throw new Error(
-          "A escola foi alterada por outra pessoa. Reabra o cadastro.",
-        );
-      t.set(r, {
-        ...(s.data() || {}),
-        ...dados,
-        ativo: form.ativo,
-        versao: form.versao + 1,
-        atualizadoEm: serverTimestamp(),
-        ...(s.exists() ? {} : { criadoEm: serverTimestamp() }),
-      });
-      const p = doc(db, "escolasPublicas", r.id);
-      if (publicar.value && form.ativo)
-        t.set(p, {
-          nome: form.nome.trim(),
-          endereco: form.endereco.trim(),
-          contato: form.contato.trim(),
-          etapas: form.etapas.trim(),
-          horario: form.horario.trim(),
-          sobre: form.sobre.trim(),
-          publicadoEm: serverTimestamp(),
-        });
-      else t.delete(p);
-    });
+    await salvarFichaEscola(form, publicar.value, autorizados.value);
     aberto.value = false;
     mensagem.value =
       "Escola salva. Os dados existentes de estoque e vistorias foram preservados.";
@@ -223,12 +344,93 @@ async function salvar() {
     ocupado.value = false;
   }
 }
+async function situar(e, acao) {
+  if (aberto.value) {
+    erro.value =
+      "Salve ou cancele o formulário aberto antes de alterar a situação de uma escola.";
+    return;
+  }
+  if (ocupado.value) return;
+  const texto =
+    acao === "arquivar"
+      ? "Remover esta escola da operação ativa por arquivamento? Nenhum cadastro, aluno, usuário, estoque, vistoria ou histórico será apagado. A escola poderá ser reativada."
+      : acao === "desativar"
+        ? "Desativar a escola e retirar a ficha pública, preservando os vínculos e históricos?"
+        : "Reativar a escola? A publicação pública deverá ser autorizada novamente.";
+  if (!window.confirm(texto)) return;
+  ocupado.value = true;
+  erro.value = "";
+  try {
+    await alterarSituacaoEscola(e, acao);
+    mensagem.value =
+      acao === "reativar"
+        ? "Escola reativada com o mesmo identificador."
+        : "Escola retirada das seleções ativas; dados e histórico preservados.";
+  } catch (f) {
+    erro.value = mensagemErro(f);
+  } finally {
+    ocupado.value = false;
+  }
+}
 </script>
 <style scoped>
+h1 {
+  font-size: clamp(1.4rem, 3vw, 1.95rem);
+}
+article h2 {
+  font-size: 1.15rem;
+}
+
 fieldset {
   border: 0;
 }
 form {
   margin-block: 1.5rem;
+}
+.filtros {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-block: 1rem;
+}
+.filtros > label {
+  flex: 1 1 220px;
+}
+.indicadores {
+  margin-block: 1rem;
+}
+.indicadores strong {
+  display: block;
+  font-size: 1.5rem;
+}
+.publicacao-campos {
+  display: grid;
+  gap: 0.5rem;
+}
+.detalhes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 0.8rem;
+}
+.detalhes dt {
+  font-size: 0.8rem;
+  color: var(--p-muted);
+}
+.detalhes dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.pendencia {
+  color: var(--p-muted);
+}
+.form-grupo {
+  display: grid;
+  gap: 0.7rem;
+  border-top: 1px solid var(--p-border);
+  padding-top: 1rem;
+}
+.form-grupo h3 {
+  font-size: 1rem;
+  margin: 0;
 }
 </style>
